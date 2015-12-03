@@ -2044,3 +2044,16 @@ body {
     top: 0 !important;
   }
 }
+
+.fancybox{
+  display :inline-block;
+  margin-left :50px;
+  height:100px;
+  width:100px;
+}
+
+.fancybox img{
+  margin-top :50px !important;
+  border :none !important;
+  padding :0 0 0 0 !important;
+}
