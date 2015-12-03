@@ -678,10 +678,6 @@ body {
     width: 900px;
   }
 }
-.headband {
-  height: 3px;
-  background: #222;
-}
 .header {
   background: #fff;
 }
@@ -701,19 +697,21 @@ body {
   position: relative;
   display: inline-block;
   padding: 0 40px;
-  color: #DEA3A3;
+/* 以下自己修改 */
+  color: #dea3a3;
   background: none;
   border-bottom: none;
   font-family: Lato, "PingFang SC", "Microsoft YaHei", sans-serif;
-  border-top: 50px double #ECCACA;
-  border-bottom: double 50px #CFE8A8;
+  border-top: 50px double #eccaca;
+  border-bottom: double 50px #cfe8a8;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   border-top-right-radius: 10px;
 }
 .brand:hover {
-  color: #fff;
+  color: #dea3a3;
+  border-bottom-color: #cfe8a8;
 }
 .logo {
   display: inline-block;
@@ -971,7 +969,7 @@ body {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #5cb465;
+  background: #ffe9f4;
 }
 .sidebar-nav {
   margin: 0 0 20px;
@@ -1923,6 +1921,17 @@ body {
 .page-post-detail .comments {
   overflow: hidden;
 }
+.fancybox {
+  display: inline-block;
+  margin-left: 50px;
+  height: 100px;
+  width: 100px;
+}
+.fancybox img {
+  margin-top: 50px !important;
+  border: none !important;
+  padding: 0 0 0 0 !important;
+}
 .category-all-page .category-all-title {
   text-align: center;
 }
@@ -2043,17 +2052,4 @@ body {
   .use-motion .site-search form {
     top: 0 !important;
   }
-}
-
-.fancybox{
-  display :inline-block;
-  margin-left :50px;
-  height:100px;
-  width:100px;
-}
-
-.fancybox img{
-  margin-top :50px !important;
-  border :none !important;
-  padding :0 0 0 0 !important;
 }
