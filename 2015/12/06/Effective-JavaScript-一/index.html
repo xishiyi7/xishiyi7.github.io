@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="js," />
 
 
 
@@ -51,15 +51,22 @@
 
 
 
-<meta name="description" content="this is my personal post">
-<meta property="og:type" content="website">
-<meta property="og:title" content="阿根廷人。">
-<meta property="og:url" content="https://github.com/xishiyi7/xishiyi7.github.io/index.html">
+<meta name="description" content="68 Specific Ways to Harness the Power of JavaScript编写高质量JavaScript代码的68个有效方法
+注：本文内容来自同名图书读书笔记，只涉及部分条目，序号会保持原书一致
+一.让自己习惯JavaScript1.了解你使用的JavaScript版本123456789101999. ES3 (ECMAScript)2009. ES5,ES5加入了严格">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Effective JavaScript(一)">
+<meta property="og:url" content="https://github.com/xishiyi7/xishiyi7.github.io/2015/12/06/Effective-JavaScript-一/index.html">
 <meta property="og:site_name" content="阿根廷人。">
-<meta property="og:description" content="this is my personal post">
+<meta property="og:description" content="68 Specific Ways to Harness the Power of JavaScript编写高质量JavaScript代码的68个有效方法
+注：本文内容来自同名图书读书笔记，只涉及部分条目，序号会保持原书一致
+一.让自己习惯JavaScript1.了解你使用的JavaScript版本123456789101999. ES3 (ECMAScript)2009. ES5,ES5加入了严格">
+<meta property="og:updated_time" content="2015-12-06T08:29:38.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="阿根廷人。">
-<meta name="twitter:description" content="this is my personal post">
+<meta name="twitter:title" content="Effective JavaScript(一)">
+<meta name="twitter:description" content="68 Specific Ways to Harness the Power of JavaScript编写高质量JavaScript代码的68个有效方法
+注：本文内容来自同名图书读书笔记，只涉及部分条目，序号会保持原书一致
+一.让自己习惯JavaScript1.了解你使用的JavaScript版本123456789101999. ES3 (ECMAScript)2009. ES5,ES5加入了严格">
 
 
 
@@ -71,7 +78,7 @@
   };
 </script>
 
-  <title> 阿根廷人。 </title>
+  <title> Effective JavaScript(一) | 阿根廷人。 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -92,9 +99,7 @@
 
 
 
-  <div class="container one-column 
-   page-home 
-">
+  <div class="container one-column page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -161,24 +166,9 @@
       <div class="main-inner">
         <div id="content" class="content">
           
-  <section id="posts" class="posts-expand">
 
+  <div id="posts" class="posts-expand">
     
-
-    
-    
-      
-      
-        
-        
-        
-      
-
-      
-    
-
-    
-      
 
   
   
@@ -198,10 +188,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2015/12/06/Effective-JavaScript-一/" itemprop="url">
-                  Effective JavaScript(一)
-                </a>
+                Effective JavaScript(一)
               
             
           </h1>
@@ -234,10 +221,7 @@
       
 
       
-        
-          <span itemprop="articleBody">
-            
-              <p>68 Specific Ways to Harness the Power of JavaScript<br>编写高质量JavaScript代码的68个有效方法</p>
+        <span itemprop="articleBody"><p>68 Specific Ways to Harness the Power of JavaScript<br>编写高质量JavaScript代码的68个有效方法</p>
 <p><strong><em>注：本文内容来自同名图书读书笔记，只涉及部分条目，序号会保持原书一致</em></strong></p>
 <h3 id="一-让自己习惯JavaScript">一.让自己习惯JavaScript</h3><h6 id="1-了解你使用的JavaScript版本">1.了解你使用的JavaScript版本</h6><figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1999.</span> ES3 (ECMAScript)</span><br><span class="line"></span><br><span class="line"><span class="number">2009.</span> ES5,ES5加入了严格模式,对于新旧代码的链接,可以选择以下两种方案:</span><br><span class="line">	a.不要将进行严格模式检查的文件与不进行严格模式检查的文件连接起来；</span><br><span class="line">	b.将其自身包裹在立即调用的函数表达式(Immediately Invoked <span class="function"><span class="keyword">Function</span></span> Expression, IIFE)中，来连接多个文件</span><br><span class="line">		(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="function"><span class="keyword">function</span></span> f()&#123;&#125;;</span><br><span class="line">		&#125;)()</span><br><span class="line"></span><br><span class="line">next. ES6</span><br></pre></td></tr></table></figure>
 <h5 id="2-理解JavaScript的浮点数">2.理解JavaScript的浮点数</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">在js中,数值类型只有一种:number,双精度浮点数</span><br><span class="line"></span><br><span class="line">注意浮点数计算的陷阱</span><br><span class="line">	<span class="number">0.1</span>+<span class="number">0.2</span>;	<span class="comment">//	0.30000000000000004</span></span><br><span class="line">浮点数计算,比较简单的解决办法是先换算成整数计算</span><br></pre></td></tr></table></figure>
@@ -245,245 +229,46 @@
 <h5 id="4-原始类型优于封装对象">4.原始类型优于封装对象</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">js除了对象类型外,还有<span class="number">5</span>个原始值类型:布尔/数字/字符串/<span class="literal">null</span>/<span class="literal">undefined</span>.</span><br><span class="line">标准库为布尔/数字/字符串提供了构造函数来封装成对象,例如:</span><br><span class="line">	<span class="keyword">var</span> s = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">'hello'</span>);</span><br><span class="line"></span><br><span class="line">不同于原始的字符串,<span class="built_in">String</span>对象是一个真正的对象</span><br><span class="line">	<span class="keyword">typeof</span> <span class="string">'hello'</span>	<span class="comment">//	'string'</span></span><br><span class="line">	<span class="keyword">typeof</span> s	<span class="comment">//	'object'</span></span><br><span class="line">	<span class="keyword">var</span> s2 = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">'hello'</span>)</span><br><span class="line">	s === s2	<span class="comment">//	false</span></span><br><span class="line">	s == s2	<span class="comment">//	false</span></span><br><span class="line"></span><br><span class="line">原始类型的封装对象与其原始值，行为可能不一样，原始值类型要优于封装对象</span><br></pre></td></tr></table></figure>
 <h5 id="5-避免对混合类型使用_==_运算符">5.避免对混合类型使用 == 运算符</h5><figure class="highlight fix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">当参数类型不同时, =</span>=<span class="string"> 运算符应用了隐式强制转换规则</span><br><span class="line">当使用了 === 运算符,可以明确比较两边的值与类型都相等</span><br><span class="line">当比较不同类型的值时,使用自己定义的显示转换可以让程序的行为更明确</span></span><br></pre></td></tr></table></figure>
 <h3 id="二-变量作用域">二.变量作用域</h3><h5 id="8-尽量少用全局对象/变量">8.尽量少用全局对象/变量</h5><p>定义全局变量会污染共享的公共命名空间,可能导致意外的命名冲突,而且不利于模块化,因为它会导致程序中独立组件间的不必要耦合.<br>由于全局命名空间是js程序中独立组件进行交互的唯一途径,因此,利用全局命名空间的情况是不可避免的.<br>尽量只在组件或者程序库不得不定义全局变量的时候,使用全局变量.<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">避免声明全局变量</span><br><span class="line">避免对全局对象添加属性</span><br><span class="line">可以使用全局对象来做平台特性检测,如,要测试当前环境是否支持JSON对象,可以如下实现:</span><br><span class="line">	<span class="keyword">if</span>(!<span class="keyword">this</span>.JSON)｛</span><br><span class="line">		...</span><br><span class="line">	｝</span><br></pre></td></tr></table></figure></p>
-<h5 id="11-熟练使用闭包">11.熟练使用闭包</h5><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">三个关于闭包的基本事实:</span><br><span class="line"></span><br><span class="line">a.js允许你引用在当前函数以外定义的变量	(这个很显然,不解释)</span><br><span class="line"></span><br><span class="line">b.即使外部函数已经返回,当前函数仍然可以引用在外部函数所定义的变量,例如:</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">doubleAdd</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">var</span> other = <span class="number">1</span>;</span><br><span class="line">		<span class="function"><span class="keyword">function</span> <span class="title">add</span><span class="params">(x)</span></span>&#123;</span><br><span class="line">			<span class="keyword">return</span> other + x;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> add;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">var</span> f = doubleAdd();</span><br><span class="line">	f(<span class="number">2</span>)	<span class="comment">//	3</span></span><br><span class="line">	f(<span class="number">4</span>)	<span class="comment">//	5</span></span><br><span class="line"></span><br><span class="line">以上函数可以修改为匿名函数,如下:</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">doubleAdd</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">var</span> other = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">(x)</span></span>&#123;</span><br><span class="line">			<span class="keyword">return</span> other + x;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">c.闭包可以更新外部变量的值,例如:</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">box</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">var</span> val = <span class="literal">undefined</span>;</span><br><span class="line">		<span class="keyword">return</span>&#123;</span><br><span class="line">			<span class="keyword">set</span>:<span class="function"><span class="keyword">function</span><span class="params">(newVal)</span></span>&#123;val = newVal;&#125;</span><br><span class="line">			<span class="keyword">get</span>:<span class="function"><span class="keyword">function</span><span class="params">(newVal)</span></span>&#123;<span class="keyword">return</span> val;&#125;</span><br><span class="line">		&#125;;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">var</span> b = box();</span><br><span class="line">	b.<span class="keyword">set</span>(<span class="number">11</span>);</span><br><span class="line">	b.<span class="keyword">get</span>();	<span class="comment">//	11</span></span><br></pre></td></tr></table></figure>
-            
-          </span>
-        
+<h5 id="11-熟练使用闭包">11.熟练使用闭包</h5><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">三个关于闭包的基本事实:</span><br><span class="line"></span><br><span class="line">a.js允许你引用在当前函数以外定义的变量	(这个很显然,不解释)</span><br><span class="line"></span><br><span class="line">b.即使外部函数已经返回,当前函数仍然可以引用在外部函数所定义的变量,例如:</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">doubleAdd</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">var</span> other = <span class="number">1</span>;</span><br><span class="line">		<span class="function"><span class="keyword">function</span> <span class="title">add</span><span class="params">(x)</span></span>&#123;</span><br><span class="line">			<span class="keyword">return</span> other + x;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> add;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">var</span> f = doubleAdd();</span><br><span class="line">	f(<span class="number">2</span>)	<span class="comment">//	3</span></span><br><span class="line">	f(<span class="number">4</span>)	<span class="comment">//	5</span></span><br><span class="line"></span><br><span class="line">以上函数可以修改为匿名函数,如下:</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">doubleAdd</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">var</span> other = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">(x)</span></span>&#123;</span><br><span class="line">			<span class="keyword">return</span> other + x;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">c.闭包可以更新外部变量的值,例如:</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">box</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">var</span> val = <span class="literal">undefined</span>;</span><br><span class="line">		<span class="keyword">return</span>&#123;</span><br><span class="line">			<span class="keyword">set</span>:<span class="function"><span class="keyword">function</span><span class="params">(newVal)</span></span>&#123;val = newVal;&#125;</span><br><span class="line">			<span class="keyword">get</span>:<span class="function"><span class="keyword">function</span><span class="params">(newVal)</span></span>&#123;<span class="keyword">return</span> val;&#125;</span><br><span class="line">		&#125;;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">var</span> b = box();</span><br><span class="line">	b.<span class="keyword">set</span>(<span class="number">11</span>);</span><br><span class="line">	b.<span class="keyword">get</span>();	<span class="comment">//	11</span></span><br></pre></td></tr></table></figure></span>
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/12/03/一个关于闭包-bind-this的面试题/" itemprop="url">
-                  一个关于闭包/bind/this的面试题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-12-03T23:47:41+08:00" content="2015-12-03">
-              2015-12-03
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/js/" rel="tag">#js</a>
           
-            
-          
-
-          
-
         </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
       
 
       
-        
-          <span itemprop="articleBody">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <h5 id="针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index"><strong><em>针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index</em></strong></h5><pre><code>&lt;ul id=<span class="string">"text"</span>&gt;
-    &lt;<span class="keyword">li</span>&gt;这是第一个<span class="keyword">li</span>&lt;/<span class="keyword">li</span>&gt;
-    &lt;<span class="keyword">li</span>&gt;这是第二个<span class="keyword">li</span>&lt;/<span class="keyword">li</span>&gt;
-    &lt;<span class="keyword">li</span>&gt;这是第三个<span class="keyword">li</span>&lt;/<span class="keyword">li</span>&gt;
-&lt;/ul&gt;
-</code></pre><h5 id="解答一：bind，将当前匿名函数指向this，将i当参数传入"><strong><em>解答一：bind，将当前匿名函数指向this，将i当参数传入</em></strong></h5><pre><code><span class="keyword">var</span> init = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{
-<span class="keyword">var</span> obj = <span class="built_in">document</span>.getElementById(<span class="string">'text'</span>);
-<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;obj.children.length;i++){
-  obj.children[i].addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>{
-    alert(i)
-  }.bind(<span class="keyword">this</span>,i))
-}
-}
-init();
-</code></pre><h5 id="解答二：闭包"><strong><em>解答二：闭包</em></strong></h5><pre><code><span class="keyword">var</span> init = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{
-<span class="keyword">var</span> lis=<span class="built_in">document</span>.querySelectorAll(<span class="string">"#text li"</span>);
-  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;lis.length;i++){
-        lis[i].onclick=(<span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>{
-              <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{
-                    alert(i);
-              };
-        })(i)
-  }
-}
-init();
-</code></pre><h5 id="解答三：最笨的方法，匹配"><strong><em>解答三：最笨的方法，匹配</em></strong></h5><pre><code><span class="keyword">var</span> init = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
-  <span class="keyword">var</span> obj = document.getElementById(<span class="string">'text'</span>);
-  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;obj.children.length;i++){
-    obj.children[i].addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span><span class="params">(item)</span></span>{
-      <span class="keyword">var</span> <span class="keyword">self</span> = item.target;
-      <span class="keyword">for</span>(<span class="keyword">var</span> j=<span class="number">0</span>;j&lt;obj.children.length;j++){
-        <span class="keyword">if</span>(<span class="keyword">self</span> == obj.children[j]){
-          alert(j);
-        }
-      }
-    })
-  }
-}
-init();
-</code></pre><hr>
-<hr>
-<p><img src="../../../../images/money.png" alt="money">☜☜☜ <strong><em>wechat</em></strong> 『『『<strong><em> reward 点击打赏 ~~~ ^_^ </em></strong>  』』』<strong><em>alipay</em></strong> ☞☞☞   <img src="../../../../images/money.jpg" alt="money"></p>
-<hr>
-<hr>
-
+              <a href="/2015/12/03/一个关于闭包-bind-this的面试题/" rel="next" title="一个关于闭包/bind/this的面试题">
+                <i class="fa fa-chevron-left"></i> 一个关于闭包/bind/this的面试题
+              </a>
             
-          </span>
-        
-      
-    </div>
+          </div>
 
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+          <div class="post-nav-prev post-nav-item">
             
-            
-              
-                
-                <a class="post-title-link" href="/2015/12/03/hello-web/" itemprop="url">
-                  Hello Web
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-12-03T10:10:33+08:00" content="2015-12-03">
-              2015-12-03
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
       
 
       
-        
-          <span itemprop="articleBody">
-            
-              <p>Welcome to <a href="https://xishiyi7.github.io/" target="_blank" rel="external">xishiyi7’s blog</a>! This is my very first post. If you get any problems here, you can find my contact information in later posts. Thank you!</p>
-<h2 id="General">General</h2><h3 id="JavaScript">JavaScript</h3><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"><span class="keyword">include</span> some js knowledge.</span></span><br></pre></td></tr></table></figure>
-<h3 id="Css">Css</h3><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i think css can change <span class="operator">the</span> web, change <span class="operator">the</span> world.</span><br></pre></td></tr></table></figure>
-<h3 id="Html">Html</h3><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">html5 <span class="keyword">is</span> incredible.</span><br></pre></td></tr></table></figure>
-<h3 id="Personal">Personal</h3><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">also <span class="type">record</span> something personal.</span><br></pre></td></tr></table></figure>
-<hr>
-<hr>
-<p><img src="../../../../images/money.png" alt="money">☜☜☜ <strong><em>wechat</em></strong> 『『『<strong><em> reward 点击打赏 ~~~ ^_^ </em></strong>  』』』<strong><em>alipay</em></strong> ☞☞☞   <img src="../../../../images/money.jpg" alt="money"></p>
-<hr>
-<hr>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
 
-  </section>
-
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
         </div>
@@ -492,6 +277,10 @@ init();
 
 
         
+  <div class="comments" id="comments">
+    
+  </div>
+
 
       </div>
 
@@ -512,8 +301,17 @@ init();
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" src="/images/default_avatar.jpg" alt="xishiyi7" itemprop="image"/>
           <p class="site-author-name" itemprop="name">xishiyi7</p>
@@ -558,6 +356,23 @@ init();
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一-让自己习惯JavaScript"><span class="nav-number">1.</span> <span class="nav-text">一.让自己习惯JavaScript</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-了解你使用的JavaScript版本"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">1.了解你使用的JavaScript版本</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-理解JavaScript的浮点数"><span class="nav-number">1.0.1.</span> <span class="nav-text">2.理解JavaScript的浮点数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-当心隐式的强制转换"><span class="nav-number">1.0.2.</span> <span class="nav-text">3.当心隐式的强制转换</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-原始类型优于封装对象"><span class="nav-number">1.0.3.</span> <span class="nav-text">4.原始类型优于封装对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-避免对混合类型使用_==_运算符"><span class="nav-number">1.0.4.</span> <span class="nav-text">5.避免对混合类型使用 == 运算符</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二-变量作用域"><span class="nav-number">2.</span> <span class="nav-text">二.变量作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#8-尽量少用全局对象/变量"><span class="nav-number">2.0.1.</span> <span class="nav-text">8.尽量少用全局对象/变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#11-熟练使用闭包"><span class="nav-number">2.0.2.</span> <span class="nav-text">11.熟练使用闭包</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
       
 
     </div>
@@ -628,6 +443,167 @@ init();
   <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
 
   <script type="text/javascript" src="/js/bootstrap.js"></script>
 
