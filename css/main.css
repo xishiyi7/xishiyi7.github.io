@@ -969,7 +969,7 @@ body {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ffffe7;
+  background: #9e86ff;
 }
 .sidebar-nav {
   margin: 0 0 20px;
@@ -1923,7 +1923,6 @@ body {
 }
 .fancybox {
   display: inline-block;
-  margin-left: 50px;
   height: 100px;
   width: 100px;
 }
@@ -1931,6 +1930,11 @@ body {
   margin-top: 50px !important;
   border: none !important;
   padding: 0 0 0 0 !important;
+}
+@media (max-width: 767px) {
+  .code .line {
+    margin-left: 25px;
+  }
 }
 .category-all-page .category-all-title {
   text-align: center;
