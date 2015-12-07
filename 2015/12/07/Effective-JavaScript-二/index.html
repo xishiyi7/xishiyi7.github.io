@@ -51,33 +51,24 @@
 
 
 
-<meta name="description" content="针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index&amp;lt;ul id=&quot;text&quot;&amp;gt;
-    &amp;lt;li&amp;gt;这是第一个li&amp;lt;/li&amp;gt;
-    &amp;lt;li&amp;gt;这是第二个li&amp;lt;/li&amp;gt;
-    &amp;lt;li&amp;gt;这是第三个li&amp;lt;/li&amp;gt;
-&amp;lt;/ul&amp;gt;
-解答一：bind，将当前匿名函数指向this，将i当参数传入var">
+<meta name="description" content="68 Specific Ways to Harness the Power of JavaScript编写高质量JavaScript代码的68个有效方法
+注：本文内容来自同名图书读书笔记，只涉及部分条目，序号会保持原书一致
+三.使用函数18.理解函数调用/方法调用及构造函数调用之间的不同12345678910111213141516171819202122232425262728293031函数调">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一个关于闭包/bind/this的面试题">
-<meta property="og:url" content="https://github.com/xishiyi7/xishiyi7.github.io/2015/12/03/一个关于闭包-bind-this的面试题/index.html">
+<meta property="og:title" content="Effective JavaScript(二)">
+<meta property="og:url" content="https://github.com/xishiyi7/xishiyi7.github.io/2015/12/07/Effective-JavaScript-二/index.html">
 <meta property="og:site_name" content="阿根廷人。">
-<meta property="og:description" content="针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index&amp;lt;ul id=&quot;text&quot;&amp;gt;
-    &amp;lt;li&amp;gt;这是第一个li&amp;lt;/li&amp;gt;
-    &amp;lt;li&amp;gt;这是第二个li&amp;lt;/li&amp;gt;
-    &amp;lt;li&amp;gt;这是第三个li&amp;lt;/li&amp;gt;
-&amp;lt;/ul&amp;gt;
-解答一：bind，将当前匿名函数指向this，将i当参数传入var">
+<meta property="og:description" content="68 Specific Ways to Harness the Power of JavaScript编写高质量JavaScript代码的68个有效方法
+注：本文内容来自同名图书读书笔记，只涉及部分条目，序号会保持原书一致
+三.使用函数18.理解函数调用/方法调用及构造函数调用之间的不同12345678910111213141516171819202122232425262728293031函数调">
 <meta property="og:image" content="https://github.com/xishiyi7/xishiyi7.github.io/../../../../images/money.png">
 <meta property="og:image" content="https://github.com/xishiyi7/xishiyi7.github.io/../../../../images/money.jpg">
-<meta property="og:updated_time" content="2015-12-06T12:29:04.000Z">
+<meta property="og:updated_time" content="2015-12-07T05:12:42.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一个关于闭包/bind/this的面试题">
-<meta name="twitter:description" content="针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index&amp;lt;ul id=&quot;text&quot;&amp;gt;
-    &amp;lt;li&amp;gt;这是第一个li&amp;lt;/li&amp;gt;
-    &amp;lt;li&amp;gt;这是第二个li&amp;lt;/li&amp;gt;
-    &amp;lt;li&amp;gt;这是第三个li&amp;lt;/li&amp;gt;
-&amp;lt;/ul&amp;gt;
-解答一：bind，将当前匿名函数指向this，将i当参数传入var">
+<meta name="twitter:title" content="Effective JavaScript(二)">
+<meta name="twitter:description" content="68 Specific Ways to Harness the Power of JavaScript编写高质量JavaScript代码的68个有效方法
+注：本文内容来自同名图书读书笔记，只涉及部分条目，序号会保持原书一致
+三.使用函数18.理解函数调用/方法调用及构造函数调用之间的不同12345678910111213141516171819202122232425262728293031函数调">
 
 
 
@@ -89,7 +80,7 @@
   };
 </script>
 
-  <title> 一个关于闭包/bind/this的面试题 | 阿根廷人。 </title>
+  <title> Effective JavaScript(二) | 阿根廷人。 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -199,7 +190,7 @@
             
             
               
-                一个关于闭包/bind/this的面试题
+                Effective JavaScript(二)
               
             
           </h1>
@@ -208,8 +199,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-12-03T23:47:41+08:00" content="2015-12-03">
-              2015-12-03
+            <time itemprop="dateCreated" datetime="2015-12-07T13:02:47+08:00" content="2015-12-07">
+              2015-12-07
             </time>
           </span>
 
@@ -232,46 +223,10 @@
       
 
       
-        <span itemprop="articleBody"><h5 id="针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index"><strong><em>针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index</em></strong></h5><pre><code>&lt;ul id=<span class="string">"text"</span>&gt;
-    &lt;<span class="keyword">li</span>&gt;这是第一个<span class="keyword">li</span>&lt;/<span class="keyword">li</span>&gt;
-    &lt;<span class="keyword">li</span>&gt;这是第二个<span class="keyword">li</span>&lt;/<span class="keyword">li</span>&gt;
-    &lt;<span class="keyword">li</span>&gt;这是第三个<span class="keyword">li</span>&lt;/<span class="keyword">li</span>&gt;
-&lt;/ul&gt;
-</code></pre><h5 id="解答一：bind，将当前匿名函数指向this，将i当参数传入"><strong><em>解答一：bind，将当前匿名函数指向this，将i当参数传入</em></strong></h5><pre><code><span class="keyword">var</span> init = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{
-<span class="keyword">var</span> obj = <span class="built_in">document</span>.getElementById(<span class="string">'text'</span>);
-<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;obj.children.length;i++){
-  obj.children[i].addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>{
-    alert(i)
-  }.bind(<span class="keyword">this</span>,i))
-}
-}
-init();
-</code></pre><h5 id="解答二：闭包"><strong><em>解答二：闭包</em></strong></h5><pre><code><span class="keyword">var</span> init = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{
-<span class="keyword">var</span> lis=<span class="built_in">document</span>.querySelectorAll(<span class="string">"#text li"</span>);
-  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;lis.length;i++){
-        lis[i].onclick=(<span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>{
-              <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{
-                    alert(i);
-              };
-        })(i)
-  }
-}
-init();
-</code></pre><h5 id="解答三：最笨的方法，匹配"><strong><em>解答三：最笨的方法，匹配</em></strong></h5><pre><code><span class="keyword">var</span> init = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
-  <span class="keyword">var</span> obj = document.getElementById(<span class="string">'text'</span>);
-  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;obj.children.length;i++){
-    obj.children[i].addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span><span class="params">(item)</span></span>{
-      <span class="keyword">var</span> <span class="keyword">self</span> = item.target;
-      <span class="keyword">for</span>(<span class="keyword">var</span> j=<span class="number">0</span>;j&lt;obj.children.length;j++){
-        <span class="keyword">if</span>(<span class="keyword">self</span> == obj.children[j]){
-          alert(j);
-        }
-      }
-    })
-  }
-}
-init();
-</code></pre><hr>
+        <span itemprop="articleBody"><p>68 Specific Ways to Harness the Power of JavaScript<br>编写高质量JavaScript代码的68个有效方法</p>
+<p><strong><em>注：本文内容来自同名图书读书笔记，只涉及部分条目，序号会保持原书一致</em></strong></p>
+<h3 id="三-使用函数">三.使用函数</h3><h5 id="18-理解函数调用/方法调用及构造函数调用之间的不同">18.理解函数调用/方法调用及构造函数调用之间的不同</h5><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">函数调用示例：</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">(x)</span></span>&#123;</span><br><span class="line">		alert(x)</span><br><span class="line">	&#125;</span><br><span class="line">	test(<span class="string">'1'</span>);</span><br><span class="line"></span><br><span class="line">方法调用示例:</span><br><span class="line">	<span class="keyword">var</span> obj = &#123;</span><br><span class="line">		test:<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">			alert(<span class="keyword">this</span>.name);</span><br><span class="line">		&#125;,</span><br><span class="line">		name:<span class="string">'john'</span></span><br><span class="line">	&#125;</span><br><span class="line">	obj.test();	<span class="comment">//	'john'</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> obj2 = &#123;</span><br><span class="line">		test:obj.test,</span><br><span class="line">		name:<span class="string">'mike'</span></span><br><span class="line">	&#125;</span><br><span class="line">	obj2.test();	<span class="comment">//	'mike'</span></span><br><span class="line"></span><br><span class="line">需要注意的是,通过方法调用,绑定到<span class="keyword">this</span>变量的对象被称为调用接收者,也就是说被绑定到了调用方法的对象上.</span><br><span class="line"></span><br><span class="line">构造函数调用示例:</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">Test</span><span class="params">(name,age)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">		<span class="keyword">this</span>.age = age;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">var</span> t = <span class="keyword">new</span> Test(<span class="string">'john'</span>,<span class="number">20</span>);</span><br><span class="line"></span><br><span class="line">构造函数的主要职责是初始化对象.</span><br></pre></td></tr></table></figure>
+<hr>
 <hr>
 <p><img src="../../../../images/money.png" alt="money">☜☜☜ <strong><em>wechat</em></strong> 『『『<strong><em> reward 点击扫码打赏 ~~~ ^_^ </em></strong>  』』』<strong><em>alipay</em></strong> ☞☞☞   <img src="../../../../images/money.jpg" alt="money"></p>
 <hr>
@@ -293,17 +248,13 @@ init();
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/12/03/hello-web/" rel="next" title="Hello Web">
-                <i class="fa fa-chevron-left"></i> Hello Web
+              <a href="/2015/12/06/Effective-JavaScript-一/" rel="next" title="Effective JavaScript(一)">
+                <i class="fa fa-chevron-left"></i> Effective JavaScript(一)
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/12/06/Effective-JavaScript-一/" rel="prev" title="Effective JavaScript(一)">
-                Effective JavaScript(一) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -417,7 +368,7 @@ init();
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index"><span class="nav-number">1.</span> <span class="nav-text">针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#解答一：bind，将当前匿名函数指向this，将i当参数传入"><span class="nav-number">2.</span> <span class="nav-text">解答一：bind，将当前匿名函数指向this，将i当参数传入</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#解答二：闭包"><span class="nav-number">3.</span> <span class="nav-text">解答二：闭包</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#解答三：最笨的方法，匹配"><span class="nav-number">4.</span> <span class="nav-text">解答三：最笨的方法，匹配</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#三-使用函数"><span class="nav-number">1.</span> <span class="nav-text">三.使用函数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#18-理解函数调用/方法调用及构造函数调用之间的不同"><span class="nav-number">1.0.1.</span> <span class="nav-text">18.理解函数调用/方法调用及构造函数调用之间的不同</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
