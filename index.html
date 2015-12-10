@@ -200,6 +200,111 @@
             
               
                 
+                <a class="post-title-link" href="/2015/12/09/angular指令中scope类型的几种特殊情况/" itemprop="url">
+                  angular指令中scope类型的几种特殊情况
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-12-09T17:54:40+08:00" content="2015-12-09">
+              2015-12-09
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count" style="display:none">
+                &nbsp; | &nbsp;
+                <a href="/2015/12/09/angular指令中scope类型的几种特殊情况/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/09/angular指令中scope类型的几种特殊情况/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>默认情况下,指令应该访问父作用域.如果我们对指令暴露了父控制器的scope,那么指令就可以自由的修改scope属性.在一些情况下,你的指令可能想要添加一些只有内部可以使用的属性和函数,如果我们都在父作用域中完成,可能会污染了父作用域,因此,我们有以下两种选择:</p>
+<ul>
+<li><p>使用父作用域-如果不需要操作父作用域属性,不需要一个新的作用域,可以直接使用父作用域<br><code>scope:false</code></p>
+</li>
+<li><p>一个子作用域-这个作用域会原型继承父作用域<br><code>scope:true</code></p>
+</li>
+<li><p>一个隔离的作用域-一个全新的、不继承、独立存在的作用域<br><code>scope:{}</code></p>
+</li>
+</ul>
+<p>作用域可以由指令定义对象中的scope属性定义，下面是关于scope属性的一些说明：</p>
+<h3 id="指令中的scope常见的类型">指令中的scope常见的类型</h3><h5 id="="><strong><em>=</em></strong></h5><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">'=',用于子作用域与父作用域双向绑定.使用这种方法可以将一个实际的作用域模型赋值给一个属性,而不是一个普通的字符串.效果是你可以传递复杂的数据模型,例如数组/对象等到隔离作用域.父作用域或者子作用域属性发生了改变,会相应影响对方.</span><br><span class="line"></span><br><span class="line">'=?',这种情况可以避免父作用域属性中不存在当前属性情况,避免抛出异常.--'<span class="keyword">If</span> the parent scope property doesn't exist, it will throw <span class="literal">a</span> NON_ASSIGNABLE_MODEL_EXPRESSION exception. You can avoid this behavior using <span class="escape">`=</span>?<span class="escape">` </span><span class="literal">or</span> <span class="escape">`=</span>?attr<span class="escape">` </span>in order to flag the property as optional.'</span><br><span class="line"></span><br><span class="line">'=*',<span class="keyword">If</span> you want to shallow watch for changes (i.e. $watchCollection instead of $watch) you can use <span class="escape">`=</span>*<span class="escape">` </span><span class="literal">or</span> <span class="escape">`=</span>*attr<span class="escape">` </span>(<span class="escape">`=</span>*?<span class="escape">` </span><span class="literal">or</span> <span class="escape">`=</span>*?attr<span class="escape">` </span><span class="keyword">if</span> the property is optional).</span><br></pre></td></tr></table></figure>
+<h5 id="&amp;"><strong><em>&amp;</em></strong></h5><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'&amp;'</span>,用于执行父作用域中的函数.</span><br></pre></td></tr></table></figure>
+<h5 id="@"><strong><em>@</em></strong></h5><figure class="highlight erlang-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'@'</span>,进行单项文本绑定.使用这种方法可以将字符串传递到属性,当父作用域属性发生变化时,隔离作用域模型也发生变化.然而,反之则不成立<span class="exclamation_mark">!</span>你不能通过操纵隔离作用域来改变父作用域.</span><br></pre></td></tr></table></figure>
+<hr>
+<hr>
+<p><img src="../../../../images/money.png" alt="money">☜☜☜ <strong><em>wechat</em></strong> 『『『<strong><em> reward 点击扫码打赏 ~~~ ^_^ </em></strong>  』』』<strong><em>alipay</em></strong> ☞☞☞   <img src="../../../../images/money.jpg" alt="money"></p>
+<hr>
+<hr>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/12/07/Effective-JavaScript-二/" itemprop="url">
                   Effective JavaScript(二)
                 </a>
@@ -248,6 +353,7 @@
               <p>68 Specific Ways to Harness the Power of JavaScript<br>编写高质量JavaScript代码的68个有效方法</p>
 <p><strong><em>注：本文内容来自同名图书读书笔记，只涉及部分条目，序号会保持原书一致</em></strong></p>
 <h3 id="三-使用函数">三.使用函数</h3><h5 id="18-理解函数调用/方法调用及构造函数调用之间的不同">18.理解函数调用/方法调用及构造函数调用之间的不同</h5><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">函数调用示例：</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">(x)</span></span>&#123;</span><br><span class="line">		alert(x)</span><br><span class="line">	&#125;</span><br><span class="line">	test(<span class="string">'1'</span>);</span><br><span class="line"></span><br><span class="line">方法调用示例:</span><br><span class="line">	<span class="keyword">var</span> obj = &#123;</span><br><span class="line">		test:<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">			alert(<span class="keyword">this</span>.name);</span><br><span class="line">		&#125;,</span><br><span class="line">		name:<span class="string">'john'</span></span><br><span class="line">	&#125;</span><br><span class="line">	obj.test();	<span class="comment">//	'john'</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> obj2 = &#123;</span><br><span class="line">		test:obj.test,</span><br><span class="line">		name:<span class="string">'mike'</span></span><br><span class="line">	&#125;</span><br><span class="line">	obj2.test();	<span class="comment">//	'mike'</span></span><br><span class="line"></span><br><span class="line">需要注意的是,通过方法调用,绑定到<span class="keyword">this</span>变量的对象被称为调用接收者,也就是说被绑定到了调用方法的对象上.</span><br><span class="line"></span><br><span class="line">构造函数调用示例:</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">Test</span><span class="params">(name,age)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">		<span class="keyword">this</span>.age = age;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">var</span> t = <span class="keyword">new</span> Test(<span class="string">'john'</span>,<span class="number">20</span>);</span><br><span class="line"></span><br><span class="line">构造函数的主要职责是初始化对象.</span><br></pre></td></tr></table></figure>
+<h5 id="19-熟练掌握高阶函数">19.熟练掌握高阶函数</h5><p>高阶函数无非是那些将函数作为参数或者返回值的函数.<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">常见的sort/map等函数都属于高阶函数,加强学习,掌握.例如:</span><br><span class="line">	<span class="keyword">var</span> names = [<span class="string">'john'</span>,<span class="string">'lily'</span>,<span class="string">'tom'</span>];</span><br><span class="line">	<span class="keyword">var</span> upper = names.map(<span class="function"><span class="keyword">function</span><span class="params">(name)</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> name.toUpperCase();</span><br><span class="line">	&#125;);</span><br></pre></td></tr></table></figure></p>
 <hr>
 <hr>
 <p><img src="../../../../images/money.png" alt="money">☜☜☜ <strong><em>wechat</em></strong> 『『『<strong><em> reward 点击扫码打赏 ~~~ ^_^ </em></strong>  』』』<strong><em>alipay</em></strong> ☞☞☞   <img src="../../../../images/money.jpg" alt="money"></p>
@@ -648,7 +754,7 @@ init();
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
