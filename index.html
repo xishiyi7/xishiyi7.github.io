@@ -177,6 +177,106 @@
 
     
     
+      
+      
+        
+        
+        
+      
+
+      
+    
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/01/09/hybird读取android系统图片显示在html中/" itemprop="url">
+                  hybird读取android系统图片显示在html中
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-01-09T11:36:12+08:00" content="2016-01-09">
+              2016-01-09
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count" style="display:none">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/09/hybird读取android系统图片显示在html中/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/09/hybird读取android系统图片显示在html中/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>在html中读取图片资源，一般要使用img标签的src属性，或者用于填充div的背景，使图片显示出来，此时要设置background样式的url属性。<br>一般情况下，src属性值或者url属性值，都为一个路径可访问的资源链接，如：http:xxx.com/xxx.jpg，或者当前项目里的图片资源，如：../xxx.jpg。<br>而，当在android应用中，拍完的照片存储在某一个路径，如com.xxx/下时，使用后者是访问不到的，这就需要我们借助其他方式去读取当前照片。<br>一般的思路是先找到路径com.xxx，获取到当前图片，然后把其路径赋值为src属性或者url属性，但是在android系统中，得到的路径在html中是找不到的。<br>下面，换个思路，先找到图片，然后把其资源以base64读出来，然后拿到这串base64字符串，就可以直接赋值给src属性或者url属性，以下借助cordova的文件系统插件来实现。</p>
+<p>首先，了解cordova框架及如何新建hybird工程、包括如何打包发布；</p>
+<p>假使你已经知道如何使用cordova，接下来的步骤如下：</p>
+<h5 id="添加插件">添加插件</h5><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">使用以下命令添加有关文件系统插件</span><br><span class="line">cordova <span class="keyword">plugin</span> add cordova-<span class="keyword">plugin</span>-<span class="keyword">file</span></span><br><span class="line">cordova <span class="keyword">plugin</span> add cordova-<span class="keyword">plugin</span>-<span class="keyword">file</span>-transfer</span><br><span class="line"></span><br><span class="line">插件具体用途,请自行查阅,主要是结合h5文件系统相关的封装</span><br><span class="line"></span><br><span class="line">可以使用cordova <span class="keyword">plugin</span>命令查看安装的插件,及版本信息</span><br></pre></td></tr></table></figure>
+<h5 id="使用插件">使用插件</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">注意：由于js是单线程执行,因此需要考虑异步读取照片.</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以下代码,readDir表示成功请求文件系统回调函数,会传入文件系统对象作为参数,error表示请求失败回调函数,需要在调用之前定义,否则找不到指定的方法;</span></span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.plugins) &#123;</span><br><span class="line">	<span class="built_in">window</span>.requestFileSystem(LocalFileSystem.PERSISTENT, <span class="number">0</span>, readDir, error);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以下代码,用于获取指定的Directory对象,create:false表示如果不存在,不新建,设置为true表示如果不存在,新建当前目录.readFile表示成功回调,会传入当前找到的Directory对象作为参数,error表示失败回调</span></span><br><span class="line"><span class="comment">// readFile及error同样需要提前定义,否则找不到指定的方法;</span></span><br><span class="line"><span class="keyword">var</span> readDir = <span class="function"><span class="keyword">function</span> (<span class="params">fileSystem</span>) </span>&#123;</span><br><span class="line">	fileSystem.root.getDirectory(<span class="string">'com.xxxx'</span>, &#123;</span><br><span class="line">		create   : <span class="literal">false</span>,</span><br><span class="line">		exclusive: <span class="literal">false</span></span><br><span class="line">	&#125;, readFile, error);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以下代码用于读取目录下的jpg文件，读取到的jpg文件先添加到事先定义的imgEntry数组中，此时，imgEntry里面存放着多个entry，通过事先定义好的readPic方法,进行读取资源</span></span><br><span class="line"><span class="keyword">var</span> imgEntry = [];</span><br><span class="line"><span class="keyword">var</span> readFile = <span class="function"><span class="keyword">function</span> (<span class="params">entry</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> dirReader = entry.createReader();</span><br><span class="line">	<span class="comment">// Call the reader.readEntries() until no more results are returned.</span></span><br><span class="line">	<span class="keyword">var</span> readEntries = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		dirReader.readEntries(<span class="function"><span class="keyword">function</span> (<span class="params">results</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; results.length; i++) &#123;</span><br><span class="line">				<span class="keyword">if</span> (results[i].name.indexOf(<span class="string">'jpg'</span>) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">					imgEntry.push(results[i]);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="comment">// 依次读取照片entry</span></span><br><span class="line">			readPic();</span><br><span class="line">		&#125;, error);</span><br><span class="line">	&#125;;</span><br><span class="line">	readEntries(); <span class="comment">// Start reading dirs.</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以下代码，用imgList数组来存放h5中需要读取的图片数组，其对象中的src属性存放，src属性值或者url值</span></span><br><span class="line"><span class="comment">// 具体思路是，如果imgEntry里面有值，取出第一个，然后用entry.file方法，去解析fileEntry,解析成功，拿到file对象，再通过FileReader去读取当前file对象</span></span><br><span class="line"><span class="comment">// onload方法表示读取完成，此时结果里存放的是base64的图片资源字符串，将其保存下来</span></span><br><span class="line"><span class="comment">// 注意：之所以每次只读取一个entry，并且在解析完成后，再读取下一张，是因为entry.file和fr.onload方法都是异步处理，必须成功读取完一张照片，再读取下一张，而不是直接用for去遍历imgEntry读取</span></span><br><span class="line">imgList = [];</span><br><span class="line"><span class="keyword">var</span> readPic = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (imgEntry &amp;&amp; imgEntry.length) &#123;</span><br><span class="line">		<span class="keyword">var</span> entry = imgEntry.shift();</span><br><span class="line">		entry.file(<span class="function"><span class="keyword">function</span> (<span class="params">file</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">var</span> fr = <span class="keyword">new</span> FileReader();</span><br><span class="line">			fr.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">				imgList.push(&#123;name: file.name, src: <span class="keyword">this</span>.result&#125;);</span><br><span class="line">				<span class="keyword">if</span> (imgEntry.length) &#123;</span><br><span class="line">					readPic();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;;</span><br><span class="line">			fr.readAsDataURL(file);</span><br><span class="line">		&#125;, error);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">整个过程执行完，可以用imgList[i].src让某个div或者img显示照片</span><br></pre></td></tr></table></figure>
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
@@ -754,7 +854,7 @@ init();
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -804,7 +904,7 @@ init();
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2015</span>
+  <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
     <i class="icon-next-heart fa fa-heart"></i>
   </span>
