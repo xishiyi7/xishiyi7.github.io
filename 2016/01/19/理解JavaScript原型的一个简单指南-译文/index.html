@@ -1,0 +1,693 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="当我第一次接触到关于JavaScript对象模型的知识,我的反应是震惊的,充满了不可思议.那是我第一次接触基于原型的语言,我被它的原型特征完全搞糊涂了.我不理解把原型加在JavaScript方法的构造函数组成上有啥不同,我敢打赌,你们中的大多数人也曾有过类似的经历.
+但是当我经常使用JavaScript之后,我不仅理解了它的对象模型,而且也爱上了它这部分特性.多亏了JavaScript,我才能发现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="理解JavaScript原型的一个简单指南(译文)">
+<meta property="og:url" content="https://github.com/xishiyi7/xishiyi7.github.io/2016/01/19/理解JavaScript原型的一个简单指南-译文/index.html">
+<meta property="og:site_name" content="阿根廷人。">
+<meta property="og:description" content="当我第一次接触到关于JavaScript对象模型的知识,我的反应是震惊的,充满了不可思议.那是我第一次接触基于原型的语言,我被它的原型特征完全搞糊涂了.我不理解把原型加在JavaScript方法的构造函数组成上有啥不同,我敢打赌,你们中的大多数人也曾有过类似的经历.
+但是当我经常使用JavaScript之后,我不仅理解了它的对象模型,而且也爱上了它这部分特性.多亏了JavaScript,我才能发现">
+<meta property="og:image" content="https://github.com/xishiyi7/xishiyi7.github.io/../../../../images/money.png">
+<meta property="og:image" content="https://github.com/xishiyi7/xishiyi7.github.io/../../../../images/money.jpg">
+<meta property="og:updated_time" content="2016-01-19T06:59:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="理解JavaScript原型的一个简单指南(译文)">
+<meta name="twitter:description" content="当我第一次接触到关于JavaScript对象模型的知识,我的反应是震惊的,充满了不可思议.那是我第一次接触基于原型的语言,我被它的原型特征完全搞糊涂了.我不理解把原型加在JavaScript方法的构造函数组成上有啥不同,我敢打赌,你们中的大多数人也曾有过类似的经历.
+但是当我经常使用JavaScript之后,我不仅理解了它的对象模型,而且也爱上了它这部分特性.多亏了JavaScript,我才能发现">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    sidebar: 'hide',
+    motion: true
+  };
+</script>
+
+  <title> 理解JavaScript原型的一个简单指南(译文) | 阿根廷人。 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?ba79b70fc8075ea38398e9197ab4fc9e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">阿根廷人。</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">xishiyi7</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                理解JavaScript原型的一个简单指南(译文)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-01-19T14:45:14+08:00" content="2016-01-19">
+              2016-01-19
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count" style="display:none">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/19/理解JavaScript原型的一个简单指南-译文/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/19/理解JavaScript原型的一个简单指南-译文/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>当我第一次接触到关于JavaScript对象模型的知识,我的反应是震惊的,充满了不可思议.那是我第一次接触基于原型的语言,我被它的原型特征完全搞糊涂了.我不理解把原型加在JavaScript方法的构造函数组成上有啥不同,我敢打赌,你们中的大多数人也曾有过类似的经历.</p>
+<p>但是当我经常使用JavaScript之后,我不仅理解了它的对象模型,而且也爱上了它这部分特性.多亏了JavaScript,我才能发现基于原型语言的典雅与灵活.正因为他们比基于类的语言更简单且更灵活,我现在更倾向于原型语言.</p>
+<h3 id="JavaScript的原型">JavaScript的原型</h3><p>许多指南介绍JavaScript对象时都以方法的构造函数开始,我认为这是个误区,因为他们在一开始就介绍复杂的内容会让JavaScript看起来很难,一开始就理解的很困惑.让我们后续介绍这个,我们先从原型基础说起.</p>
+<h3 id="原型链">原型链</h3><p>在JavaScript中,每一个对象都有原型(prototype)属性,当有一个消息指向对象,JavaScript会先尝试在其寻找对应的属性,<br>如果没有找到,这条消息会被传递到对象的原型上,并依次传递下去.这种工作机制有点像基于类的语言的单亲继承.<br>原型链可以指向任务你想指向的对象,但是一般来说,太长的原型链会让你的代码理解起来很困难并且很难维护.</p>
+<h3 id="‘proto‘对象">‘<em>proto</em>‘对象</h3><p>理解JavaScript原型链最简单的就是先理解<em>proto</em>属性,不幸的是,<em>proto</em>属性并不是JavaScript标准的一部分,<br>至少在ES6之前如此.因此你不能在项目代码中应用它,但不管怎么说,它让解释原型变得更简单.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// let's create an alien object</span></span><br><span class="line"><span class="keyword">var</span> alien = &#123;</span><br><span class="line">  kind: <span class="string">'alien'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// and a person object</span></span><br><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">  kind: <span class="string">'person'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// and an object called 'zack'</span></span><br><span class="line"><span class="keyword">var</span> zack = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// assign alien as the prototype of zack</span></span><br><span class="line">zack.__proto__ = alien</span><br><span class="line"></span><br><span class="line"><span class="comment">// zack is now linked to alien</span></span><br><span class="line"><span class="comment">// it 'inherits' the properties of alien</span></span><br><span class="line"><span class="built_in">console</span>.log(zack.kind); <span class="comment">//=&gt; ‘alien’</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// assign person as the prototype of zack</span></span><br><span class="line">zack.__proto__ = person</span><br><span class="line"></span><br><span class="line"><span class="comment">// and now zack is linked to person</span></span><br><span class="line"><span class="built_in">console</span>.log(zack.kind); <span class="comment">//=&gt; ‘person’</span></span><br></pre></td></tr></table></figure></p>
+<p>如你所见, <em>proto</em>属性通俗易懂,也很好用.即使我们不能在项目代码中使用它,我也认为这些例子对理解JavaScript对象模型起到很大的帮助.</p>
+<p>你可以像如下这样检查一个对象是否是另一个对象的原型:<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.<span class="function"><span class="title">log</span><span class="params">(alien.isPrototypeOf(zack)</span></span>)</span><br><span class="line"><span class="comment">//=&gt; true</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="原型查找是动态的">原型查找是动态的</h3><p>你可以在任何时刻给一个对象的原型添加属性,原型链可以如预期那样找到这个新属性.<br><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var <span class="keyword">person</span> = &#123;&#125;</span><br><span class="line"></span><br><span class="line">var zack = &#123;&#125;</span><br><span class="line">zack.__proto__ = <span class="keyword">person</span></span><br><span class="line"></span><br><span class="line">// zack doesn't respond to <span class="keyword">kind</span> at this point</span><br><span class="line">console.log(zack.<span class="keyword">kind</span>); //=&gt; undefined</span><br><span class="line"></span><br><span class="line">// let's add <span class="keyword">kind</span> to <span class="keyword">person</span></span><br><span class="line"><span class="keyword">person</span>.<span class="keyword">kind</span> = '<span class="keyword">person</span>'</span><br><span class="line"></span><br><span class="line">// now zack responds to <span class="keyword">kind</span></span><br><span class="line">// because it finds '<span class="keyword">kind</span>' in <span class="keyword">person</span></span><br><span class="line">console.log(zack.<span class="keyword">kind</span>); //=&gt; '<span class="keyword">person</span>'</span><br></pre></td></tr></table></figure></p>
+<h3 id="给对象新增/修改的属性,将不会再指向原型">给对象新增/修改的属性,将不会再指向原型</h3><p>如果你给对象添加一个在原型上已经存在的属性,会发生什么呢?我们来看一下:<br><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var <span class="keyword">person</span> = &#123;</span><br><span class="line">  <span class="keyword">kind</span>: '<span class="keyword">person</span>'</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var zack = &#123;&#125;</span><br><span class="line">zack.__proto__ = <span class="keyword">person</span></span><br><span class="line"></span><br><span class="line">zack.<span class="keyword">kind</span> = 'zack'</span><br><span class="line"></span><br><span class="line">console.log(zack.<span class="keyword">kind</span>); //=&gt; 'zack'</span><br><span class="line">// zack now has a '<span class="keyword">kind</span>' property</span><br><span class="line"></span><br><span class="line">console.log(<span class="keyword">person</span>.<span class="keyword">kind</span>); //=&gt; '<span class="keyword">person</span>'</span><br><span class="line">// <span class="keyword">person</span> has not being modified</span><br></pre></td></tr></table></figure></p>
+<p>注意,属性’kind’现在同时存在于person与zack.</p>
+<h3 id="Object-create">Object.create</h3><p>正如我说的,由于分配给对象原型的<em>proto</em>属性并不被良好支持,因此下一个最简单的方式是使用Object.create().<br>这个在ES5中已经支持,但是在一些老的浏览器或者引擎中需要使用es5-shim来转换.<br><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var <span class="keyword">person</span> = &#123;</span><br><span class="line">  <span class="keyword">kind</span>: '<span class="keyword">person</span>'</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// creates a new object which prototype <span class="keyword">is</span> <span class="keyword">person</span></span><br><span class="line">var zack = Object.create(<span class="keyword">person</span>);</span><br><span class="line"></span><br><span class="line">console.log(zack.<span class="keyword">kind</span>); // =&gt; ‘<span class="keyword">person</span>’</span><br></pre></td></tr></table></figure></p>
+<p>你可以使用Object.create方法去创建一个新对象,并将另一个对象及一些特殊属性当参数传递进去.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> zack = <span class="built_in">Object</span>.create(person, &#123;age: &#123;value:  <span class="number">13</span>&#125; &#125;);</span><br><span class="line"><span class="built_in">console</span>.log(zack.age); <span class="comment">// =&gt; ‘13’</span></span><br></pre></td></tr></table></figure></p>
+<p>是的,你需要传递对象有一点绕,但这就是它的用法.如果你想了解更多,点击<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create" target="_blank" rel="external">这里</a></p>
+<h3 id="Object-getPrototype">Object.getPrototype</h3><p>你可以使用Object.getPrototypeOf方法去获取对象的原型<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> zack = <span class="built_in">Object</span>.create(person);</span><br><span class="line"><span class="built_in">Object</span>.getPrototypeOf(zack); <span class="comment">//=&gt; person</span></span><br></pre></td></tr></table></figure></p>
+<p>注意没有所谓的Object.setPrototype.</p>
+<h3 id="构造器函数(Constructor_Functions)">构造器函数(Constructor Functions)</h3><p>在JavaScript中,构造器函数用的最多的地方就是用在构造原型链上.<br>构造器函数的流行来自于这样一个事实:它是唯一的一种针对构造类型最原始的方式.<br>当然还有其他一个重要的事实是其他很多引擎已经高度支持构造器函数.</p>
+<p>不幸的是,这让人很困惑.在我看来,这是我觉得JavaScript让菜鸟很困惑的一个主要原因.<br>因此这也是这门语言中很大的一个需要我们去很好理解并掌握的模块.</p>
+<h3 id="函数作为构造器">函数作为构造器</h3><p>JavaScript中,你可以像下面这样创建一个函数的实例:<br><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function<span class="function"> Foo(</span><span class="function">)</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">var foo =<span class="instruction"> new </span>Foo(<span class="function">)</span>;</span><br><span class="line"></span><br><span class="line">//foo is now an<span class="instruction"> instance </span>of Foo</span><br><span class="line">console.log(foo instanceof Foo <span class="function">)</span> //=&gt; true</span><br></pre></td></tr></table></figure></p>
+<p>像这样使用’new’关键字,看似用工厂模式新建一个函数,实际上表示创建一个新对象.这个新对象的原型会指向这个函数,<br>这里以后再详述.因此在JavaScript中,我们把’this’称作函数实例.</p>
+<h3 id="‘this’是隐式分配的">‘this’是隐式分配的</h3><p>当我们使用’new’关键字时,JavaScript以’this’关键字的形式注入一个指向新对象的隐式引用.而且,在函数最后,将这个隐式引用返回.<br>当我们像下面这样时:<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.kind = ‘foo’</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> foo = <span class="keyword">new</span> Foo();</span><br><span class="line">foo.kind <span class="comment">//=&gt; ‘foo’</span></span><br></pre></td></tr></table></figure></p>
+<p>在这个场景后面,又像是在做下面这件事情:<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> <span class="keyword">this</span> = &#123;&#125;; <span class="comment">// this is not valid, just for illustration</span></span><br><span class="line">  <span class="keyword">this</span>.__proto__ = Foo.prototype;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">this</span>.kind = ‘foo’</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>但是请记住,当只有使用’new’关键字时,才将隐式的’this’分配到新对象上.如果你忘记使用’new’关键字,’this’将指向全局对象(global object).<br>忘记使用’new’关键字会引起一系列bug,因此不要忘记使用’new’关键字.</p>
+<p>有一个我比较喜欢的约定是当这个函数要被当成函数构造器使用的时候,有效利用函数的第一个字母(译者注:一般我习惯首字母大写),<br>这样可以很直观的发现你忘记了’new’关键字.</p>
+<h3 id="函数的原型属性(The_‘function_prototype’)">函数的原型属性(The ‘function prototype’)</h3><p>在JavaScript中,每一个函数都有一个特殊的属性:’prototype’.<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span><span class="params">()</span></span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Foo.prototype</span><br></pre></td></tr></table></figure></p>
+<p>尽管听起来可能很费解,这个’prototype’属性并不是函数的原型.<br><figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">Foo.__proto__</span> === Foo.prototype <span class="comment">//=&gt; false</span></span><br></pre></td></tr></table></figure></p>
+<p>当然,使用’prototype’表示不一样的东西会引起人们很多疑问.<br>我认为当表示函数的’prototype’属性的时候,称之为’函数的原型属性’(‘the function prototype’)而不仅仅是原型<br>可以做到更好的区分.</p>
+<p>当使用’new’关键字创建对象, 新对象的原型属性(‘prototype’ property)会指向函数的原型.<br>也就是说,当前对象就是以当前函数为原型的函数实例.<br>困惑吧?下面的例子可以更好的解释:<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">(name)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// the function person has a prototype property</span></span><br><span class="line"><span class="comment">// we can add properties to this function prototype</span></span><br><span class="line">Person.prototype.kind = ‘person’</span><br><span class="line"></span><br><span class="line"><span class="comment">// when we create a new object using new</span></span><br><span class="line"><span class="keyword">var</span> zack = <span class="keyword">new</span> Person(‘Zack’);</span><br><span class="line"></span><br><span class="line"><span class="comment">// the prototype of the new object points to person.prototype</span></span><br><span class="line">zack.__proto__ == Person.prototype <span class="comment">//=&gt; true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// in the new object we have access to properties defined in Person.prototype</span></span><br><span class="line">zack.kind <span class="comment">//=&gt; person</span></span><br></pre></td></tr></table></figure></p>
+<p>上面就是关于JavaScript对象模型你最需要了解的一些知识,理解<em>proto</em>及function.prototype的关系会给你无尽的乐趣及满足,<br>当然也许并不会.</p>
+<p>最后,如果有不对的地方,或者你有什么不解,请留言联系.<br><strong><em>(本文译自：<a href="http://sporto.github.io/blog/2013/02/22/a-plain-english-guide-to-javascript-prototypes/" target="_blank" rel="external">A Plain English Guide to JavaScript Prototypes</a>)</em></strong></p>
+<hr>
+<hr>
+<p><img src="../../../../images/money.png" alt="money">☜☜☜ <strong><em>wechat</em></strong> 『『『<strong><em> reward 点击扫码打赏 ~~~ ^_^ </em></strong>  』』』<strong><em>alipay</em></strong> ☞☞☞   <img src="../../../../images/money.jpg" alt="money"></p>
+<hr>
+<hr>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/18/angular跨controller传递参数的几种方式/" rel="next" title="angular跨controller传递参数的几种方式">
+                <i class="fa fa-chevron-left"></i> angular跨controller传递参数的几种方式
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/01/19/理解JavaScript原型的一个简单指南-译文/"
+     data-title="理解JavaScript原型的一个简单指南(译文)"
+     data-content=""
+     data-url="https://github.com/xishiyi7/xishiyi7.github.io/2016/01/19/理解JavaScript原型的一个简单指南-译文/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/01/19/理解JavaScript原型的一个简单指南-译文/"
+           data-title="理解JavaScript原型的一个简单指南(译文)" data-url="https://github.com/xishiyi7/xishiyi7.github.io/2016/01/19/理解JavaScript原型的一个简单指南-译文/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle" >
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="xishiyi7" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">xishiyi7</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">this is my personal post</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">分类</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">标签</span>
+              
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript的原型"><span class="nav-number">1.</span> <span class="nav-text">JavaScript的原型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原型链"><span class="nav-number">2.</span> <span class="nav-text">原型链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#‘proto‘对象"><span class="nav-number">3.</span> <span class="nav-text">‘proto‘对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原型查找是动态的"><span class="nav-number">4.</span> <span class="nav-text">原型查找是动态的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#给对象新增/修改的属性,将不会再指向原型"><span class="nav-number">5.</span> <span class="nav-text">给对象新增/修改的属性,将不会再指向原型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-create"><span class="nav-number">6.</span> <span class="nav-text">Object.create</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-getPrototype"><span class="nav-number">7.</span> <span class="nav-text">Object.getPrototype</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造器函数(Constructor_Functions)"><span class="nav-number">8.</span> <span class="nav-text">构造器函数(Constructor Functions)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数作为构造器"><span class="nav-number">9.</span> <span class="nav-text">函数作为构造器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#‘this’是隐式分配的"><span class="nav-number">10.</span> <span class="nav-text">‘this’是隐式分配的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数的原型属性(The_‘function_prototype’)"><span class="nav-number">11.</span> <span class="nav-text">函数的原型属性(The ‘function prototype’)</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xishiyi7</span>
+</div>
+<!-- 隐藏部分footer
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+-->
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"xishiyi7"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>
