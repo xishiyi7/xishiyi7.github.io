@@ -54,16 +54,16 @@
 <meta name="description" content="当我第一次接触到关于JavaScript对象模型的知识,我的反应是震惊的,充满了不可思议.那是我第一次接触基于原型的语言,我被它的原型特征完全搞糊涂了.我不理解把原型加在JavaScript方法的构造函数组成上有啥不同,我敢打赌,你们中的大多数人也曾有过类似的经历.
 但是当我经常使用JavaScript之后,我不仅理解了它的对象模型,而且也爱上了它这部分特性.多亏了JavaScript,我才能发现">
 <meta property="og:type" content="article">
-<meta property="og:title" content="理解JavaScript原型的一个简单指南(译文)">
-<meta property="og:url" content="https://github.com/xishiyi7/xishiyi7.github.io/2016/01/19/理解JavaScript原型的一个简单指南-译文/index.html">
+<meta property="og:title" content="理解JavaScript原型的一个入门指南(译文)">
+<meta property="og:url" content="https://github.com/xishiyi7/xishiyi7.github.io/2016/01/19/理解JavaScript原型的一个入门指南-译文/index.html">
 <meta property="og:site_name" content="阿根廷人。">
 <meta property="og:description" content="当我第一次接触到关于JavaScript对象模型的知识,我的反应是震惊的,充满了不可思议.那是我第一次接触基于原型的语言,我被它的原型特征完全搞糊涂了.我不理解把原型加在JavaScript方法的构造函数组成上有啥不同,我敢打赌,你们中的大多数人也曾有过类似的经历.
 但是当我经常使用JavaScript之后,我不仅理解了它的对象模型,而且也爱上了它这部分特性.多亏了JavaScript,我才能发现">
 <meta property="og:image" content="https://github.com/xishiyi7/xishiyi7.github.io/../../../../images/money.png">
 <meta property="og:image" content="https://github.com/xishiyi7/xishiyi7.github.io/../../../../images/money.jpg">
-<meta property="og:updated_time" content="2016-01-19T06:59:42.000Z">
+<meta property="og:updated_time" content="2016-01-20T01:48:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="理解JavaScript原型的一个简单指南(译文)">
+<meta name="twitter:title" content="理解JavaScript原型的一个入门指南(译文)">
 <meta name="twitter:description" content="当我第一次接触到关于JavaScript对象模型的知识,我的反应是震惊的,充满了不可思议.那是我第一次接触基于原型的语言,我被它的原型特征完全搞糊涂了.我不理解把原型加在JavaScript方法的构造函数组成上有啥不同,我敢打赌,你们中的大多数人也曾有过类似的经历.
 但是当我经常使用JavaScript之后,我不仅理解了它的对象模型,而且也爱上了它这部分特性.多亏了JavaScript,我才能发现">
 
@@ -77,7 +77,7 @@
   };
 </script>
 
-  <title> 理解JavaScript原型的一个简单指南(译文) | 阿根廷人。 </title>
+  <title> 理解JavaScript原型的一个入门指南(译文) | 阿根廷人。 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -197,7 +197,7 @@
             
             
               
-                理解JavaScript原型的一个简单指南(译文)
+                理解JavaScript原型的一个入门指南(译文)
               
             
           </h1>
@@ -217,8 +217,8 @@
             
               <span class="post-comments-count" style="display:none">
                 &nbsp; | &nbsp;
-                <a href="/2016/01/19/理解JavaScript原型的一个简单指南-译文/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/19/理解JavaScript原型的一个简单指南-译文/" itemprop="commentsCount"></span>
+                <a href="/2016/01/19/理解JavaScript原型的一个入门指南-译文/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/19/理解JavaScript原型的一个入门指南-译文/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -240,7 +240,7 @@
         <span itemprop="articleBody"><p>当我第一次接触到关于JavaScript对象模型的知识,我的反应是震惊的,充满了不可思议.那是我第一次接触基于原型的语言,我被它的原型特征完全搞糊涂了.我不理解把原型加在JavaScript方法的构造函数组成上有啥不同,我敢打赌,你们中的大多数人也曾有过类似的经历.</p>
 <p>但是当我经常使用JavaScript之后,我不仅理解了它的对象模型,而且也爱上了它这部分特性.多亏了JavaScript,我才能发现基于原型语言的典雅与灵活.正因为他们比基于类的语言更简单且更灵活,我现在更倾向于原型语言.</p>
 <h3 id="JavaScript的原型">JavaScript的原型</h3><p>许多指南介绍JavaScript对象时都以方法的构造函数开始,我认为这是个误区,因为他们在一开始就介绍复杂的内容会让JavaScript看起来很难,一开始就理解的很困惑.让我们后续介绍这个,我们先从原型基础说起.</p>
-<h3 id="原型链">原型链</h3><p>在JavaScript中,每一个对象都有原型(prototype)属性,当有一个消息指向对象,JavaScript会先尝试在其寻找对应的属性,<br>如果没有找到,这条消息会被传递到对象的原型上,并依次传递下去.这种工作机制有点像基于类的语言的单亲继承.<br>原型链可以指向任务你想指向的对象,但是一般来说,太长的原型链会让你的代码理解起来很困难并且很难维护.</p>
+<h3 id="原型链">原型链</h3><p>在JavaScript中,每一个对象都有原型(prototype)属性,当有一个消息指向对象,JavaScript会先尝试在其寻找对应的属性,<br>如果没有找到,这条消息会被传递到对象的原型上,并依次传递下去.这种工作机制有点像基于类的语言的单亲继承.<br>原型链可以指向任何你想指向的对象,但是一般来说,太长的原型链会让你的代码理解起来很困难并且很难维护.</p>
 <h3 id="‘proto‘对象">‘<em>proto</em>‘对象</h3><p>理解JavaScript原型链最简单的就是先理解<em>proto</em>属性,不幸的是,<em>proto</em>属性并不是JavaScript标准的一部分,<br>至少在ES6之前如此.因此你不能在项目代码中应用它,但不管怎么说,它让解释原型变得更简单.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// let's create an alien object</span></span><br><span class="line"><span class="keyword">var</span> alien = &#123;</span><br><span class="line">  kind: <span class="string">'alien'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// and a person object</span></span><br><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">  kind: <span class="string">'person'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// and an object called 'zack'</span></span><br><span class="line"><span class="keyword">var</span> zack = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// assign alien as the prototype of zack</span></span><br><span class="line">zack.__proto__ = alien</span><br><span class="line"></span><br><span class="line"><span class="comment">// zack is now linked to alien</span></span><br><span class="line"><span class="comment">// it 'inherits' the properties of alien</span></span><br><span class="line"><span class="built_in">console</span>.log(zack.kind); <span class="comment">//=&gt; ‘alien’</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// assign person as the prototype of zack</span></span><br><span class="line">zack.__proto__ = person</span><br><span class="line"></span><br><span class="line"><span class="comment">// and now zack is linked to person</span></span><br><span class="line"><span class="built_in">console</span>.log(zack.kind); <span class="comment">//=&gt; ‘person’</span></span><br></pre></td></tr></table></figure></p>
 <p>如你所见, <em>proto</em>属性通俗易懂,也很好用.即使我们不能在项目代码中使用它,我也认为这些例子对理解JavaScript对象模型起到很大的帮助.</p>
 <p>你可以像如下这样检查一个对象是否是另一个对象的原型:<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.<span class="function"><span class="title">log</span><span class="params">(alien.isPrototypeOf(zack)</span></span>)</span><br><span class="line"><span class="comment">//=&gt; true</span></span><br></pre></td></tr></table></figure></p>
@@ -263,7 +263,7 @@
 <h3 id="函数的原型属性(The_‘function_prototype’)">函数的原型属性(The ‘function prototype’)</h3><p>在JavaScript中,每一个函数都有一个特殊的属性:’prototype’.<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span><span class="params">()</span></span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Foo.prototype</span><br></pre></td></tr></table></figure></p>
 <p>尽管听起来可能很费解,这个’prototype’属性并不是函数的原型.<br><figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">Foo.__proto__</span> === Foo.prototype <span class="comment">//=&gt; false</span></span><br></pre></td></tr></table></figure></p>
 <p>当然,使用’prototype’表示不一样的东西会引起人们很多疑问.<br>我认为当表示函数的’prototype’属性的时候,称之为’函数的原型属性’(‘the function prototype’)而不仅仅是原型<br>可以做到更好的区分.</p>
-<p>当使用’new’关键字创建对象, 新对象的原型属性(‘prototype’ property)会指向函数的原型.<br>也就是说,当前对象就是以当前函数为原型的函数实例.<br>困惑吧?下面的例子可以更好的解释:<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">(name)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// the function person has a prototype property</span></span><br><span class="line"><span class="comment">// we can add properties to this function prototype</span></span><br><span class="line">Person.prototype.kind = ‘person’</span><br><span class="line"></span><br><span class="line"><span class="comment">// when we create a new object using new</span></span><br><span class="line"><span class="keyword">var</span> zack = <span class="keyword">new</span> Person(‘Zack’);</span><br><span class="line"></span><br><span class="line"><span class="comment">// the prototype of the new object points to person.prototype</span></span><br><span class="line">zack.__proto__ == Person.prototype <span class="comment">//=&gt; true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// in the new object we have access to properties defined in Person.prototype</span></span><br><span class="line">zack.kind <span class="comment">//=&gt; person</span></span><br></pre></td></tr></table></figure></p>
+<p>当使用’new’关键字创建对象, 新对象的原型会指向函数的原型属性(‘prototype’ property).<br>困惑吧?下面的例子可以更好的解释:<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">(name)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// the function person has a prototype property</span></span><br><span class="line"><span class="comment">// we can add properties to this function prototype</span></span><br><span class="line">Person.prototype.kind = ‘person’</span><br><span class="line"></span><br><span class="line"><span class="comment">// when we create a new object using new</span></span><br><span class="line"><span class="keyword">var</span> zack = <span class="keyword">new</span> Person(‘Zack’);</span><br><span class="line"></span><br><span class="line"><span class="comment">// the prototype of the new object points to person.prototype</span></span><br><span class="line">zack.__proto__ == Person.prototype <span class="comment">//=&gt; true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// in the new object we have access to properties defined in Person.prototype</span></span><br><span class="line">zack.kind <span class="comment">//=&gt; person</span></span><br></pre></td></tr></table></figure></p>
 <p>上面就是关于JavaScript对象模型你最需要了解的一些知识,理解<em>proto</em>及function.prototype的关系会给你无尽的乐趣及满足,<br>当然也许并不会.</p>
 <p>最后,如果有不对的地方,或者你有什么不解,请留言联系.<br><strong><em>(本文译自：<a href="http://sporto.github.io/blog/2013/02/22/a-plain-english-guide-to-javascript-prototypes/" target="_blank" rel="external">A Plain English Guide to JavaScript Prototypes</a>)</em></strong></p>
 <hr>
@@ -303,10 +303,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/01/19/理解JavaScript原型的一个简单指南-译文/"
-     data-title="理解JavaScript原型的一个简单指南(译文)"
+        <div class="ds-share flat" data-thread-key="2016/01/19/理解JavaScript原型的一个入门指南-译文/"
+     data-title="理解JavaScript原型的一个入门指南(译文)"
      data-content=""
-     data-url="https://github.com/xishiyi7/xishiyi7.github.io/2016/01/19/理解JavaScript原型的一个简单指南-译文/">
+     data-url="https://github.com/xishiyi7/xishiyi7.github.io/2016/01/19/理解JavaScript原型的一个入门指南-译文/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -334,8 +334,8 @@
         
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/01/19/理解JavaScript原型的一个简单指南-译文/"
-           data-title="理解JavaScript原型的一个简单指南(译文)" data-url="https://github.com/xishiyi7/xishiyi7.github.io/2016/01/19/理解JavaScript原型的一个简单指南-译文/">
+      <div class="ds-thread" data-thread-key="2016/01/19/理解JavaScript原型的一个入门指南-译文/"
+           data-title="理解JavaScript原型的一个入门指南(译文)" data-url="https://github.com/xishiyi7/xishiyi7.github.io/2016/01/19/理解JavaScript原型的一个入门指南-译文/">
       </div>
     
   </div>
