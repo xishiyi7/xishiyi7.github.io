@@ -57,9 +57,10 @@ Node的模块实现在Node中引入模块，需要经过下面3个步骤：
 
 路径分析；
 文件定位；
-编译执行。主要用require()方法来查找模块。
+编译执行。
 
-AMD规范AMD全称Asynchro">
+主要用require()方法来查找模块。
+AMD规范AMD全称Asynchr">
 <meta property="og:type" content="article">
 <meta property="og:title" content="实现兼容AMD/CMD/Node多种模块规范">
 <meta property="og:url" content="https://github.com/xishiyi7/xishiyi7.github.io/2016/02/29/兼容AMD-CMD-CommonJS-Node-多种模块规范/index.html">
@@ -70,12 +71,13 @@ Node的模块实现在Node中引入模块，需要经过下面3个步骤：
 
 路径分析；
 文件定位；
-编译执行。主要用require()方法来查找模块。
+编译执行。
 
-AMD规范AMD全称Asynchro">
+主要用require()方法来查找模块。
+AMD规范AMD全称Asynchr">
 <meta property="og:image" content="https://github.com/xishiyi7/xishiyi7.github.io/../../../../images/money.png">
 <meta property="og:image" content="https://github.com/xishiyi7/xishiyi7.github.io/../../../../images/money.jpg">
-<meta property="og:updated_time" content="2016-02-29T15:15:48.000Z">
+<meta property="og:updated_time" content="2016-02-29T15:18:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="实现兼容AMD/CMD/Node多种模块规范">
 <meta name="twitter:description" content="在JavaScript社区，CommonJS规范的提出，是模块化方面最重要的一笔。
@@ -84,9 +86,10 @@ Node的模块实现在Node中引入模块，需要经过下面3个步骤：
 
 路径分析；
 文件定位；
-编译执行。主要用require()方法来查找模块。
+编译执行。
 
-AMD规范AMD全称Asynchro">
+主要用require()方法来查找模块。
+AMD规范AMD全称Asynchr">
 
 
 
@@ -264,8 +267,9 @@ AMD规范AMD全称Asynchro">
 <ul>
 <li>路径分析；</li>
 <li>文件定位；</li>
-<li>编译执行。<br>主要用require()方法来查找模块。</li>
+<li>编译执行。</li>
 </ul>
+<p>主要用require()方法来查找模块。</p>
 <h3 id="AMD规范">AMD规范</h3><p>AMD全称Asynchronous Module Definition，即“异步模块定义”。其模块引用方式如下：<br><figure class="highlight puppet"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">define</span>(<span class="title">id</span>?,dependencies?,factory);</span><br></pre></td></tr></table></figure></p>
 <p>其中，id及依赖是可选的。其与CommonJS方式相似的地方在于factory的内容就是实际代码的内容，下面是一个简单的例子：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">var</span> exports = &#123;&#125;;</span><br><span class="line">	exports.sayHello = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">		alert(<span class="string">'hello'</span>);</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">return</span> exports;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <h3 id="CMD规范">CMD规范</h3><p>CMD由国内大神玉伯提出，与AMD类似，区别主要在于定义模块和依赖引入的地方。AMD需要在声明模块时指定所有的依赖，通过形参传递依赖到模块内容中：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">define([<span class="string">'dep1'</span>,<span class="string">'dep2'</span>],<span class="function"><span class="keyword">function</span><span class="params">(dep1,dep2)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;&#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
