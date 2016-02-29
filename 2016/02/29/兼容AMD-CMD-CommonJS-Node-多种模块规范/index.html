@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="js," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -51,33 +51,42 @@
 
 
 
-<meta name="description" content="针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index&amp;lt;ul id=&quot;text&quot;&amp;gt;
-    &amp;lt;li&amp;gt;这是第一个li&amp;lt;/li&amp;gt;
-    &amp;lt;li&amp;gt;这是第二个li&amp;lt;/li&amp;gt;
-    &amp;lt;li&amp;gt;这是第三个li&amp;lt;/li&amp;gt;
-&amp;lt;/ul&amp;gt;
-解答一：bind，将当前匿名函数指向this，将i当参数传入var">
+<meta name="description" content="在JavaScript社区，CommonJS规范的提出，是模块化方面最重要的一笔。
+CommonJS的模块实现CommonJS的模块引用使用require，如下：1var http = require(&apos;http&apos;);
+Node的模块实现在Node中引入模块，需要经过下面3个步骤：
+
+路径分析；
+文件定位；
+编译执行。主要用require()方法来查找模块。
+
+AMD规范AMD全称Asynchro">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一个关于闭包/bind/this的面试题">
-<meta property="og:url" content="https://github.com/xishiyi7/xishiyi7.github.io/2015/12/03/一个关于闭包-bind-this的面试题/index.html">
+<meta property="og:title" content="实现兼容AMD/CMD/Node多种模块规范">
+<meta property="og:url" content="https://github.com/xishiyi7/xishiyi7.github.io/2016/02/29/兼容AMD-CMD-CommonJS-Node-多种模块规范/index.html">
 <meta property="og:site_name" content="阿根廷人。">
-<meta property="og:description" content="针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index&amp;lt;ul id=&quot;text&quot;&amp;gt;
-    &amp;lt;li&amp;gt;这是第一个li&amp;lt;/li&amp;gt;
-    &amp;lt;li&amp;gt;这是第二个li&amp;lt;/li&amp;gt;
-    &amp;lt;li&amp;gt;这是第三个li&amp;lt;/li&amp;gt;
-&amp;lt;/ul&amp;gt;
-解答一：bind，将当前匿名函数指向this，将i当参数传入var">
+<meta property="og:description" content="在JavaScript社区，CommonJS规范的提出，是模块化方面最重要的一笔。
+CommonJS的模块实现CommonJS的模块引用使用require，如下：1var http = require(&apos;http&apos;);
+Node的模块实现在Node中引入模块，需要经过下面3个步骤：
+
+路径分析；
+文件定位；
+编译执行。主要用require()方法来查找模块。
+
+AMD规范AMD全称Asynchro">
 <meta property="og:image" content="https://github.com/xishiyi7/xishiyi7.github.io/../../../../images/money.png">
 <meta property="og:image" content="https://github.com/xishiyi7/xishiyi7.github.io/../../../../images/money.jpg">
-<meta property="og:updated_time" content="2015-12-06T12:29:04.000Z">
+<meta property="og:updated_time" content="2016-02-29T15:15:48.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一个关于闭包/bind/this的面试题">
-<meta name="twitter:description" content="针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index&amp;lt;ul id=&quot;text&quot;&amp;gt;
-    &amp;lt;li&amp;gt;这是第一个li&amp;lt;/li&amp;gt;
-    &amp;lt;li&amp;gt;这是第二个li&amp;lt;/li&amp;gt;
-    &amp;lt;li&amp;gt;这是第三个li&amp;lt;/li&amp;gt;
-&amp;lt;/ul&amp;gt;
-解答一：bind，将当前匿名函数指向this，将i当参数传入var">
+<meta name="twitter:title" content="实现兼容AMD/CMD/Node多种模块规范">
+<meta name="twitter:description" content="在JavaScript社区，CommonJS规范的提出，是模块化方面最重要的一笔。
+CommonJS的模块实现CommonJS的模块引用使用require，如下：1var http = require(&apos;http&apos;);
+Node的模块实现在Node中引入模块，需要经过下面3个步骤：
+
+路径分析；
+文件定位；
+编译执行。主要用require()方法来查找模块。
+
+AMD规范AMD全称Asynchro">
 
 
 
@@ -89,7 +98,7 @@
   };
 </script>
 
-  <title> 一个关于闭包/bind/this的面试题 | 阿根廷人。 </title>
+  <title> 实现兼容AMD/CMD/Node多种模块规范 | 阿根廷人。 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -209,7 +218,7 @@
             
             
               
-                一个关于闭包/bind/this的面试题
+                实现兼容AMD/CMD/Node多种模块规范
               
             
           </h1>
@@ -218,8 +227,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-12-03T23:47:41+08:00" content="2015-12-03">
-              2015-12-03
+            <time itemprop="dateCreated" datetime="2016-02-29T22:43:01+08:00" content="2016-02-29">
+              2016-02-29
             </time>
           </span>
 
@@ -229,8 +238,8 @@
             
               <span class="post-comments-count" style="display:none">
                 &nbsp; | &nbsp;
-                <a href="/2015/12/03/一个关于闭包-bind-this的面试题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/03/一个关于闭包-bind-this的面试题/" itemprop="commentsCount"></span>
+                <a href="/2016/02/29/兼容AMD-CMD-CommonJS-Node-多种模块规范/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/29/兼容AMD-CMD-CommonJS-Node-多种模块规范/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -249,46 +258,23 @@
       
 
       
-        <span itemprop="articleBody"><h5 id="针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index"><strong><em>针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index</em></strong></h5><pre><code>&lt;ul id=<span class="string">"text"</span>&gt;
-    &lt;<span class="keyword">li</span>&gt;这是第一个<span class="keyword">li</span>&lt;/<span class="keyword">li</span>&gt;
-    &lt;<span class="keyword">li</span>&gt;这是第二个<span class="keyword">li</span>&lt;/<span class="keyword">li</span>&gt;
-    &lt;<span class="keyword">li</span>&gt;这是第三个<span class="keyword">li</span>&lt;/<span class="keyword">li</span>&gt;
-&lt;/ul&gt;
-</code></pre><h5 id="解答一：bind，将当前匿名函数指向this，将i当参数传入"><strong><em>解答一：bind，将当前匿名函数指向this，将i当参数传入</em></strong></h5><pre><code><span class="keyword">var</span> init = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{
-<span class="keyword">var</span> obj = <span class="built_in">document</span>.getElementById(<span class="string">'text'</span>);
-<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;obj.children.length;i++){
-  obj.children[i].addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>{
-    alert(i)
-  }.bind(<span class="keyword">this</span>,i))
-}
-}
-init();
-</code></pre><h5 id="解答二：闭包"><strong><em>解答二：闭包</em></strong></h5><pre><code><span class="keyword">var</span> init = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{
-<span class="keyword">var</span> lis=<span class="built_in">document</span>.querySelectorAll(<span class="string">"#text li"</span>);
-  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;lis.length;i++){
-        lis[i].onclick=(<span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>{
-              <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{
-                    alert(i);
-              };
-        })(i)
-  }
-}
-init();
-</code></pre><h5 id="解答三：最笨的方法，匹配"><strong><em>解答三：最笨的方法，匹配</em></strong></h5><pre><code><span class="keyword">var</span> init = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
-  <span class="keyword">var</span> obj = document.getElementById(<span class="string">'text'</span>);
-  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;obj.children.length;i++){
-    obj.children[i].addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span><span class="params">(item)</span></span>{
-      <span class="keyword">var</span> <span class="keyword">self</span> = item.target;
-      <span class="keyword">for</span>(<span class="keyword">var</span> j=<span class="number">0</span>;j&lt;obj.children.length;j++){
-        <span class="keyword">if</span>(<span class="keyword">self</span> == obj.children[j]){
-          alert(j);
-        }
-      }
-    })
-  }
-}
-init();
-</code></pre><hr>
+        <span itemprop="articleBody"><p>在JavaScript社区，CommonJS规范的提出，是模块化方面最重要的一笔。</p>
+<h3 id="CommonJS的模块实现">CommonJS的模块实现</h3><p>CommonJS的模块引用使用require，如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br></pre></td></tr></table></figure></p>
+<h3 id="Node的模块实现">Node的模块实现</h3><p>在Node中引入模块，需要经过下面3个步骤：</p>
+<ul>
+<li>路径分析；</li>
+<li>文件定位；</li>
+<li>编译执行。<br>主要用require()方法来查找模块。</li>
+</ul>
+<h3 id="AMD规范">AMD规范</h3><p>AMD全称Asynchronous Module Definition，即“异步模块定义”。其模块引用方式如下：<br><figure class="highlight puppet"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">define</span>(<span class="title">id</span>?,dependencies?,factory);</span><br></pre></td></tr></table></figure></p>
+<p>其中，id及依赖是可选的。其与CommonJS方式相似的地方在于factory的内容就是实际代码的内容，下面是一个简单的例子：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">var</span> exports = &#123;&#125;;</span><br><span class="line">	exports.sayHello = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">		alert(<span class="string">'hello'</span>);</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">return</span> exports;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h3 id="CMD规范">CMD规范</h3><p>CMD由国内大神玉伯提出，与AMD类似，区别主要在于定义模块和依赖引入的地方。AMD需要在声明模块时指定所有的依赖，通过形参传递依赖到模块内容中：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">define([<span class="string">'dep1'</span>,<span class="string">'dep2'</span>],<span class="function"><span class="keyword">function</span><span class="params">(dep1,dep2)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;&#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>与AMD相比，CMD更接近Node对CommonJS规范的定义：<br><figure class="highlight puppet"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">define</span>(<span class="title">factory</span>);</span><br></pre></td></tr></table></figure></p>
+<p>在依赖部分，CMD支持动态引入，如下：<br><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="function"><span class="keyword">function</span><span class="params">(<span class="keyword">require</span>,exports,<span class="keyword">module</span>)</span><span class="comment">&#123;</span><br><span class="line">	// Todo</span><br><span class="line">&#125;</span>);</span></span><br></pre></td></tr></table></figure></p>
+<p>require、exports、module通过形参传递给模块，在需要依赖模块时，随时调用require引入即可。</p>
+<h3 id="兼容多种模块规范">兼容多种模块规范</h3><p>为了让同一个模块可以运行在前后端，在开发过程中需要考虑兼容前后端问题，以下代码演示如何将hello()方法定义到不同的运行环境中，它能够兼容AMD、CMD、Node以及常见的浏览器环境中：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">;</span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">name, definition</span>) </span>&#123;</span><br><span class="line">   	<span class="comment">// 检测上下文环境是否为AMD或CMD</span></span><br><span class="line">   	<span class="keyword">var</span> hadDefine = <span class="keyword">typeof</span> define === <span class="string">'function'</span>,</span><br><span class="line">   	<span class="comment">// 检测上下文环境是否为Node</span></span><br><span class="line">   		hasExports = <span class="keyword">typeof</span> <span class="built_in">module</span> !== <span class="string">'undefined'</span> &amp;&amp; <span class="built_in">module</span>.exports;</span><br><span class="line">   	<span class="keyword">if</span> (hadDefine) &#123;</span><br><span class="line">   		<span class="comment">// AMD/CMD</span></span><br><span class="line">   		define(definition);</span><br><span class="line">   	&#125;</span><br><span class="line">   	<span class="keyword">else</span> <span class="keyword">if</span> (hasExports) &#123;</span><br><span class="line">   		<span class="comment">// Node</span></span><br><span class="line">   		<span class="built_in">module</span>.exports = definition();</span><br><span class="line">   	&#125;</span><br><span class="line">   	<span class="keyword">else</span> &#123;</span><br><span class="line">   		<span class="comment">// 将模块的执行结果挂在全局变量(window)中</span></span><br><span class="line">   		<span class="keyword">this</span>[name] = definition();</span><br><span class="line">   	&#125;</span><br><span class="line">   &#125;)(<span class="string">'hello'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">   	<span class="keyword">var</span> hello = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">   	<span class="keyword">return</span> hello;</span><br><span class="line">   &#125;);</span><br></pre></td></tr></table></figure></p>
+<p>以上信息主要摘自书籍《深入浅出Nodejs》，有兴趣的朋友可以自己尝试前台、后台模块引入的异同，或者尝试这几种模块引入方式的异同。</p>
+<hr>
 <hr>
 <p><img src="../../../../images/money.png" alt="money">☜☜☜ <strong><em>wechat</em></strong> 『『『<strong><em> reward 点击扫码打赏 ~~~ ^_^ </em></strong>  』』』<strong><em>alipay</em></strong> ☞☞☞   <img src="../../../../images/money.jpg" alt="money"></p>
 <hr>
@@ -299,28 +285,18 @@ init();
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/js/" rel="tag">#js</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/12/03/hello-web/" rel="next" title="Hello Web">
-                <i class="fa fa-chevron-left"></i> Hello Web
+              <a href="/2016/02/20/用cookie校验账户登录/" rel="next" title="angular+node项目中用cookie校验账户登录">
+                <i class="fa fa-chevron-left"></i> angular+node项目中用cookie校验账户登录
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/12/06/Effective-JavaScript-一/" rel="prev" title="Effective JavaScript(一)">
-                Effective JavaScript(一) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -335,10 +311,10 @@ init();
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2015/12/03/一个关于闭包-bind-this的面试题/"
-     data-title="一个关于闭包/bind/this的面试题"
+        <div class="ds-share flat" data-thread-key="2016/02/29/兼容AMD-CMD-CommonJS-Node-多种模块规范/"
+     data-title="实现兼容AMD/CMD/Node多种模块规范"
      data-content=""
-     data-url="https://github.com/xishiyi7/xishiyi7.github.io/2015/12/03/一个关于闭包-bind-this的面试题/">
+     data-url="https://github.com/xishiyi7/xishiyi7.github.io/2016/02/29/兼容AMD-CMD-CommonJS-Node-多种模块规范/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -366,8 +342,8 @@ init();
         
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/12/03/一个关于闭包-bind-this的面试题/"
-           data-title="一个关于闭包/bind/this的面试题" data-url="https://github.com/xishiyi7/xishiyi7.github.io/2015/12/03/一个关于闭包-bind-this的面试题/">
+      <div class="ds-thread" data-thread-key="2016/02/29/兼容AMD-CMD-CommonJS-Node-多种模块规范/"
+           data-title="实现兼容AMD/CMD/Node多种模块规范" data-url="https://github.com/xishiyi7/xishiyi7.github.io/2016/02/29/兼容AMD-CMD-CommonJS-Node-多种模块规范/">
       </div>
     
   </div>
@@ -457,7 +433,7 @@ init();
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index"><span class="nav-number">1.</span> <span class="nav-text">针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#解答一：bind，将当前匿名函数指向this，将i当参数传入"><span class="nav-number">2.</span> <span class="nav-text">解答一：bind，将当前匿名函数指向this，将i当参数传入</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#解答二：闭包"><span class="nav-number">3.</span> <span class="nav-text">解答二：闭包</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#解答三：最笨的方法，匹配"><span class="nav-number">4.</span> <span class="nav-text">解答三：最笨的方法，匹配</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#CommonJS的模块实现"><span class="nav-number">1.</span> <span class="nav-text">CommonJS的模块实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node的模块实现"><span class="nav-number">2.</span> <span class="nav-text">Node的模块实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AMD规范"><span class="nav-number">3.</span> <span class="nav-text">AMD规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMD规范"><span class="nav-number">4.</span> <span class="nav-text">CMD规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#兼容多种模块规范"><span class="nav-number">5.</span> <span class="nav-text">兼容多种模块规范</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
