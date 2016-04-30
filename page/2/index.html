@@ -177,6 +177,116 @@
 
     
     
+      
+      
+
+      
+    
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/12/09/angular指令中scope类型的几种特殊情况/" itemprop="url">
+                  angular指令中scope类型的几种特殊情况
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-12-09T17:54:40+08:00" content="2015-12-09">
+              2015-12-09
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count" style="display:none">
+                &nbsp; | &nbsp;
+                <a href="/2015/12/09/angular指令中scope类型的几种特殊情况/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/09/angular指令中scope类型的几种特殊情况/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>默认情况下,指令应该访问父作用域.如果我们对指令暴露了父控制器的scope,那么指令就可以自由的修改scope属性.在一些情况下,你的指令可能想要添加一些只有内部可以使用的属性和函数,如果我们都在父作用域中完成,可能会污染了父作用域,因此,我们有以下两种选择:</p>
+<ul>
+<li><p>使用父作用域-如果不需要操作父作用域属性,不需要一个新的作用域,可以直接使用父作用域<br><code>scope:false</code></p>
+</li>
+<li><p>一个子作用域-这个作用域会原型继承父作用域<br><code>scope:true</code></p>
+</li>
+<li><p>一个隔离的作用域-一个全新的、不继承、独立存在的作用域<br><code>scope:{}</code></p>
+</li>
+</ul>
+<p>作用域可以由指令定义对象中的scope属性定义，下面是关于scope属性的一些说明：</p>
+<h3 id="指令中的scope常见的类型">指令中的scope常见的类型</h3><h5 id="="><strong><em>=</em></strong></h5><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">'=',用于子作用域与父作用域双向绑定.使用这种方法可以将一个实际的作用域模型赋值给一个属性,而不是一个普通的字符串.效果是你可以传递复杂的数据模型,例如数组/对象等到隔离作用域.父作用域或者子作用域属性发生了改变,会相应影响对方.</span><br><span class="line"></span><br><span class="line">'=?',这种情况可以避免父作用域属性中不存在当前属性情况,避免抛出异常.--'<span class="keyword">If</span> the parent scope property doesn't exist, it will throw <span class="literal">a</span> NON_ASSIGNABLE_MODEL_EXPRESSION exception. You can avoid this behavior using <span class="escape">`=</span>?<span class="escape">` </span><span class="literal">or</span> <span class="escape">`=</span>?attr<span class="escape">` </span>in order to flag the property as optional.'</span><br><span class="line"></span><br><span class="line">'=*',<span class="keyword">If</span> you want to shallow watch for changes (i.e. $watchCollection instead of $watch) you can use <span class="escape">`=</span>*<span class="escape">` </span><span class="literal">or</span> <span class="escape">`=</span>*attr<span class="escape">` </span>(<span class="escape">`=</span>*?<span class="escape">` </span><span class="literal">or</span> <span class="escape">`=</span>*?attr<span class="escape">` </span><span class="keyword">if</span> the property is optional).</span><br></pre></td></tr></table></figure>
+<h5 id="&amp;"><strong><em>&amp;</em></strong></h5><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'&amp;'</span>,用于执行父作用域中的函数.</span><br></pre></td></tr></table></figure>
+<h5 id="@"><strong><em>@</em></strong></h5><figure class="highlight erlang-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'@'</span>,进行单项文本绑定.使用这种方法可以将字符串传递到属性,当父作用域属性发生变化时,隔离作用域模型也发生变化.然而,反之则不成立<span class="exclamation_mark">!</span>你不能通过操纵隔离作用域来改变父作用域.</span><br></pre></td></tr></table></figure>
+<hr>
+<hr>
+<p><img src="../../../../images/money.png" alt="money">☜☜☜ <strong><em>wechat</em></strong> 『『『<strong><em> reward 点击扫码打赏 ~~~ ^_^ </em></strong>  』』』<strong><em>alipay</em></strong> ☞☞☞   <img src="../../../../images/money.jpg" alt="money"></p>
+<hr>
+<hr>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
@@ -653,7 +763,7 @@ init();
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-count">15</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
