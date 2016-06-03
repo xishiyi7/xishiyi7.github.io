@@ -969,7 +969,7 @@ body {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #9a0b0d;
+  background: #0813ff;
 }
 .sidebar-nav {
   margin: 0 0 20px;
@@ -1365,6 +1365,13 @@ body {
 }
 .posts-expand .post-body .fancybox img {
   margin: 0 auto;
+}
+.normal-img .fancybox {
+  height: 100%;
+  width: 100%;
+}
+.normal-img .fancybox img {
+  max-width: none;
 }
 @media (max-width: 767px) {
   .posts-collapse {
@@ -2056,12 +2063,4 @@ body {
   .use-motion .site-search form {
     top: 0 !important;
   }
-}
-
-.normal-img .fancybox {
-  height: 100%;
-  width: 100%;
-}
-.normal-img .fancybox img {
-  max-width: none;
 }

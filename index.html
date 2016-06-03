@@ -177,15 +177,6 @@
 
     
     
-      
-      
-        
-        
-        
-      
-
-      
-    
 
     
       
@@ -743,7 +734,7 @@
 <h3 id="在header中携带authId登录">在header中携带authId登录</h3><p>在之前老的项目里，没有采用cookie来记录用户登录状态，而是在请求的header中携带一个身份标识来校验，大致方案如下：</p>
 <ul>
 <li>客户端使用post请求提交user、password给服务端进行登录操作；</li>
-<li>服务端校验用户是否合法，如果合法将产生一个唯一的身份标识authId，返回给客户端，客户端将此authId存放本地(如locaoStorage)；</li>
+<li>服务端校验用户是否合法，如果合法将产生一个唯一的身份标识authId，返回给客户端，客户端将此authId存放本地(如localStorage)；</li>
 <li>客户端在每次需要校验身份的请求中，往header中加入这个authId；</li>
 <li>服务端检测当前的authId是否有效，有效则表示当前用户合法，允许操作；</li>
 <li>客户端用户登出的时候，发送一个delete请求，告诉服务端用户注销，同时删除本地的authId信息；</li>
