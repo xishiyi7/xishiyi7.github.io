@@ -2057,3 +2057,11 @@ body {
     top: 0 !important;
   }
 }
+
+.normal-img .fancybox {
+  height: 100%;
+  width: 100%;
+}
+.normal-img .fancybox img {
+  max-width: none;
+}
