@@ -51,24 +51,18 @@
 
 
 
-<meta name="description" content="Welcome to xishiyi7’s blog! This is my very first post. If you get any problems here, you can find my contact information in later posts. Thank you!
-GeneralJavaScript1include some js knowledge.
-Css1i">
+<meta name="description" content="gulp，主要用来前端项目开发过程中自动构建项目，自身的api比较简单，一般搭配着多种插件来使用，以最大限度满足项目的构建需要。gulp跟grunt、webpack的功能差不多，grunt算是gulp的前辈吧，稍早先用grunt的可能比较多点，webpack目前比较火的原因可能也跟其与react天生一对有关，哥俩好。本文暂不涉及grunt及webpack的知识，主要介绍两个主题，前一部分先简单介绍">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello Web">
-<meta property="og:url" content="https://github.com/xishiyi7/xishiyi7.github.io/2015/12/03/hello-web/index.html">
+<meta property="og:title" content="angular项目中比较好用的gulp构建插件">
+<meta property="og:url" content="https://github.com/xishiyi7/xishiyi7.github.io/2016/07/10/angular项目中比较好用的gulp构建插件/index.html">
 <meta property="og:site_name" content="阿根廷人。">
-<meta property="og:description" content="Welcome to xishiyi7’s blog! This is my very first post. If you get any problems here, you can find my contact information in later posts. Thank you!
-GeneralJavaScript1include some js knowledge.
-Css1i">
+<meta property="og:description" content="gulp，主要用来前端项目开发过程中自动构建项目，自身的api比较简单，一般搭配着多种插件来使用，以最大限度满足项目的构建需要。gulp跟grunt、webpack的功能差不多，grunt算是gulp的前辈吧，稍早先用grunt的可能比较多点，webpack目前比较火的原因可能也跟其与react天生一对有关，哥俩好。本文暂不涉及grunt及webpack的知识，主要介绍两个主题，前一部分先简单介绍">
 <meta property="og:image" content="https://github.com/xishiyi7/xishiyi7.github.io/../../../../images/money.png">
 <meta property="og:image" content="https://github.com/xishiyi7/xishiyi7.github.io/../../../../images/money.jpg">
-<meta property="og:updated_time" content="2015-12-06T13:15:12.772Z">
+<meta property="og:updated_time" content="2016-07-10T15:15:51.550Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello Web">
-<meta name="twitter:description" content="Welcome to xishiyi7’s blog! This is my very first post. If you get any problems here, you can find my contact information in later posts. Thank you!
-GeneralJavaScript1include some js knowledge.
-Css1i">
+<meta name="twitter:title" content="angular项目中比较好用的gulp构建插件">
+<meta name="twitter:description" content="gulp，主要用来前端项目开发过程中自动构建项目，自身的api比较简单，一般搭配着多种插件来使用，以最大限度满足项目的构建需要。gulp跟grunt、webpack的功能差不多，grunt算是gulp的前辈吧，稍早先用grunt的可能比较多点，webpack目前比较火的原因可能也跟其与react天生一对有关，哥俩好。本文暂不涉及grunt及webpack的知识，主要介绍两个主题，前一部分先简单介绍">
 
 
 
@@ -80,7 +74,7 @@ Css1i">
   };
 </script>
 
-  <title> Hello Web | 阿根廷人。 </title>
+  <title> angular项目中比较好用的gulp构建插件 | 阿根廷人。 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -200,7 +194,7 @@ Css1i">
             
             
               
-                Hello Web
+                angular项目中比较好用的gulp构建插件
               
             
           </h1>
@@ -209,8 +203,8 @@ Css1i">
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-12-03T10:10:33+08:00" content="2015-12-03">
-              2015-12-03
+            <time itemprop="dateCreated" datetime="2016-07-10T20:40:02+08:00" content="2016-07-10">
+              2016-07-10
             </time>
           </span>
 
@@ -220,8 +214,8 @@ Css1i">
             
               <span class="post-comments-count" style="display:none">
                 &nbsp; | &nbsp;
-                <a href="/2015/12/03/hello-web/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/03/hello-web/" itemprop="commentsCount"></span>
+                <a href="/2016/07/10/angular项目中比较好用的gulp构建插件/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/10/angular项目中比较好用的gulp构建插件/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -240,11 +234,28 @@ Css1i">
       
 
       
-        <span itemprop="articleBody"><p>Welcome to <a href="https://xishiyi7.github.io/" target="_blank" rel="external">xishiyi7’s blog</a>! This is my very first post. If you get any problems here, you can find my contact information in later posts. Thank you!</p>
-<h2 id="General">General</h2><h3 id="JavaScript"><a href="http://xishiyi7.github.io/tags/js/" target="_blank" rel="external">JavaScript</a></h3><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"><span class="keyword">include</span> some js knowledge.</span></span><br></pre></td></tr></table></figure>
-<h3 id="Css">Css</h3><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i think css can change <span class="operator">the</span> web, change <span class="operator">the</span> world.</span><br></pre></td></tr></table></figure>
-<h3 id="Html">Html</h3><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">html5 <span class="keyword">is</span> incredible.</span><br></pre></td></tr></table></figure>
-<h3 id="Personal">Personal</h3><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">also <span class="type">record</span> something personal.</span><br></pre></td></tr></table></figure>
+        <span itemprop="articleBody"><p>gulp，主要用来前端项目开发过程中自动构建项目，自身的api比较简单，一般搭配着多种插件来使用，以最大限度满足项目的构建需要。<br>gulp跟grunt、webpack的功能差不多，grunt算是gulp的前辈吧，稍早先用grunt的可能比较多点，webpack目前比较火的原因可能也跟其与react天生一对有关，哥俩好。<br>本文暂不涉及grunt及webpack的知识，主要介绍两个主题，前一部分先简单介绍gulp的工作原理，后一部分将介绍我是怎么使用gulp的，可以概括为：用gulp构建angular项目中我主要涉及的需求、实现思路及插件。</p>
+<h3 id="流(stream)">流(stream)</h3><p>在使用gulp之前，你先要了解下其工作原理，gulp核心思想之一便是：流。<br>通过<code>gulp.src</code>方法，将文件以流的形式返回、输出。</p>
+<h3 id="管道(pipe)">管道(pipe)</h3><p>管道可以看成是流的运输工具吧，通过<code>.pipe</code>方法，可以将输入的流流转到他处进行其他操作，比如最简单的，将其写入文件。</p>
+<h3 id="dest">dest</h3><p>大部分构建任务的最后一步处理可能都是写文件，或者写文件夹。通过<code>gulp.dest</code>方法，将初始文件进行相应的处理后，写入一个新文件(文件夹)中，或者覆盖原有文件。</p>
+<h3 id="task">task</h3><p><code>gulp.task</code>可以用来定义一个任务，第一个参数为任务名称，第二个参数表示当前任务要执行的动作，为一个函数。</p>
+<h3 id="基本构建需求">基本构建需求</h3><p>先说一般情况下最简单前端项目构建需求，可能包括js合并、压缩、混淆，css合并、压缩，然后支持开发和发布两套指令。<br>先介绍一个插件：<code>gulp-load-plugins</code>，它可以根据<code>package.json</code>文件，识别gulp插件，在代码中调用后，会将以gulp为前缀的gulp插件添加到返回的对象列表中，根据后面的名字驼峰表示法可以拿到此插件的导出对象。这个插件的好处在于如果代码中用到的gulp插件太多，可以不用一个个的写require代码来引用插件模块。</p>
+<ul>
+<li>文件合并<br><code>gulp-cancat</code>插件可以用于合并多个文件；</li>
+<li>文件压缩、混淆<br>文件压缩的插件可能比较多，可以根据需要自己选择，目前js处理，选用 <code>gulp-uglify</code>，其可对js文件进行压缩及混淆两步处理；<br>css文件，选用<code>gulp-minify-css</code>来进行压缩处理；</li>
+<li>两套指令<br>工作当中的指令是能够同时支持项目开发需要及发布需要，比较合适的方案是结合if条件判断及<code>gulp-if</code>插件俩个配合来实现。</li>
+</ul>
+<h3 id="进一步扩展">进一步扩展</h3><p>拿一个简单的angular项目来举例，需求可就不止上面这些。</p>
+<ul>
+<li>js依赖注入<br>使用<code>gulp-ng-annotate</code>插件可以方便在angular项目开发过程中动态依赖注入；</li>
+<li>重命名<br>使用<code>gulp-rename</code>插件可以重命名文件；</li>
+<li>生成.map文件<br>使用<code>gulp-sourcemaps</code>插件可以生成.map文件，可以用于混淆后的js文件快速定位问题；</li>
+<li>less文件编译<br>使用<code>gulp-less</code>插件可以对项目中的.less文件进行编译成正常可使用的.css文件；</li>
+<li>自动添加浏览器前缀<br>使用<code>gulp-autoprefixer</code>，可以给样式表动态自动添加浏览器前缀；</li>
+<li>动态引用资源<br>使用<code>gulp-inject</code>，可以给指定的入口文件，如index.html，动态插入引用的资源文件，由于最终引用的资源文件可能不时的在更换文件名或者版本号来避免浏览器缓存等，因此使用动态插入引用既可以避免出错又提高工作效率；</li>
+<li>html打包js<br>使用<code>gulp-angular-templatecache</code>，可以将项目中用到的html文件打包为js文件，生成的js文件包含html模版文件的cache，使用时只需要写入依赖即可；</li>
+</ul>
+<h3 id="最后">最后</h3><p>上述这些插件的合理使用可以基本服务一个angular项目的正常构建需要，但是当项目日益庞大，所需要的需求日加复杂的情况下，可能就需要在使用已有的插件搭配工作下进行自己的一些逻辑处理，下文将再对此做一个简单的思路介绍。</p>
 <hr>
 <hr>
 <p><img src="../../../../images/money.png" alt="money">☜☜☜ <strong><em>wechat</em></strong> 『『『<strong><em> reward 点击扫码打赏 ~~~ ^_^ </em></strong>  』』』<strong><em>alipay</em></strong> ☞☞☞   <img src="../../../../images/money.jpg" alt="money"></p>
@@ -261,12 +272,16 @@ Css1i">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/07/07/使用node搭建简单web服务器/" rel="next" title="使用node搭建简单web服务器">
+                <i class="fa fa-chevron-left"></i> 使用node搭建简单web服务器
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/12/03/一个关于闭包-bind-this的面试题/" rel="prev" title="一个关于闭包/bind/this的面试题">
-                一个关于闭包/bind/this的面试题 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/07/10/gulp搭配命令行参数实现前端自动化构建的多样化/" rel="prev" title="gulp搭配命令行参数实现前端自动化构建的多样化">
+                gulp搭配命令行参数实现前端自动化构建的多样化 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -282,10 +297,10 @@ Css1i">
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2015/12/03/hello-web/"
-     data-title="Hello Web"
+        <div class="ds-share flat" data-thread-key="2016/07/10/angular项目中比较好用的gulp构建插件/"
+     data-title="angular项目中比较好用的gulp构建插件"
      data-content=""
-     data-url="https://github.com/xishiyi7/xishiyi7.github.io/2015/12/03/hello-web/">
+     data-url="https://github.com/xishiyi7/xishiyi7.github.io/2016/07/10/angular项目中比较好用的gulp构建插件/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -313,8 +328,8 @@ Css1i">
         
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/12/03/hello-web/"
-           data-title="Hello Web" data-url="https://github.com/xishiyi7/xishiyi7.github.io/2015/12/03/hello-web/">
+      <div class="ds-thread" data-thread-key="2016/07/10/angular项目中比较好用的gulp构建插件/"
+           data-title="angular项目中比较好用的gulp构建插件" data-url="https://github.com/xishiyi7/xishiyi7.github.io/2016/07/10/angular项目中比较好用的gulp构建插件/">
       </div>
     
   </div>
@@ -404,7 +419,7 @@ Css1i">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#General"><span class="nav-number">1.</span> <span class="nav-text">General</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript"><span class="nav-number">1.1.</span> <span class="nav-text">JavaScript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Css"><span class="nav-number">1.2.</span> <span class="nav-text">Css</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Html"><span class="nav-number">1.3.</span> <span class="nav-text">Html</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Personal"><span class="nav-number">1.4.</span> <span class="nav-text">Personal</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#流(stream)"><span class="nav-number">1.</span> <span class="nav-text">流(stream)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#管道(pipe)"><span class="nav-number">2.</span> <span class="nav-text">管道(pipe)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dest"><span class="nav-number">3.</span> <span class="nav-text">dest</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#task"><span class="nav-number">4.</span> <span class="nav-text">task</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本构建需求"><span class="nav-number">5.</span> <span class="nav-text">基本构建需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进一步扩展"><span class="nav-number">6.</span> <span class="nav-text">进一步扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后"><span class="nav-number">7.</span> <span class="nav-text">最后</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

@@ -200,6 +200,224 @@
             
               
                 
+                <a class="post-title-link" href="/2016/07/10/gulp搭配命令行参数实现前端自动化构建的多样化/" itemprop="url">
+                  gulp搭配命令行参数实现前端自动化构建的多样化
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-07-10T20:47:12+08:00" content="2016-07-10">
+              2016-07-10
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count" style="display:none">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/10/gulp搭配命令行参数实现前端自动化构建的多样化/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/10/gulp搭配命令行参数实现前端自动化构建的多样化/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>上面一篇文章简单介绍了gulp的相关知识及在项目中如何使用gulp进行自动化构建，本文简单介绍下如何搭配gulp做一些其他的逻辑处理，只是提供一种思路，不表示可以完全套用。</p>
+<h3 id="如果没有合适的插件怎么办？">如果没有合适的插件怎么办？</h3><p>通过npm安装的gulp插件，都是先想想自己要的需求，然后上npm社区找，万一找不到或者自己不会找，怎么办？</p>
+<ul>
+<li>假设一个需求<br>我们先假设一个简单的需求：每次发布指令生成的文件带上当前时间信息。</li>
+<li>处理思路<br>拿到这个需求第一反应可能还是先上社区找一下，没找到，怎么办？试着变通一下，如果没找到，那我自己写一个插件岂不是也可以。<br>想法很好，也可以行得通，目前有<code>through2</code>插件可以帮助我们写gulp插件，但是写一个插件对一个gulp初学者来说可能还是比较难的事情，那么我们换一个思路。<br>我们可以尝试在每次<code>gulp.dest</code>前，先给最终要生成的文件重命名，添加时间戳，这样可以保证正常情况下每次构建后的文件跟之前文件名都不一样。</li>
+<li>实现<br>简单的根据时间戳重命名，单个文件还好，多个文件的话，由于很多异步操作，记录时间的时刻必须比较特别，选用执行命令的那一刻可能更好些。</li>
+</ul>
+<p>有些时候，开发版指令可能需求简单些，或者单个task的需求简单些，这时可以用命令行参数搭配使用来方便构建。</p>
+<h3 id="搭配命令行参数">搭配命令行参数</h3><p>命令行参数可以用<code>process.argv</code>获取，拿到的第三个参数，可以表示为当前task的参数。<br>因此，我们可以拿这个来做简单的区分，如果是特殊命令，可以选择携带一个特殊的参数，这样不用每次都单独写任务来表示。</p>
+<h3 id="使用多彩的控制台输出">使用多彩的控制台输出</h3><p>npm社区有不少模块可以帮助生成多彩的控制台输出，虽然这对项目构建没有实际的作用，但是可以很清楚的区分当前使用的任务。</p>
+<h3 id="替换多个输出的文件名">替换多个输出的文件名</h3><p>如果有需求是替换某个文件夹中的所有文件名，此需求与上面的需求类似，可以一起记性。<br>具体代码可以自己琢磨，可以使用<code>path</code>模块的path.join方法来实现。</p>
+<h3 id="最后">最后</h3><p>由于自己对这方面也不是很熟悉，只是根据自己的经验提供一个解决问题的思路，希望可以举一反三，而不是滥用。</p>
+<hr>
+<hr>
+<p><img src="../../../../images/money.png" alt="money">☜☜☜ <strong><em>wechat</em></strong> 『『『<strong><em> reward 点击扫码打赏 ~~~ ^_^ </em></strong>  』』』<strong><em>alipay</em></strong> ☞☞☞   <img src="../../../../images/money.jpg" alt="money"></p>
+<hr>
+<hr>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/07/10/angular项目中比较好用的gulp构建插件/" itemprop="url">
+                  angular项目中比较好用的gulp构建插件
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-07-10T20:40:02+08:00" content="2016-07-10">
+              2016-07-10
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count" style="display:none">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/10/angular项目中比较好用的gulp构建插件/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/10/angular项目中比较好用的gulp构建插件/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>gulp，主要用来前端项目开发过程中自动构建项目，自身的api比较简单，一般搭配着多种插件来使用，以最大限度满足项目的构建需要。<br>gulp跟grunt、webpack的功能差不多，grunt算是gulp的前辈吧，稍早先用grunt的可能比较多点，webpack目前比较火的原因可能也跟其与react天生一对有关，哥俩好。<br>本文暂不涉及grunt及webpack的知识，主要介绍两个主题，前一部分先简单介绍gulp的工作原理，后一部分将介绍我是怎么使用gulp的，可以概括为：用gulp构建angular项目中我主要涉及的需求、实现思路及插件。</p>
+<h3 id="流(stream)">流(stream)</h3><p>在使用gulp之前，你先要了解下其工作原理，gulp核心思想之一便是：流。<br>通过<code>gulp.src</code>方法，将文件以流的形式返回、输出。</p>
+<h3 id="管道(pipe)">管道(pipe)</h3><p>管道可以看成是流的运输工具吧，通过<code>.pipe</code>方法，可以将输入的流流转到他处进行其他操作，比如最简单的，将其写入文件。</p>
+<h3 id="dest">dest</h3><p>大部分构建任务的最后一步处理可能都是写文件，或者写文件夹。通过<code>gulp.dest</code>方法，将初始文件进行相应的处理后，写入一个新文件(文件夹)中，或者覆盖原有文件。</p>
+<h3 id="task">task</h3><p><code>gulp.task</code>可以用来定义一个任务，第一个参数为任务名称，第二个参数表示当前任务要执行的动作，为一个函数。</p>
+<h3 id="基本构建需求">基本构建需求</h3><p>先说一般情况下最简单前端项目构建需求，可能包括js合并、压缩、混淆，css合并、压缩，然后支持开发和发布两套指令。<br>先介绍一个插件：<code>gulp-load-plugins</code>，它可以根据<code>package.json</code>文件，识别gulp插件，在代码中调用后，会将以gulp为前缀的gulp插件添加到返回的对象列表中，根据后面的名字驼峰表示法可以拿到此插件的导出对象。这个插件的好处在于如果代码中用到的gulp插件太多，可以不用一个个的写require代码来引用插件模块。</p>
+<ul>
+<li>文件合并<br><code>gulp-cancat</code>插件可以用于合并多个文件；</li>
+<li>文件压缩、混淆<br>文件压缩的插件可能比较多，可以根据需要自己选择，目前js处理，选用 <code>gulp-uglify</code>，其可对js文件进行压缩及混淆两步处理；<br>css文件，选用<code>gulp-minify-css</code>来进行压缩处理；</li>
+<li>两套指令<br>工作当中的指令是能够同时支持项目开发需要及发布需要，比较合适的方案是结合if条件判断及<code>gulp-if</code>插件俩个配合来实现。</li>
+</ul>
+<h3 id="进一步扩展">进一步扩展</h3><p>拿一个简单的angular项目来举例，需求可就不止上面这些。</p>
+<ul>
+<li>js依赖注入<br>使用<code>gulp-ng-annotate</code>插件可以方便在angular项目开发过程中动态依赖注入；</li>
+<li>重命名<br>使用<code>gulp-rename</code>插件可以重命名文件；</li>
+<li>生成.map文件<br>使用<code>gulp-sourcemaps</code>插件可以生成.map文件，可以用于混淆后的js文件快速定位问题；</li>
+<li>less文件编译<br>使用<code>gulp-less</code>插件可以对项目中的.less文件进行编译成正常可使用的.css文件；</li>
+<li>自动添加浏览器前缀<br>使用<code>gulp-autoprefixer</code>，可以给样式表动态自动添加浏览器前缀；</li>
+<li>动态引用资源<br>使用<code>gulp-inject</code>，可以给指定的入口文件，如index.html，动态插入引用的资源文件，由于最终引用的资源文件可能不时的在更换文件名或者版本号来避免浏览器缓存等，因此使用动态插入引用既可以避免出错又提高工作效率；</li>
+<li>html打包js<br>使用<code>gulp-angular-templatecache</code>，可以将项目中用到的html文件打包为js文件，生成的js文件包含html模版文件的cache，使用时只需要写入依赖即可；</li>
+</ul>
+<h3 id="最后">最后</h3><p>上述这些插件的合理使用可以基本服务一个angular项目的正常构建需要，但是当项目日益庞大，所需要的需求日加复杂的情况下，可能就需要在使用已有的插件搭配工作下进行自己的一些逻辑处理，下文将再对此做一个简单的思路介绍。</p>
+<hr>
+<hr>
+<p><img src="../../../../images/money.png" alt="money">☜☜☜ <strong><em>wechat</em></strong> 『『『<strong><em> reward 点击扫码打赏 ~~~ ^_^ </em></strong>  』』』<strong><em>alipay</em></strong> ☞☞☞   <img src="../../../../images/money.jpg" alt="money"></p>
+<hr>
+<hr>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/07/使用node搭建简单web服务器/" itemprop="url">
                   使用node搭建简单web服务器
                 </a>
@@ -1142,256 +1360,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/20/HTML5使用-pattern-属性进行表单校验/" itemprop="url">
-                  HTML5使用'pattern'属性进行表单校验(译文)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-01-20T09:52:05+08:00" content="2016-01-20">
-              2016-01-20
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count" style="display:none">
-                &nbsp; | &nbsp;
-                <a href="/2016/01/20/HTML5使用-pattern-属性进行表单校验/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/20/HTML5使用-pattern-属性进行表单校验/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>下面这份指南将会探索HTML5的‘pattern’属性，这个属性可以帮助我们定制我们自己的表单验证。</p>
-<h3 id="验证(Validation)">验证(Validation)</h3><p>表单校验在网站的安全性方面启到的作用与网站的实用性是同等重要的。表单校验工作原理是在提交表单之前，评估输入的内容格式是否正确。例如，如果我们有一个邮箱地址框，那填入的信息必须是有效的邮箱地址；它应该是以字母或数字开头，随后是‘@’字符，并以一个域名地址结尾。</p>
-<p>HTML5自带的一些新的文本类型极其预先定义好的一些校验规则，例如email、url及tel等，让表单校验变的更加简单。当输入的值与期望输入的格式不匹配时，输入框会抛出一个错误信息来阻止提交。<br><img src="../../../../images/20160120/emaik.png" alt="emaik"><br>预估每一种可能的输入是不切实际的，比如，如果我们需要一个用户名、邮编、或者其他任何格式的特殊输入，我们该怎么办，怎么去校验这些输入呢？这就到了我们今天的主题–’pattern’属性。</p>
-<h3 id="使用’Pattern’属性">使用’Pattern’属性</h3><p>‘pattern’属性只对’input’元素有效。我们可以使用正则表达式定义我们自己的校验规则。同样的，如果输入值不满足条件，输入框会抛出一个异常。</p>
-<p>例如，加入我们的表格中有一个用户名输入框，因为我们没有针对用户名的校验标准，因此，我们需要使用正则表达式来校验我们的输入内容。<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">form</span> action=<span class="string">"somefile.php"</span>&gt;</span><br><span class="line">       &lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"text"</span> name=<span class="string">"username"</span> placeholder=<span class="string">"Username"</span>&gt;</span><br><span class="line">   &lt;/<span class="keyword">form</span>&gt;</span><br></pre></td></tr></table></figure></p>
-<p>下面我们使用’pattern’属性来定义一个规则。假使，我们指定用户名只能由小写字母组成，不允许输入大写字母、数组或者其他特殊字符。另外，用户名的长度不该超过15个字符。用正则来表示的话，规则是’[a-z]{1,15}’。</p>
-<p>在我们的用户名输入框中的pattern属性中添加上述值：<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">form</span> action=<span class="string">"somefile.php"</span>&gt;</span><br><span class="line">       &lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"text"</span> name=<span class="string">"username"</span> placeholder=<span class="string">"Username"</span> pattern=<span class="string">"[a-z]&#123;1,15&#125;"</span>&gt;</span><br><span class="line">   &lt;/<span class="keyword">form</span>&gt;</span><br></pre></td></tr></table></figure></p>
-<p>好了，现在它只支持输入小写字母，提交任何其他值都会抛出一个错误信息。<br><img src="../../../../images/20160120/username.png" alt="username"><br>就像上面你看到的那样，错误信息是“请按规则输入(Please match the requested format)”。这表示我们的校验生效了，但是，这样的错误信息不利于我们理解我们实际上希望输入怎样的格式。这样的用户体验很失败。</p>
-<h3 id="定制校验信息(Customizing_the_Validation_Message)">定制校验信息(Customizing the Validation Message)</h3><p>幸运的是，我们有很多种方式去可以定制更加有用的信息。最直观的方式就是在input元素的’title’属性上添加。<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">form</span> action=<span class="string">"somefile.php"</span>&gt;</span><br><span class="line">       &lt;<span class="keyword">input</span></span><br><span class="line">           <span class="keyword">type</span>=<span class="string">"text"</span></span><br><span class="line">           name=<span class="string">"username"</span></span><br><span class="line">           placeholder=<span class="string">"Username"</span></span><br><span class="line">           pattern=<span class="string">"[a-z]&#123;1,15&#125;"</span></span><br><span class="line">           title=<span class="string">"Username should only contain lowercase letters. e.g. john"</span>&gt;</span><br><span class="line">   &lt;/<span class="keyword">form</span>&gt;</span><br></pre></td></tr></table></figure></p>
-<p>现在，标题中包含了默认的提示信息：<br><img src="../../../../images/20160120/username1.png" alt="username1"><br>然而，这个信息提示框还是前后不一致。如果我们拿它与一个邮箱格式的输入框相比，实际的说明应该更突出一点。</p>
-<p>第二种方案可以帮助我们解决这个问题。</p>
-<h3 id="替换默认的校验信息(Replacing_the_Default_Validation_Message)">替换默认的校验信息(Replacing the Default Validation Message)</h3><p>让我们用一个完全自定义的信息来替换默认的“请按规则输入(Please match the requested format)”。我们需要用到一点JavaScript。</p>
-<p>开始之前，为了更好的选中input元素，我们先给它加上id。<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">form</span> action=<span class="string">"somefile.php"</span>&gt;</span><br><span class="line">       &lt;<span class="keyword">input</span></span><br><span class="line">           <span class="keyword">type</span>=<span class="string">"text"</span></span><br><span class="line">           name=<span class="string">"username"</span></span><br><span class="line">           placeholder=<span class="string">"Username"</span></span><br><span class="line">           pattern=<span class="string">"[a-z]&#123;1,15&#125;"</span></span><br><span class="line">           id=<span class="string">"username"</span>&gt;</span><br><span class="line">   &lt;/<span class="keyword">form</span>&gt;</span><br></pre></td></tr></table></figure></p>
-<p>现在，我们可以用JavaScript选中元素，并赋值给一个变量。(可以直接使用”script”标签或者引入一个额外的JavaScript文件)<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> input = <span class="built_in">document</span>.getElementById(<span class="string">'username'</span>);</span><br></pre></td></tr></table></figure></p>
-<p>然后，当输入框触发校验状态的时候，我们指定特定的信息。<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">input.oninvalid = <span class="function"><span class="keyword">function</span><span class="params">(event)</span> </span>&#123;</span><br><span class="line">       event.target.setCustomValidity(<span class="string">'Username should only contain lowercase letters. e.g. john'</span>);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
-<p>“oninvalid”事件继承自”event”对象，其包涵有一系列属性，包括”target”属性(校验的元素)及带有错误信息的”validationMessage”属性。<br>在上面的例子中，我们使用”setCustomValidity()”方法替换了提示信息。</p>
-<p>现在我们应该可以发现默认的提示信息被无缝替换了。<br><img src="../../../../images/20160120/username3.png" alt="username3"></p>
-<h3 id="样式(Styling)">样式(Styling)</h3><p>为了补充新的输入类型及设置一个自定义的验证消息，CSS3规范带来了几个有用的伪类，’:valid’及’:invalid’。这就能够让我们根据不同的输入校验状态应用相应的样式，例如：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">input</span><span class="pseudo">:invalid</span> <span class="rules">&#123;</span><br><span class="line">       <span class="rule"><span class="attribute">border-color</span>:<span class="value"> red</span></span>;</span><br><span class="line">   &#125;</span></span><br><span class="line">   <span class="tag">input</span>,</span><br><span class="line">   <span class="tag">input</span><span class="pseudo">:valid</span> <span class="rules">&#123;</span><br><span class="line">       <span class="rule"><span class="attribute">border-color</span>:<span class="value"> <span class="hexcolor">#ccc</span></span></span>;</span><br><span class="line">   &#125;</span></span><br></pre></td></tr></table></figure></p>
-<p>当使用这些伪类时，有几点需要记住的是：</p>
-<ul>
-<li>首先，”:valid”是默认样式，即使输入值为空。因此，正如上面你看到那样，我们设置”border-color”为”#ccc”，则输入框元素默认的颜色也是这个。空值永远被认为是有效输入，除非我们已经加了“必填”(required)属性。那样的话，输入校验无效，边框将变成给定的红色。</li>
-<li>有效和无效样式将在用户输入时立马生效，即使值为空。即时样式改变可能会造成用户的恐慌。</li>
-</ul>
-<h3 id="弹出框样式一致性(A_Word_on_Styling_the_Popup_Message)">弹出框样式一致性(A Word on Styling the Popup Message)</h3><p>表单校验作为一个HTM5的特性已经变成了一种规范，然而，错误信息提示框如何呈现却完全取决于浏览器厂商。<br>如果在不同的浏览器上呈现不一样的效果，这对你界面的一致性是没有帮助的。<br><img src="../../../../images/20160120/html5-validation-different-browsers.jpg" alt="html5-validation-different-browsers"></p>
-<p>谷歌浏览器在几年前阻止用户去自定义默认的弹框。如果你想做啥改变的话，唯一可供选择的方式是使用JavaScript覆盖弹框信息，下面我们来看看应该怎么做。</p>
-<h3 id="进阶(Going_More_Advanced)">进阶(Going More Advanced)</h3><p>我们先创建一个当我们的输入值有效的时候才呈现的自定义弹框。在一开始，我们需要选中一些必要的元素，包括”input”及”form”元素：<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> input = <span class="built_in">document</span>.getElementById(<span class="string">'username'</span>);</span><br><span class="line"><span class="keyword">var</span> form  = <span class="built_in">document</span>.getElementById(<span class="string">'form'</span>);</span><br></pre></td></tr></table></figure></p>
-<p>然后，新建一个包含我们信息的新元素:<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> elem = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">elem.id  = <span class="string">'notify'</span>;</span><br><span class="line">elem.style.display = <span class="string">'none'</span>;</span><br><span class="line">form.appendChild(elem);</span><br></pre></td></tr></table></figure></p>
-<p>上面我们创建了一个新的div元素，设置其id为”notify”，设置其”display”样式为”none”。最后，将其插入到”form”元素中。</p>
-<h3 id="使用事件(Working_with_Events)">使用事件(Working with Events)</h3><p>我们需要处理两个事件。首先，当输入的值不合法的时候，需要触发”invalid”事件。下面我们添加”invalid”事件：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">input.addEventListener(<span class="string">'invalid'</span>, <span class="function"><span class="keyword">function</span><span class="params">(event)</span></span>&#123;</span><br><span class="line">       event.preventDefault();</span><br><span class="line">       <span class="keyword">if</span> ( ! event.target.validity.valid ) &#123;</span><br><span class="line">           elem.textContent   = <span class="string">'Username should only contain lowercase letters e.g. john'</span>;</span><br><span class="line">           elem.className     = <span class="string">'error'</span>;</span><br><span class="line">           elem.style.display = <span class="string">'block'</span>;</span><br><span class="line"></span><br><span class="line">           input.className    = <span class="string">'invalid animated shake'</span>;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;);</span><br></pre></td></tr></table></figure></p>
-<p>在这里，利用”event.preventDefault();”，我们可以阻止默认的行为，这样浏览器就不会显示默认的弹框。<br>相反，我们显示新建的div元素。我们在内容区域里添加文本信息，添加新的样式”error”，并且通过设置”display”属性为”block”来显示信息。</p>
-<p>同样的，我们给输入框添加一个”invalid”样式，让它边框为红色。我们也需要在样式表中设置其样式：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">input</span><span class="class">.invalid</span> <span class="rules">&#123;</span><br><span class="line">           <span class="rule"><span class="attribute">border-color</span>:<span class="value"> <span class="hexcolor">#DD2C00</span></span></span>;</span><br><span class="line">   &#125;</span></span><br></pre></td></tr></table></figure></p>
-<p>另外，你也可以加一些抖动样式通过”Animate.css”，这可以加上一些抖动的动画。</p>
-<p>第二个事件是”input”事件，它将在输入值改变的时候触发。我们可以使用这个事件将输入值恢复到合法输入的状态，也可以隐藏弹出框，如下：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">input.addEventListener(<span class="string">'input'</span>, <span class="function"><span class="keyword">function</span><span class="params">(event)</span></span>&#123;</span><br><span class="line">       <span class="keyword">if</span> ( <span class="string">'block'</span> === elem.style.display ) &#123;</span><br><span class="line">           input.className = <span class="string">''</span>;</span><br><span class="line">           elem.style.display = <span class="string">'none'</span>;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;);</span><br></pre></td></tr></table></figure></p>
-<p>如上文，我们可以通过移除input元素的样式来隐藏弹出框。<br>现在我们可以完全定制自己的弹出校验框了，试试输入任何一些非法的值。</p>
-<h3 id="最后几点(Final_Thoughts)">最后几点(Final Thoughts)</h3><p>在标准的输入类型中加上pattern属性可以给表单带来一些额外的校验形式，但是请注意，你也应该执行一些服务器端的校验。</p>
-<p>神奇的是，即使当用户禁止了浏览器端的JavaScript，最新版的浏览器也会显示校验提示框并阻止表单提交。<br>然而，对于Safari浏览器来说，在用户输入时，不支持pattern属性。不过使用”Webshim Lib”也可以启到类似的效果。</p>
-<p>最后，希望你能喜欢本教程，并且将其作为一个针对HTML5表单校验的简单参考指南。<br><strong><em>(本文译自：<a href="http://webdesign.tutsplus.com/tutorials/html5-form-validation-with-the-pattern-attribute--cms-25145/" target="_blank" rel="external">HTML5 Form Validation With the “pattern” Attribute</a>)</em></strong></p>
-<hr>
-<hr>
-<p><img src="../../../../images/money.png" alt="money">☜☜☜ <strong><em>wechat</em></strong> 『『『<strong><em> reward 点击扫码打赏 ~~~ ^_^ </em></strong>  』』』<strong><em>alipay</em></strong> ☞☞☞   <img src="../../../../images/money.jpg" alt="money"></p>
-<hr>
-<hr>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/19/理解JavaScript原型的一个入门指南-译文/" itemprop="url">
-                  理解JavaScript原型的一个入门指南(译文)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-01-19T14:45:14+08:00" content="2016-01-19">
-              2016-01-19
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count" style="display:none">
-                &nbsp; | &nbsp;
-                <a href="/2016/01/19/理解JavaScript原型的一个入门指南-译文/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/19/理解JavaScript原型的一个入门指南-译文/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>当我第一次接触到关于JavaScript对象模型的知识,我的反应是震惊的,充满了不可思议.那是我第一次接触基于原型的语言,我被它的原型特征完全搞糊涂了.我不理解把原型加在JavaScript方法的构造函数组成上有啥不同,我敢打赌,你们中的大多数人也曾有过类似的经历.</p>
-<p>但是当我经常使用JavaScript之后,我不仅理解了它的对象模型,而且也爱上了它这部分特性.多亏了JavaScript,我才能发现基于原型语言的典雅与灵活.正因为他们比基于类的语言更简单且更灵活,我现在更倾向于原型语言.</p>
-<h3 id="JavaScript的原型">JavaScript的原型</h3><p>许多指南介绍JavaScript对象时都以方法的构造函数开始,我认为这是个误区,因为他们在一开始就介绍复杂的内容会让JavaScript看起来很难,一开始就理解的很困惑.让我们后续介绍这个,我们先从原型基础说起.</p>
-<h3 id="原型链">原型链</h3><p>在JavaScript中,每一个对象都有原型(prototype)属性,当有一个消息指向对象,JavaScript会先尝试在其寻找对应的属性,<br>如果没有找到,这条消息会被传递到对象的原型上,并依次传递下去.这种工作机制有点像基于类的语言的单亲继承.<br>原型链可以指向任何你想指向的对象,但是一般来说,太长的原型链会让你的代码理解起来很困难并且很难维护.</p>
-<h3 id="‘proto‘对象">‘<em>proto</em>‘对象</h3><p>理解JavaScript原型链最简单的就是先理解<em>proto</em>属性,不幸的是,<em>proto</em>属性并不是JavaScript标准的一部分,<br>至少在ES6之前如此.因此你不能在项目代码中应用它,但不管怎么说,它让解释原型变得更简单.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// let's create an alien object</span></span><br><span class="line"><span class="keyword">var</span> alien = &#123;</span><br><span class="line">  kind: <span class="string">'alien'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// and a person object</span></span><br><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">  kind: <span class="string">'person'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// and an object called 'zack'</span></span><br><span class="line"><span class="keyword">var</span> zack = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// assign alien as the prototype of zack</span></span><br><span class="line">zack.__proto__ = alien</span><br><span class="line"></span><br><span class="line"><span class="comment">// zack is now linked to alien</span></span><br><span class="line"><span class="comment">// it 'inherits' the properties of alien</span></span><br><span class="line"><span class="built_in">console</span>.log(zack.kind); <span class="comment">//=&gt; ‘alien’</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// assign person as the prototype of zack</span></span><br><span class="line">zack.__proto__ = person</span><br><span class="line"></span><br><span class="line"><span class="comment">// and now zack is linked to person</span></span><br><span class="line"><span class="built_in">console</span>.log(zack.kind); <span class="comment">//=&gt; ‘person’</span></span><br></pre></td></tr></table></figure></p>
-<p>如你所见, <em>proto</em>属性通俗易懂,也很好用.即使我们不能在项目代码中使用它,我也认为这些例子对理解JavaScript对象模型起到很大的帮助.</p>
-<p>你可以像如下这样检查一个对象是否是另一个对象的原型:<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.<span class="function"><span class="title">log</span><span class="params">(alien.isPrototypeOf(zack)</span></span>)</span><br><span class="line"><span class="comment">//=&gt; true</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="原型查找是动态的">原型查找是动态的</h3><p>你可以在任何时刻给一个对象的原型添加属性,原型链可以如预期那样找到这个新属性.<br><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var <span class="keyword">person</span> = &#123;&#125;</span><br><span class="line"></span><br><span class="line">var zack = &#123;&#125;</span><br><span class="line">zack.__proto__ = <span class="keyword">person</span></span><br><span class="line"></span><br><span class="line">// zack doesn't respond to <span class="keyword">kind</span> at this point</span><br><span class="line">console.log(zack.<span class="keyword">kind</span>); //=&gt; undefined</span><br><span class="line"></span><br><span class="line">// let's add <span class="keyword">kind</span> to <span class="keyword">person</span></span><br><span class="line"><span class="keyword">person</span>.<span class="keyword">kind</span> = '<span class="keyword">person</span>'</span><br><span class="line"></span><br><span class="line">// now zack responds to <span class="keyword">kind</span></span><br><span class="line">// because it finds '<span class="keyword">kind</span>' in <span class="keyword">person</span></span><br><span class="line">console.log(zack.<span class="keyword">kind</span>); //=&gt; '<span class="keyword">person</span>'</span><br></pre></td></tr></table></figure></p>
-<h3 id="给对象新增/修改的属性,将不会再指向原型">给对象新增/修改的属性,将不会再指向原型</h3><p>如果你给对象添加一个在原型上已经存在的属性,会发生什么呢?我们来看一下:<br><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var <span class="keyword">person</span> = &#123;</span><br><span class="line">  <span class="keyword">kind</span>: '<span class="keyword">person</span>'</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var zack = &#123;&#125;</span><br><span class="line">zack.__proto__ = <span class="keyword">person</span></span><br><span class="line"></span><br><span class="line">zack.<span class="keyword">kind</span> = 'zack'</span><br><span class="line"></span><br><span class="line">console.log(zack.<span class="keyword">kind</span>); //=&gt; 'zack'</span><br><span class="line">// zack now has a '<span class="keyword">kind</span>' property</span><br><span class="line"></span><br><span class="line">console.log(<span class="keyword">person</span>.<span class="keyword">kind</span>); //=&gt; '<span class="keyword">person</span>'</span><br><span class="line">// <span class="keyword">person</span> has not being modified</span><br></pre></td></tr></table></figure></p>
-<p>注意,属性’kind’现在同时存在于person与zack.</p>
-<h3 id="Object-create">Object.create</h3><p>正如我说的,由于分配给对象原型的<em>proto</em>属性并不被良好支持,因此下一个最简单的方式是使用Object.create().<br>这个在ES5中已经支持,但是在一些老的浏览器或者引擎中需要使用es5-shim来转换.<br><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var <span class="keyword">person</span> = &#123;</span><br><span class="line">  <span class="keyword">kind</span>: '<span class="keyword">person</span>'</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// creates a new object which prototype <span class="keyword">is</span> <span class="keyword">person</span></span><br><span class="line">var zack = Object.create(<span class="keyword">person</span>);</span><br><span class="line"></span><br><span class="line">console.log(zack.<span class="keyword">kind</span>); // =&gt; ‘<span class="keyword">person</span>’</span><br></pre></td></tr></table></figure></p>
-<p>你可以使用Object.create方法去创建一个新对象,并将另一个对象及一些特殊属性当参数传递进去.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> zack = <span class="built_in">Object</span>.create(person, &#123;age: &#123;value:  <span class="number">13</span>&#125; &#125;);</span><br><span class="line"><span class="built_in">console</span>.log(zack.age); <span class="comment">// =&gt; ‘13’</span></span><br></pre></td></tr></table></figure></p>
-<p>是的,你需要传递对象有一点绕,但这就是它的用法.如果你想了解更多,点击<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create" target="_blank" rel="external">这里</a></p>
-<h3 id="Object-getPrototype">Object.getPrototype</h3><p>你可以使用Object.getPrototypeOf方法去获取对象的原型<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> zack = <span class="built_in">Object</span>.create(person);</span><br><span class="line"><span class="built_in">Object</span>.getPrototypeOf(zack); <span class="comment">//=&gt; person</span></span><br></pre></td></tr></table></figure></p>
-<p>注意没有所谓的Object.setPrototype.</p>
-<h3 id="构造器函数(Constructor_Functions)">构造器函数(Constructor Functions)</h3><p>在JavaScript中,构造器函数用的最多的地方就是用在构造原型链上.<br>构造器函数的流行来自于这样一个事实:它是唯一的一种针对构造类型最原始的方式.<br>当然还有其他一个重要的事实是其他很多引擎已经高度支持构造器函数.</p>
-<p>不幸的是,这让人很困惑.在我看来,这是我觉得JavaScript让菜鸟很困惑的一个主要原因.<br>因此这也是这门语言中很大的一个需要我们去很好理解并掌握的模块.</p>
-<h3 id="函数作为构造器">函数作为构造器</h3><p>JavaScript中,你可以像下面这样创建一个函数的实例:<br><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function<span class="function"> Foo(</span><span class="function">)</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">var foo =<span class="instruction"> new </span>Foo(<span class="function">)</span>;</span><br><span class="line"></span><br><span class="line">//foo is now an<span class="instruction"> instance </span>of Foo</span><br><span class="line">console.log(foo instanceof Foo <span class="function">)</span> //=&gt; true</span><br></pre></td></tr></table></figure></p>
-<p>像这样使用’new’关键字,看似用工厂模式新建一个函数,实际上表示创建一个新对象.这个新对象的原型会指向这个函数,<br>这里以后再详述.因此在JavaScript中,我们把’this’称作函数实例.</p>
-<h3 id="‘this’是隐式分配的">‘this’是隐式分配的</h3><p>当我们使用’new’关键字时,JavaScript以’this’关键字的形式注入一个指向新对象的隐式引用.而且,在函数最后,将这个隐式引用返回.<br>当我们像下面这样时:<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.kind = ‘foo’</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> foo = <span class="keyword">new</span> Foo();</span><br><span class="line">foo.kind <span class="comment">//=&gt; ‘foo’</span></span><br></pre></td></tr></table></figure></p>
-<p>在这个场景后面,又像是在做下面这件事情:<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> <span class="keyword">this</span> = &#123;&#125;; <span class="comment">// this is not valid, just for illustration</span></span><br><span class="line">  <span class="keyword">this</span>.__proto__ = Foo.prototype;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">this</span>.kind = ‘foo’</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>但是请记住,当只有使用’new’关键字时,才将隐式的’this’分配到新对象上.如果你忘记使用’new’关键字,’this’将指向全局对象(global object).<br>忘记使用’new’关键字会引起一系列bug,因此不要忘记使用’new’关键字.</p>
-<p>有一个我比较喜欢的约定是当这个函数要被当成函数构造器使用的时候,有效利用函数的第一个字母(译者注:一般我习惯首字母大写),<br>这样可以很直观的发现你忘记了’new’关键字.</p>
-<h3 id="函数的原型属性(The_‘function_prototype’)">函数的原型属性(The ‘function prototype’)</h3><p>在JavaScript中,每一个函数都有一个特殊的属性:’prototype’.<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span><span class="params">()</span></span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Foo.prototype</span><br></pre></td></tr></table></figure></p>
-<p>尽管听起来可能很费解,这个’prototype’属性并不是函数的原型.<br><figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">Foo.__proto__</span> === Foo.prototype <span class="comment">//=&gt; false</span></span><br></pre></td></tr></table></figure></p>
-<p>当然,使用’prototype’表示不一样的东西会引起人们很多疑问.<br>我认为当表示函数的’prototype’属性的时候,称之为’函数的原型属性’(‘the function prototype’)而不仅仅是原型<br>可以做到更好的区分.</p>
-<p>当使用’new’关键字创建对象, 新对象的原型会指向函数的原型属性(‘prototype’ property).<br>困惑吧?下面的例子可以更好的解释:<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">(name)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// the function person has a prototype property</span></span><br><span class="line"><span class="comment">// we can add properties to this function prototype</span></span><br><span class="line">Person.prototype.kind = ‘person’</span><br><span class="line"></span><br><span class="line"><span class="comment">// when we create a new object using new</span></span><br><span class="line"><span class="keyword">var</span> zack = <span class="keyword">new</span> Person(‘Zack’);</span><br><span class="line"></span><br><span class="line"><span class="comment">// the prototype of the new object points to person.prototype</span></span><br><span class="line">zack.__proto__ == Person.prototype <span class="comment">//=&gt; true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// in the new object we have access to properties defined in Person.prototype</span></span><br><span class="line">zack.kind <span class="comment">//=&gt; person</span></span><br></pre></td></tr></table></figure></p>
-<p>上面就是关于JavaScript对象模型你最需要了解的一些知识,理解<em>proto</em>及function.prototype的关系会给你无尽的乐趣及满足,<br>当然也许并不会.</p>
-<p>最后,如果有不对的地方,或者你有什么不解,请留言联系.<br><strong><em>(本文译自：<a href="http://sporto.github.io/blog/2013/02/22/a-plain-english-guide-to-javascript-prototypes/" target="_blank" rel="external">A Plain English Guide to JavaScript Prototypes</a>)</em></strong></p>
-<hr>
-<hr>
-<p><img src="../../../../images/money.png" alt="money">☜☜☜ <strong><em>wechat</em></strong> 『『『<strong><em> reward 点击扫码打赏 ~~~ ^_^ </em></strong>  』』』<strong><em>alipay</em></strong> ☞☞☞   <img src="../../../../images/money.jpg" alt="money"></p>
-<hr>
-<hr>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1438,7 +1406,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-count">19</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
