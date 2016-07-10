@@ -67,7 +67,7 @@
 处理思路">
 <meta property="og:image" content="https://github.com/xishiyi7/xishiyi7.github.io/../../../../images/money.png">
 <meta property="og:image" content="https://github.com/xishiyi7/xishiyi7.github.io/../../../../images/money.jpg">
-<meta property="og:updated_time" content="2016-07-10T15:14:47.235Z">
+<meta property="og:updated_time" content="2016-07-10T15:23:45.813Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="gulp搭配命令行参数实现前端自动化构建的多样化">
 <meta name="twitter:description" content="上面一篇文章简单介绍了gulp的相关知识及在项目中如何使用gulp进行自动化构建，本文简单介绍下如何搭配gulp做一些其他的逻辑处理，只是提供一种思路，不表示可以完全套用。
@@ -256,7 +256,7 @@
 <p>有些时候，开发版指令可能需求简单些，或者单个task的需求简单些，这时可以用命令行参数搭配使用来方便构建。</p>
 <h3 id="搭配命令行参数">搭配命令行参数</h3><p>命令行参数可以用<code>process.argv</code>获取，拿到的第三个参数，可以表示为当前task的参数。<br>因此，我们可以拿这个来做简单的区分，如果是特殊命令，可以选择携带一个特殊的参数，这样不用每次都单独写任务来表示。</p>
 <h3 id="使用多彩的控制台输出">使用多彩的控制台输出</h3><p>npm社区有不少模块可以帮助生成多彩的控制台输出，虽然这对项目构建没有实际的作用，但是可以很清楚的区分当前使用的任务。</p>
-<h3 id="替换多个输出的文件名">替换多个输出的文件名</h3><p>如果有需求是替换某个文件夹中的所有文件名，此需求与上面的需求类似，可以一起记性。<br>具体代码可以自己琢磨，可以使用<code>path</code>模块的path.join方法来实现。</p>
+<h3 id="替换多个输出的文件名">替换多个输出的文件名</h3><p>如果有需求是替换某个文件夹中的所有文件名，此需求与上面的需求类似，可以一起进行。<br>具体代码可以自己琢磨，可以使用<code>path</code>模块的path.join方法来实现。</p>
 <h3 id="最后">最后</h3><p>由于自己对这方面也不是很熟悉，只是根据自己的经验提供一个解决问题的思路，希望可以举一反三，而不是滥用。</p>
 <hr>
 <hr>
