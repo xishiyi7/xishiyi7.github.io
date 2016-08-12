@@ -205,6 +205,129 @@
             
               
                 
+                <a class="post-title-link" href="/2016/02/18/不通过媒介查询也能构建响应式邮件设计/" itemprop="url">
+                  不通过媒介查询也能构建响应式邮件设计(译文)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-02-18T11:39:31+08:00" content="2016-02-18">
+              2016-02-18
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count" style="display:none">
+                &nbsp; | &nbsp;
+                <a href="/2016/02/18/不通过媒介查询也能构建响应式邮件设计/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/18/不通过媒介查询也能构建响应式邮件设计/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>一般来说，我们用媒介查询(Media Queries)来构建响应式邮件设计。但是最近我发现另一种可以构建响应式设计的方案，通过使用CSS的calc()技术与其他三个宽度属性：width、min-width、max-width。</p>
+<h3 id="问题">问题</h3><p>创建响应式邮件应用很困难，特别是一些手机客户端应用不支持媒介查询。使用hybird、Gmail邮件应用或者不通过媒介查询来构建响应式邮件设计是三种可选方案。</p>
+<p>我最近正在研究第三种方案。一开始我给div元素设置fixed width并且设置display属性为inline-block。一旦屏幕可以容纳两个以上的块，它们将会自然的排列下去，但是我还是遇到了问题。</p>
+<p>一旦所有的块开始层叠了，它们就不能占满屏幕宽度。<br><img src="../../../../images/20160218/01.png" alt="无法占满屏宽"><br>我花了很长一段时间去寻找解决这个问题的方案，Flexbox是一个不错的建议，但不幸的是，电子邮件对Flexbox的支持很差。</p>
+<h3 id="一种解决方案">一种解决方案</h3><h5 id="记住width、min-width、max-width"><strong><em>记住width、min-width、max-width</em></strong></h5><p>紧接着calc()函数，我在这个方案中引入了三个CSS属性。为了更好的理解它是怎么工作的，我们先来回顾下width、min-width、max-width同时使用时在前台页面中是如何表现的。</p>
+<ul>
+<li>如果width属性值比max-width大，max-width属性生效</li>
+<li>如果min-width属性值比width或者max-width属性值大，则min-width属性生效</li>
+</ul>
+<p>你先猜猜下面这个盒子的样式，宽度会是多少？<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.box</span> <span class="rules">&#123;</span><br><span class="line">       <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">320px</span></span></span>;</span><br><span class="line">       <span class="rule"><span class="attribute">min-width</span>:<span class="value"><span class="number">480px</span></span></span>;</span><br><span class="line">       <span class="rule"><span class="attribute">max-width</span>:<span class="value"><span class="number">160px</span></span></span>;</span><br><span class="line">   &#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>答案：盒子宽度将会是480px</p>
+<h5 id="calc()"><strong><em>calc()</em></strong></h5><p>不再啰嗦，下面演示如何用这种方案创建在宽度屏幕宽度小于480px的情况下会自动堆积为两列。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.block</span> <span class="rules">&#123;</span><br><span class="line">       <span class="rule"><span class="attribute">display</span>:<span class="value">inline-block</span></span>;</span><br><span class="line">       <span class="rule"><span class="attribute">min-width</span>:<span class="value"><span class="number">50%</span></span></span>;</span><br><span class="line">       <span class="rule"><span class="attribute">max-width</span>:<span class="value"><span class="number">100%</span></span></span>;</span><br><span class="line">       <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="function">calc</span>((<span class="number">480px</span> — <span class="number">100%</span>) * <span class="number">480</span>)</span></span>;</span><br><span class="line">   &#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>我们一个个分析这几个属性。<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">min-width</span>:<span class="number">50%</span>;</span><br></pre></td></tr></table></figure></p>
+<p>min-width属性定义的列宽可以让我们在桌面端使用，我们可以改变这个值来添加更多的列，如：改变为25%来显示四列，或者用fixed pixed宽度来设置列宽属性。<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">max-width</span>:<span class="number">100%</span>;</span><br></pre></td></tr></table></figure></p>
+<p>max-width属性定义的列宽可以让我们在手机端使用，由于设置为100%，每列宽都将自适应，撑满容器的宽度。我们也可以改变属性值来在手机端显示多列。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">width:calc((<span class="number">480</span>px — <span class="number">100</span>%) * <span class="number">480</span>);</span><br></pre></td></tr></table></figure></p>
+<p>多亏了calc()函数，可以给width属性变魔法。值480是我们希望的转换点，值100%表示父容器的宽度，计算的结果为一个比max-width更大或者比min-width更小的值，因此这两个属性中的一个一定会生效并取代width属性。下面是两个例子：<br><img src="../../../../images/20160218/02.png" alt="parent width 500px"><br>父元素宽度500px的情况下，计算出来的宽度为-9600px，比min-width要小，因此min-width生效，宽度为50%，呈现两列布局。<br><img src="../../../../images/20160218/03.png" alt="parent width 400px"><br>父元素宽度400px的情况下，计算出来的宽度为38400px，远比min-width大，但max-width比它小，因此max-width生效，呈现单列布局。</p>
+<h3 id="支持情况">支持情况</h3><p>在浏览器端，IE9已经开始支持calc()函数。而且在电子邮件客户端，calc()函数也得到了良好的支持。同时，在Apple Mail(IOS/OS X)、Thunderbird、Outlook(IOS/Android apps)、Gmail(webmail/IOS/Android apps)、AOL(webmail)和老的Outlook.com也能生效。</p>
+<h5 id="老的Outlook-com"><strong><em>老的Outlook.com</em></strong></h5><p>Outlook.com有一点小瑕疵，就是在calc()函数中会过滤每一个包含括号的属性。这就意味着，支持“calc(480px-100%)”，但不支持calc((480px-100%)*480)。因此我们需要像下面这样改变写法来支持老的Outlook.com：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">width:calc(<span class="number">480</span>px * <span class="number">480</span> — <span class="number">100</span>% * <span class="number">480</span>);</span><br></pre></td></tr></table></figure></p>
+<h5 id="不支持的客户端"><strong><em>不支持的客户端</em></strong></h5><p>calc()函数在一些老的电子邮件客户端像Lotus Notes及最新Windows版本的Outlook是不被支持的。同时，在Outlook Web App和Yahoo也不被支持。这些应用中的calc()函数将会被忽略掉。</p>
+<h5 id="让步(兼容处理)"><strong><em>让步(兼容处理)</em></strong></h5><p>在这种情况下，我建议使用fixed width引入一些自定义属性来兼容那些不支持calc()函数的客户端。为了在这些客户端隐藏这几个属性，尽管可能不会生效，我还是建议用calc()函数，下面是第一个例子：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.block</span> <span class="rules">&#123;</span><br><span class="line">       <span class="rule"><span class="attribute">display</span>:<span class="value">inline-block</span></span>;</span><br><span class="line">       <span class="rule"><span class="attribute">min-width</span>:<span class="value"><span class="number">240px</span></span></span>;</span><br><span class="line">       <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">50%</span></span></span>;</span><br><span class="line">       <span class="rule"><span class="attribute">max-width</span>:<span class="value"><span class="number">100%</span></span></span>;</span><br><span class="line">       <span class="rule"><span class="attribute">min-width</span>:<span class="value"><span class="function">calc</span>(<span class="number">50%</span>)</span></span>;</span><br><span class="line">       <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="function">calc</span>(<span class="number">480px</span> * <span class="number">480</span> — <span class="number">100%</span> * <span class="number">480</span>)</span></span>;</span><br><span class="line">   &#125;</span></span><br></pre></td></tr></table></figure></p>
+<h5 id="Outlook_Web_App"><strong><em>Outlook Web App</em></strong></h5><p>然而，Outlook Web App(包括Offiec 365及新的Outlook.com)还有一个自带的小瑕疵。当calc()函数包含乘法(*)，新的Outlook.com及Office 365将会删除整个对应的内联样式属性。这就意味着我们需要手动计算乘法，并使用计算后的结果。下面是在480px转折点计算乘法后的结果：<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">width</span><span class="value">:<span class="function">calc</span>(<span class="number">230400px</span> — <span class="number">48000%</span>);</span></span><br></pre></td></tr></table></figure></p>
+<h5 id="WebKit前缀(WebKit_Prefixes)"><strong><em>WebKit前缀(WebKit Prefixes)</em></strong></h5><p>老版本的Android(&lt;Android 5.0)及IOS(&lt;IOS 7)需要加上WebKit前缀以生效。因此我们最终的结果如下：<br>.block {<br>    display:inline-block;<br>    min-width:240px;<br>    width:50%;<br>    max-width:100%;<br>    min-width:-webkit-calc(50%);<br>    min-width:calc(50%);<br>    width:-webkit-calc(230400px — 48000%);<br>    width:calc(230400px — 48000%);<br>}</p>
+<h3 id="缺点及最后的想法">缺点及最后的想法</h3><p>就像在电子邮件开发世界中的任何一件事物一样，上述方案并不完美。下面是一些我能想到的一些局限性：</p>
+<ul>
+<li>在Yahoo上不管用。其桌面端支持媒介查询，因此我们可以稍加改进，让手机端应用优先，并且在桌面端应用中加入媒介查询来巩固它。</li>
+<li>只能设置一个转折点。</li>
+<li>你只能从桌面版减少列数到手机版，你不能从四列布局的手机版到单列布局的桌面版，虽然这种情况很少见。</li>
+<li>最终的写法很难阅读。使用预处理器和mixin生成所有必需的属性可能会有用的多。</li>
+</ul>
+<p>不过，我依然认为这个方案在很多情况下会很方便。特别是针对优化Gmail。当然我也确信有很多网站上正在使用的实例。(像小部件、广告等等…)<br>并且我也迫不及待的想看到这种方案会给你的设计激发怎样的灵感。</p>
+<p><strong><em>(本文译自：<a href="https://medium.freecodecamp.com/the-fab-four-technique-to-create-responsive-emails-without-media-queries-baf11fdfa848#.tgn1z33if" target="_blank" rel="external">The Fab Four technique to create Responsive Emails without Media Queries</a>)</em></strong></p>
+<hr>
+<hr>
+<p><img src="../../../../images/money.png" alt="money">☜☜☜ <strong><em>wechat</em></strong> 『『『<strong><em> reward 点击扫码打赏 ~~~ ^_^ </em></strong>  』』』<strong><em>alipay</em></strong> ☞☞☞   <img src="../../../../images/money.jpg" alt="money"></p>
+<hr>
+<hr>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/01/31/2016，拜托自己加油/" itemprop="url">
                   2016，拜托自己加油
                 </a>
@@ -1190,109 +1313,12 @@ init();
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/12/03/hello-web/" itemprop="url">
-                  Hello Web
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-12-03T10:10:33+08:00" content="2015-12-03">
-              2015-12-03
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count" style="display:none">
-                &nbsp; | &nbsp;
-                <a href="/2015/12/03/hello-web/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/03/hello-web/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>Welcome to <a href="https://xishiyi7.github.io/" target="_blank" rel="external">xishiyi7’s blog</a>! This is my very first post. If you get any problems here, you can find my contact information in later posts. Thank you!</p>
-<h2 id="General">General</h2><h3 id="JavaScript"><a href="http://xishiyi7.github.io/tags/js/" target="_blank" rel="external">JavaScript</a></h3><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"><span class="keyword">include</span> some js knowledge.</span></span><br></pre></td></tr></table></figure>
-<h3 id="Css">Css</h3><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i think css can change <span class="operator">the</span> web, change <span class="operator">the</span> world.</span><br></pre></td></tr></table></figure>
-<h3 id="Html">Html</h3><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">html5 <span class="keyword">is</span> incredible.</span><br></pre></td></tr></table></figure>
-<h3 id="Personal">Personal</h3><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">also <span class="type">record</span> something personal.</span><br></pre></td></tr></table></figure>
-<hr>
-<hr>
-<p><img src="../../../../images/money.png" alt="money">☜☜☜ <strong><em>wechat</em></strong> 『『『<strong><em> reward 点击扫码打赏 ~~~ ^_^ </em></strong>  』』』<strong><em>alipay</em></strong> ☞☞☞   <img src="../../../../images/money.jpg" alt="money"></p>
-<hr>
-<hr>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1333,7 +1359,7 @@ init();
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-count">21</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
