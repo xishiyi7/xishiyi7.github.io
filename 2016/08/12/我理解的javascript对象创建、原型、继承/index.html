@@ -70,9 +70,10 @@
 继承，子类具有基类(父类)的特征，还可以有自己的新的特性。
 多态，一个功能可以有多种不同用法，或者说一个子类">
 <meta property="og:image" content="https://github.com/xishiyi7/xishiyi7.github.io/../../../../images/20160812/1.png">
+<meta property="og:image" content="https://github.com/xishiyi7/xishiyi7.github.io/../../../../images/20160812/2.png">
 <meta property="og:image" content="https://github.com/xishiyi7/xishiyi7.github.io/../../../../images/money.png">
 <meta property="og:image" content="https://github.com/xishiyi7/xishiyi7.github.io/../../../../images/money.jpg">
-<meta property="og:updated_time" content="2016-08-12T10:54:45.933Z">
+<meta property="og:updated_time" content="2016-08-13T04:21:24.958Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="我理解的javascript对象创建、原型、继承">
 <meta name="twitter:description" content="对js对象创建、原型、原形链、继承及”类”的理解，由于其间各种复杂的关系及掌握程度不够，个人经常需要翻资料确认，于是找时间整理了下当时的理解，并以此文形式记录下来。
@@ -315,6 +316,7 @@
     empty.__proto__    // <span style="color:limegreen;">undefined 注意跟上面对象o的区别</span>
 </pre>
 
+<p><code class="normal-img"><img src="../../../../images/20160812/2.png" alt="__proto__"></code></p>
 <h3 id="原形链">原形链</h3><p>如上面所述，几乎每个对象都有<code>原型(__proto__)</code>。如果其原型不为null，且是以构造函数形式创建的对象，其原型指向该<code>构造函数的prototype属性</code>。该<code>构造函数的prototype属性</code>也有<code>原型(__proto__)</code>，如果不为null，则接着往上引用，直到原型为null。如下代码所示：</p>
 <pre>
     var A = function(){};
@@ -325,7 +327,7 @@
 </pre>
 像上面这样通过`原型(__proto__)`一直往上可以串联起来就是原型链。
 
-### 创建对象
+<h3 id="创建对象">创建对象</h3>
 可以通过对象字面量、new及(ES5)Object.create()方法来创建对象。
 + 对象字面量创建方式很简单，`var a = {}`；
 + 通过关键字`new`创建，也可以叫做通过`构造函数`创建，比如：`var date = new Date()`；
@@ -382,6 +384,8 @@
     li.sex;        // male
 </pre>
 
+<h3 id="最后">最后</h3><p>继承、创建对象，还有其他的一些形式，目前我不大常用，所以没有在上文提及，有兴趣的可以自行了解。</p>
+<h3 id="参考资料">参考资料</h3><p>《JavaScript语言精粹》<br>《JavaScript权威指南(第6版)》<br>《JavaScript高级程序设计(第2版)》等</p>
 <hr>
 <hr>
 <p><img src="../../../../images/money.png" alt="money">☜☜☜ <strong><em>wechat</em></strong> 『『『<strong><em> reward 点击扫码打赏 ~~~ ^_^ </em></strong>  』』』<strong><em>alipay</em></strong> ☞☞☞   <img src="../../../../images/money.jpg" alt="money"></p>
@@ -547,7 +551,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#面向对象"><span class="nav-number">1.</span> <span class="nav-text">面向对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript对象"><span class="nav-number">2.</span> <span class="nav-text">JavaScript对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原型"><span class="nav-number">3.</span> <span class="nav-text">原型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原形链"><span class="nav-number">4.</span> <span class="nav-text">原形链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继承"><span class="nav-number">5.</span> <span class="nav-text">继承</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#面向对象"><span class="nav-number">1.</span> <span class="nav-text">面向对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript对象"><span class="nav-number">2.</span> <span class="nav-text">JavaScript对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原型"><span class="nav-number">3.</span> <span class="nav-text">原型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原形链"><span class="nav-number">4.</span> <span class="nav-text">原形链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建对象"><span class="nav-number">5.</span> <span class="nav-text">创建对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继承"><span class="nav-number">6.</span> <span class="nav-text">继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后"><span class="nav-number">7.</span> <span class="nav-text">最后</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">8.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

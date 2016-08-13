@@ -307,6 +307,7 @@
     empty.__proto__    // <span style="color:limegreen;">undefined 注意跟上面对象o的区别</span>
 </pre>
 
+<p><code class="normal-img"><img src="../../../../images/20160812/2.png" alt="__proto__"></code></p>
 <h3 id="原形链">原形链</h3><p>如上面所述，几乎每个对象都有<code>原型(__proto__)</code>。如果其原型不为null，且是以构造函数形式创建的对象，其原型指向该<code>构造函数的prototype属性</code>。该<code>构造函数的prototype属性</code>也有<code>原型(__proto__)</code>，如果不为null，则接着往上引用，直到原型为null。如下代码所示：</p>
 <pre>
     var A = function(){};
@@ -317,7 +318,7 @@
 </pre>
 像上面这样通过`原型(__proto__)`一直往上可以串联起来就是原型链。
 
-### 创建对象
+<h3 id="创建对象">创建对象</h3>
 可以通过对象字面量、new及(ES5)Object.create()方法来创建对象。
 + 对象字面量创建方式很简单，`var a = {}`；
 + 通过关键字`new`创建，也可以叫做通过`构造函数`创建，比如：`var date = new Date()`；
@@ -374,6 +375,8 @@
     li.sex;        // male
 </pre>
 
+<h3 id="最后">最后</h3><p>继承、创建对象，还有其他的一些形式，目前我不大常用，所以没有在上文提及，有兴趣的可以自行了解。</p>
+<h3 id="参考资料">参考资料</h3><p>《JavaScript语言精粹》<br>《JavaScript权威指南(第6版)》<br>《JavaScript高级程序设计(第2版)》等</p>
 <hr>
 <hr>
 <p><img src="../../../../images/money.png" alt="money">☜☜☜ <strong><em>wechat</em></strong> 『『『<strong><em> reward 点击扫码打赏 ~~~ ^_^ </em></strong>  』』』<strong><em>alipay</em></strong> ☞☞☞   <img src="../../../../images/money.jpg" alt="money"></p>
