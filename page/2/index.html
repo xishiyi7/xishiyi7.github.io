@@ -177,6 +177,133 @@
 
     
     
+      
+      
+
+      
+    
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/02/20/用cookie校验账户登录/" itemprop="url">
+                  angular+node项目中用cookie校验账户登录
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-02-20T19:10:08+08:00" content="2016-02-20">
+              2016-02-20
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count" style="display:none">
+                &nbsp; | &nbsp;
+                <a href="/2016/02/20/用cookie校验账户登录/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/20/用cookie校验账户登录/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>最近的新项目中，用户登录需要采用cookie来记住用户，校验身份。</p>
+<h3 id="在header中携带authId登录">在header中携带authId登录</h3><p>在之前老的项目里，没有采用cookie来记录用户登录状态，而是在请求的header中携带一个身份标识来校验，大致方案如下：</p>
+<ul>
+<li>客户端使用post请求提交user、password给服务端进行登录操作；</li>
+<li>服务端校验用户是否合法，如果合法将产生一个唯一的身份标识authId，返回给客户端，客户端将此authId存放本地(如localStorage)；</li>
+<li>客户端在每次需要校验身份的请求中，往header中加入这个authId；</li>
+<li>服务端检测当前的authId是否有效，有效则表示当前用户合法，允许操作；</li>
+<li>客户端用户登出的时候，发送一个delete请求，告诉服务端用户注销，同时删除本地的authId信息；</li>
+<li>服务端收到注销请求后，删除当前的authId数据。</li>
+</ul>
+<p>上面的方案，如果其他客户端知道了这个authId后，可以在其他客户端模拟身份，不安全，因此弃用。</p>
+<h3 id="用cookie记住用户">用cookie记住用户</h3><p>新项目中，将采用此文即将介绍的方案–利用cookie来记住用户。主要流程是：</p>
+<ul>
+<li>客户端使用post请求提交user、password给服务端进行登录操作；</li>
+<li>服务端校验用户是否合法，如果合法将产生一个唯一的身份标识authId，以cookie的形式返回给客户端；</li>
+<li>客户端再次请求服务端时，会携带此前已经拿到的cookie给服务端，服务端校验是否合法，合法则可以继续操作；</li>
+<li>客户端用户登出的时候，发送一个delete请求，告诉服务端用户注销，服务端删除登录标识。<br>整个过程可以用下面这张图简单表示：<br><img src="../../../../images/20160220/a.png" alt="cookie传递流程图"></li>
+</ul>
+<p>前台用angular搭建单页客户端应用，后台用node搭建服务器，数据存放在mongodb中，这三个技术及cookie基础知识本文不做介绍，感兴趣的同学可以自行了解。<br>以下的代码都是最简单的get/post请求，但也是最核心的部分，其他有关登录的繁琐操作，感兴趣的同学可以自行补充。</p>
+<h3 id="从开始–&gt;结束，遇到的问题">从开始–&gt;结束，遇到的问题</h3><p>首先，我用的是最基础的post请求，服务端也只是简单的返回数据，部分简单但比较核心的代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// client</span></span><br><span class="line">$http(&#123;</span><br><span class="line">		 method         : <span class="string">'POST'</span>,</span><br><span class="line">		 url            : <span class="string">'http://127.0.0.1:8888/rest/user'</span>,</span><br><span class="line">		 data           : &#123;name: <span class="string">'xxx'</span>,password:<span class="string">'***'</span>&#125;</span><br><span class="line">	  &#125;).success(<span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">'login success,data is:'</span>+data);</span><br><span class="line">&#125;).error(<span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">'login error'</span>);</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="built_in">arguments</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// server</span></span><br><span class="line"><span class="keyword">var</span> cookie = <span class="string">"authId="</span> + authId;</span><br><span class="line">res.setHeader(<span class="string">'Content-Type'</span>, <span class="string">'application/json;charset=utf-8'</span>);</span><br><span class="line">res.setHeader(<span class="string">'Set-Cookie'</span>, cookie + <span class="string">';Max-Age=3600;HttpOnly=false;Path=/;'</span>);</span><br><span class="line">res.writeHead(<span class="number">200</span>, &#123;<span class="string">'Content-Type'</span>: <span class="string">'text/plain'</span>&#125;);</span><br><span class="line">res.end();</span><br></pre></td></tr></table></figure></p>
+<p>查看chrome调试，发现虽然服务端的cookie推过来了，但整体出了问题，提示如下：<br><img src="../../../../images/20160220/01.png" alt="不能跨域"><br><figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">XMLHttpRequest cannot load http://<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">8888</span>/rest/user. Response <span class="keyword">to</span> preflight request doesn<span class="attribute">'t</span> pass <span class="keyword">access</span> control check: No <span class="attribute">'Access</span>-Control-Allow-Origin' header <span class="keyword">is</span> present <span class="keyword">on</span> the requested resource. Origin <span class="attribute">'http</span>://localhost:<span class="number">62427</span>' <span class="keyword">is</span> therefore <span class="keyword">not</span> allowed <span class="keyword">access</span>.</span><br></pre></td></tr></table></figure></p>
+<p>分析问题后，发现原因是来自客户端的请求不能跨域访问服务端的请求，请求的资源header中没有携带允许跨越请求的信息。根据这个提示，我们把服务端的代码稍加改进后，如下：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// server</span></span><br><span class="line"><span class="keyword">var</span> cookie = <span class="string">"authId="</span> + authId;</span><br><span class="line">res.setHeader(<span class="string">'Content-Type'</span>, <span class="string">'application/json;charset=utf-8'</span>);</span><br><span class="line">res.setHeader(<span class="string">'Set-Cookie'</span>, cookie + <span class="string">';Max-Age=3600;HttpOnly=false;Path=/;'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加允许跨越的头信息</span></span><br><span class="line">res.setHeader(<span class="string">'Access-Control-Allow-Origin'</span>, <span class="string">'*'</span>);</span><br><span class="line">res.setHeader(<span class="string">'Access-Control-Allow-Methods'</span>, <span class="string">'GET,PUT,POST,DELETE,OPTIONS'</span>);</span><br><span class="line"></span><br><span class="line">res.writeHead(<span class="number">200</span>, &#123;<span class="string">'Content-Type'</span>: <span class="string">'text/plain'</span>&#125;);</span><br><span class="line">res.end();</span><br></pre></td></tr></table></figure></p>
+<p>解释下上面代码什么意思，第一句主要是允许来自任何域的请求访问，第二句是允许哪些类型的请求访问。加上后再次运行，提示如下：<br><img src="../../../../images/20160220/02.png" alt="没有携带支持Content-Type"><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">XMLHttpRequest cannot <span class="operator"><span class="keyword">load</span> <span class="keyword">http</span>://<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8888</span>/rest/<span class="keyword">user</span>. Request header <span class="keyword">field</span> <span class="keyword">Content</span>-<span class="keyword">Type</span> <span class="keyword">is</span> <span class="keyword">not</span> allowed <span class="keyword">by</span> <span class="keyword">Access</span>-Control-<span class="keyword">Allow</span>-Headers <span class="keyword">in</span> preflight response.</span></span><br></pre></td></tr></table></figure></p>
+<p>原因是来自客户端的请求中，Content-Type头字段，在服务端的响应信息的头中，没有携带，再次修改代码如下：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// server</span></span><br><span class="line"><span class="keyword">var</span> cookie = <span class="string">"authId="</span> + authId;</span><br><span class="line">res.setHeader(<span class="string">'Content-Type'</span>, <span class="string">'application/json;charset=utf-8'</span>);</span><br><span class="line">res.setHeader(<span class="string">'Set-Cookie'</span>, cookie + <span class="string">';Max-Age=3600;HttpOnly=false;Path=/;'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加允许跨越的头信息</span></span><br><span class="line">res.setHeader(<span class="string">'Access-Control-Allow-Origin'</span>, <span class="string">'*'</span>);</span><br><span class="line">res.setHeader(<span class="string">'Access-Control-Allow-Methods'</span>, <span class="string">'GET,PUT,POST,DELETE,OPTIONS'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加支持Content-Type允许的头信息</span></span><br><span class="line">res.setHeader(<span class="string">'Access-Control-Allow-Headers'</span>, <span class="string">'Content-Type'</span>);</span><br><span class="line"></span><br><span class="line">res.writeHead(<span class="number">200</span>, &#123;<span class="string">'Content-Type'</span>: <span class="string">'text/plain'</span>&#125;);</span><br><span class="line">res.end();</span><br></pre></td></tr></table></figure></p>
+<p>再次运行代码，发现没有错误提示，但是当我们再次请求服务器时，发现客户端的请求并没有携带cookie信息，这显然不是我们想要的效果：<br><img src="../../../../images/20160220/03.png" alt="没有携带cookie的请求"></p>
+<p>在查阅了一段时间后了解到，客户端是会默认携带cookie给服务端的，但是当客户端的请求是跨域请求时，由于跨域请求本身就有风险，而携带给cookie同样有风险。<br>因此在进行跨域访问时，客户端不会将服务端返回的cookie携带。此时，我们需要同时在客户端和服务端都设置“withCredentials”为true，代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// client</span></span><br><span class="line">$http(&#123;</span><br><span class="line">		 method         : <span class="string">'POST'</span>,</span><br><span class="line">		 url            : <span class="string">'http://127.0.0.1:8888/rest/user'</span>,</span><br><span class="line">		 withCredentials: <span class="literal">true</span></span><br><span class="line">		 data           : &#123;name: <span class="string">'xxx'</span>,password:<span class="string">'***'</span>&#125;</span><br><span class="line">	  &#125;).success(<span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">'login success,data is:'</span>+data);</span><br><span class="line">&#125;).error(<span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">'login error'</span>);</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="built_in">arguments</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// server</span></span><br><span class="line"><span class="keyword">var</span> cookie = <span class="string">"authId="</span> + authId;</span><br><span class="line">res.setHeader(<span class="string">'Content-Type'</span>, <span class="string">'application/json;charset=utf-8'</span>);</span><br><span class="line">res.setHeader(<span class="string">'Set-Cookie'</span>, cookie + <span class="string">';Max-Age=3600;HttpOnly=false;Path=/;'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加允许跨越的头信息</span></span><br><span class="line">res.setHeader(<span class="string">'Access-Control-Allow-Origin'</span>, <span class="string">'*'</span>);</span><br><span class="line">res.setHeader(<span class="string">'Access-Control-Allow-Methods'</span>, <span class="string">'GET,PUT,POST,DELETE,OPTIONS'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加支持Content-Type允许的头信息</span></span><br><span class="line">res.setHeader(<span class="string">'Access-Control-Allow-Headers'</span>, <span class="string">'Content-Type'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置已携带凭证为true</span></span><br><span class="line"><span class="comment">//res.setHeader('Access-Control-Allow-Credentials', true);</span></span><br><span class="line"></span><br><span class="line">res.writeHead(<span class="number">200</span>, &#123;<span class="string">'Content-Type'</span>: <span class="string">'text/plain'</span>&#125;);</span><br><span class="line">res.end();</span><br></pre></td></tr></table></figure></p>
+<p>运行后，发现又有错误提示，如下：<br><img src="../../../../images/20160220/04.png" alt="允许跨越不能设置泛型“*”"><br><figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">XMLHttpRequest cannot load http://<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">8888</span>/rest/user. Response <span class="keyword">to</span> preflight request doesn<span class="attribute">'t</span> pass <span class="keyword">access</span> control check: A wildcard '*' cannot be used <span class="keyword">in</span> the <span class="attribute">'Access</span>-Control-Allow-Origin' header <span class="keyword">when</span> the credentials flag <span class="keyword">is</span> true. Origin <span class="attribute">'http</span>://localhost:<span class="number">62427</span>' <span class="keyword">is</span> therefore <span class="keyword">not</span> allowed <span class="keyword">access</span>.</span><br></pre></td></tr></table></figure></p>
+<p>分析错误后发现，原因是当设置了已携带凭证参数为true时，允许跨域请求的源不能设置为泛型的“*”，因此我们再次修改代码如下：(<strong><em>最终代码</em></strong>)<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// client</span></span><br><span class="line">$http(&#123;</span><br><span class="line">		 method         : <span class="string">'POST'</span>,</span><br><span class="line">		 url            : <span class="string">'http://127.0.0.1:8888/rest/user'</span>,</span><br><span class="line">		 withCredentials: <span class="literal">true</span></span><br><span class="line">		 data           : &#123;name: <span class="string">'xxx'</span>,password:<span class="string">'***'</span>&#125;</span><br><span class="line">	  &#125;).success(<span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">'login success,data is:'</span>+data);</span><br><span class="line">&#125;).error(<span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">'login error'</span>);</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="built_in">arguments</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// server</span></span><br><span class="line"><span class="keyword">var</span> cookie = <span class="string">"authId="</span> + authId;</span><br><span class="line">res.setHeader(<span class="string">'Content-Type'</span>, <span class="string">'application/json;charset=utf-8'</span>);</span><br><span class="line">res.setHeader(<span class="string">'Set-Cookie'</span>, cookie + <span class="string">';Max-Age=3600;HttpOnly=false;Path=/;'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加允许跨越的头信息</span></span><br><span class="line"><span class="comment">// res.setHeader('Access-Control-Allow-Origin', '*');</span></span><br><span class="line"><span class="comment">// 用当前的客户端origin来取代泛型的“*”</span></span><br><span class="line">res.setHeader(<span class="string">'Access-Control-Allow-Origin'</span>, <span class="string">'http://localhost:62427'</span>);</span><br><span class="line"></span><br><span class="line">res.setHeader(<span class="string">'Access-Control-Allow-Methods'</span>, <span class="string">'GET,PUT,POST,DELETE,OPTIONS'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加支持Content-Type允许的头信息</span></span><br><span class="line">res.setHeader(<span class="string">'Access-Control-Allow-Headers'</span>, <span class="string">'Content-Type'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置已携带凭证为true</span></span><br><span class="line">res.setHeader(<span class="string">'Access-Control-Allow-Credentials'</span>, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">res.writeHead(<span class="number">200</span>, &#123;<span class="string">'Content-Type'</span>: <span class="string">'text/plain'</span>&#125;);</span><br><span class="line">res.end();</span><br></pre></td></tr></table></figure></p>
+<p>此时，第一次请求服务端时，服务端返回cookie信息，以后每次客户端请求服务端，客户端的header中都会携带cookie信息，效果如下图：<br><img src="../../../../images/20160220/05.png" alt="成功"></p>
+<h3 id="最后">最后</h3><p>以上就是在使用cookie记住用户身份时遇到的一些问题及简单解决方法，一般在angular应用中，可能使用较多的是resoure进行http通信，此时只要在GET/POST/PUT/DELETE等请求的参数中，将“withCredentials”设置为true即可。</p>
+<hr>
+<hr>
+<p><img src="../../../../images/money.png" alt="money">☜☜☜ <strong><em>wechat</em></strong> 『『『<strong><em> reward 点击扫码打赏 ~~~ ^_^ </em></strong>  』』』<strong><em>alipay</em></strong> ☞☞☞   <img src="../../../../images/money.jpg" alt="money"></p>
+<hr>
+<hr>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
@@ -1177,137 +1304,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/12/03/一个关于闭包-bind-this的面试题/" itemprop="url">
-                  一个关于闭包/bind/this的面试题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-12-03T23:47:41+08:00" content="2015-12-03">
-              2015-12-03
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count" style="display:none">
-                &nbsp; | &nbsp;
-                <a href="/2015/12/03/一个关于闭包-bind-this的面试题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/03/一个关于闭包-bind-this的面试题/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <h5 id="针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index"><strong><em>针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index</em></strong></h5><pre><code>&lt;ul id=<span class="string">"text"</span>&gt;
-    &lt;<span class="keyword">li</span>&gt;这是第一个<span class="keyword">li</span>&lt;/<span class="keyword">li</span>&gt;
-    &lt;<span class="keyword">li</span>&gt;这是第二个<span class="keyword">li</span>&lt;/<span class="keyword">li</span>&gt;
-    &lt;<span class="keyword">li</span>&gt;这是第三个<span class="keyword">li</span>&lt;/<span class="keyword">li</span>&gt;
-&lt;/ul&gt;
-</code></pre><h5 id="解答一：bind，将当前匿名函数指向this，将i当参数传入"><strong><em>解答一：bind，将当前匿名函数指向this，将i当参数传入</em></strong></h5><pre><code><span class="keyword">var</span> init = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{
-<span class="keyword">var</span> obj = <span class="built_in">document</span>.getElementById(<span class="string">'text'</span>);
-<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;obj.children.length;i++){
-  obj.children[i].addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>{
-    alert(i)
-  }.bind(<span class="keyword">this</span>,i))
-}
-}
-init();
-</code></pre><h5 id="解答二：闭包"><strong><em>解答二：闭包</em></strong></h5><pre><code><span class="keyword">var</span> init = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{
-<span class="keyword">var</span> lis=<span class="built_in">document</span>.querySelectorAll(<span class="string">"#text li"</span>);
-  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;lis.length;i++){
-        lis[i].onclick=(<span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>{
-              <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{
-                    alert(i);
-              };
-        })(i)
-  }
-}
-init();
-</code></pre><h5 id="解答三：最笨的方法，匹配"><strong><em>解答三：最笨的方法，匹配</em></strong></h5><pre><code><span class="keyword">var</span> init = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
-  <span class="keyword">var</span> obj = document.getElementById(<span class="string">'text'</span>);
-  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;obj.children.length;i++){
-    obj.children[i].addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span><span class="params">(item)</span></span>{
-      <span class="keyword">var</span> <span class="keyword">self</span> = item.target;
-      <span class="keyword">for</span>(<span class="keyword">var</span> j=<span class="number">0</span>;j&lt;obj.children.length;j++){
-        <span class="keyword">if</span>(<span class="keyword">self</span> == obj.children[j]){
-          alert(j);
-        }
-      }
-    })
-  }
-}
-init();
-</code></pre><hr>
-<hr>
-<p><img src="../../../../images/money.png" alt="money">☜☜☜ <strong><em>wechat</em></strong> 『『『<strong><em> reward 点击扫码打赏 ~~~ ^_^ </em></strong>  』』』<strong><em>alipay</em></strong> ☞☞☞   <img src="../../../../images/money.jpg" alt="money"></p>
-<hr>
-<hr>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1354,7 +1350,7 @@ init();
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-count">22</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
