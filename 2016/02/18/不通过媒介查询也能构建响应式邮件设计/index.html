@@ -66,7 +66,7 @@
 <meta property="og:image" content="https://github.com/xishiyi7/xishiyi7.github.io/../../../../images/20160218/03.png">
 <meta property="og:image" content="https://github.com/xishiyi7/xishiyi7.github.io/../../../../images/money.png">
 <meta property="og:image" content="https://github.com/xishiyi7/xishiyi7.github.io/../../../../images/money.jpg">
-<meta property="og:updated_time" content="2016-02-20T04:59:55.365Z">
+<meta property="og:updated_time" content="2016-08-21T02:08:04.249Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="不通过媒介查询也能构建响应式邮件设计(译文)">
 <meta name="twitter:description" content="一般来说，我们用媒介查询(Media Queries)来构建响应式邮件设计。但是最近我发现另一种可以构建响应式设计的方案，通过使用CSS的calc()技术与其他三个宽度属性：width、min-width、max-width。
@@ -246,7 +246,7 @@
         <span itemprop="articleBody"><p>一般来说，我们用媒介查询(Media Queries)来构建响应式邮件设计。但是最近我发现另一种可以构建响应式设计的方案，通过使用CSS的calc()技术与其他三个宽度属性：width、min-width、max-width。</p>
 <h3 id="问题">问题</h3><p>创建响应式邮件应用很困难，特别是一些手机客户端应用不支持媒介查询。使用hybird、Gmail邮件应用或者不通过媒介查询来构建响应式邮件设计是三种可选方案。</p>
 <p>我最近正在研究第三种方案。一开始我给div元素设置fixed width并且设置display属性为inline-block。一旦屏幕可以容纳两个以上的块，它们将会自然的排列下去，但是我还是遇到了问题。</p>
-<p>一旦所有的块开始层叠了，它们就不能占满屏幕宽度。<br><img src="../../../../images/20160218/01.png" alt="无法占满屏宽"><br>我花了很长一段时间去寻找解决这个问题的方案，Flexbox是一个不错的建议，但不幸的是，电子邮件对Flexbox的支持很差。</p>
+<p>一旦所有的块开始层叠了，它们就不能占满屏幕宽度。<br><code class="normal-img"><img src="../../../../images/20160218/01.png" alt="无法占满屏宽"></code><br>我花了很长一段时间去寻找解决这个问题的方案，Flexbox是一个不错的建议，但不幸的是，电子邮件对Flexbox的支持很差。</p>
 <h3 id="一种解决方案">一种解决方案</h3><h5 id="记住width、min-width、max-width"><strong><em>记住width、min-width、max-width</em></strong></h5><p>紧接着calc()函数，我在这个方案中引入了三个CSS属性。为了更好的理解它是怎么工作的，我们先来回顾下width、min-width、max-width同时使用时在前台页面中是如何表现的。</p>
 <ul>
 <li>如果width属性值比max-width大，max-width属性生效</li>
@@ -258,7 +258,7 @@
 <p>我们一个个分析这几个属性。<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">min-width</span>:<span class="number">50%</span>;</span><br></pre></td></tr></table></figure></p>
 <p>min-width属性定义的列宽可以让我们在桌面端使用，我们可以改变这个值来添加更多的列，如：改变为25%来显示四列，或者用fixed pixed宽度来设置列宽属性。<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">max-width</span>:<span class="number">100%</span>;</span><br></pre></td></tr></table></figure></p>
 <p>max-width属性定义的列宽可以让我们在手机端使用，由于设置为100%，每列宽都将自适应，撑满容器的宽度。我们也可以改变属性值来在手机端显示多列。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">width:calc((<span class="number">480</span>px — <span class="number">100</span>%) * <span class="number">480</span>);</span><br></pre></td></tr></table></figure></p>
-<p>多亏了calc()函数，可以给width属性变魔法。值480是我们希望的转换点，值100%表示父容器的宽度，计算的结果为一个比max-width更大或者比min-width更小的值，因此这两个属性中的一个一定会生效并取代width属性。下面是两个例子：<br><img src="../../../../images/20160218/02.png" alt="parent width 500px"><br>父元素宽度500px的情况下，计算出来的宽度为-9600px，比min-width要小，因此min-width生效，宽度为50%，呈现两列布局。<br><img src="../../../../images/20160218/03.png" alt="parent width 400px"><br>父元素宽度400px的情况下，计算出来的宽度为38400px，远比min-width大，但max-width比它小，因此max-width生效，呈现单列布局。</p>
+<p>多亏了calc()函数，可以给width属性变魔法。值480是我们希望的转换点，值100%表示父容器的宽度，计算的结果为一个比max-width更大或者比min-width更小的值，因此这两个属性中的一个一定会生效并取代width属性。下面是两个例子：<br><code class="normal-img"><img src="../../../../images/20160218/02.png" alt="parent width 500px"></code><br>父元素宽度500px的情况下，计算出来的宽度为-9600px，比min-width要小，因此min-width生效，宽度为50%，呈现两列布局。<br><code class="normal-img"><img src="../../../../images/20160218/03.png" alt="parent width 400px"></code><br>父元素宽度400px的情况下，计算出来的宽度为38400px，远比min-width大，但max-width比它小，因此max-width生效，呈现单列布局。</p>
 <h3 id="支持情况">支持情况</h3><p>在浏览器端，IE9已经开始支持calc()函数。而且在电子邮件客户端，calc()函数也得到了良好的支持。同时，在Apple Mail(IOS/OS X)、Thunderbird、Outlook(IOS/Android apps)、Gmail(webmail/IOS/Android apps)、AOL(webmail)和老的Outlook.com也能生效。</p>
 <h5 id="老的Outlook-com"><strong><em>老的Outlook.com</em></strong></h5><p>Outlook.com有一点小瑕疵，就是在calc()函数中会过滤每一个包含括号的属性。这就意味着，支持“calc(480px-100%)”，但不支持calc((480px-100%)*480)。因此我们需要像下面这样改变写法来支持老的Outlook.com：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">width:calc(<span class="number">480</span>px * <span class="number">480</span> — <span class="number">100</span>% * <span class="number">480</span>);</span><br></pre></td></tr></table></figure></p>
 <h5 id="不支持的客户端"><strong><em>不支持的客户端</em></strong></h5><p>calc()函数在一些老的电子邮件客户端像Lotus Notes及最新Windows版本的Outlook是不被支持的。同时，在Outlook Web App和Yahoo也不被支持。这些应用中的calc()函数将会被忽略掉。</p>

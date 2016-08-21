@@ -969,7 +969,7 @@ body {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #a4b1ff;
+  background: #cb0432;
 }
 .sidebar-nav {
   margin: 0 0 20px;
@@ -1380,19 +1380,16 @@ code.normal-img {
 .normal-img a {
   border-bottom: none;
 }
-
 @media (min-width: 1600px) {
   .normal-img .fancybox img {
-	max-width : 900px;
+    max-width: 900px;
   }
 }
-
 @media (max-width: 767px) {
   .normal-img .fancybox img {
-	max-width : 100%;
+    max-width: 100%;
   }
 }
-
 @media (max-width: 767px) {
   .posts-collapse {
     margin: 0 20px;
