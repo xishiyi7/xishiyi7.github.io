@@ -969,7 +969,7 @@ body {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #4a7a16;
+  background: #a4b1ff;
 }
 .sidebar-nav {
   margin: 0 0 20px;
@@ -1371,7 +1371,7 @@ body {
   width: 100%;
 }
 .normal-img .fancybox img {
-  max-width: none;
+  max-width: 700px;
   margin-top: 5px !important;
 }
 code.normal-img {
@@ -1380,6 +1380,19 @@ code.normal-img {
 .normal-img a {
   border-bottom: none;
 }
+
+@media (min-width: 1600px) {
+  .normal-img .fancybox img {
+	max-width : 900px;
+  }
+}
+
+@media (max-width: 767px) {
+  .normal-img .fancybox img {
+	max-width : 100%;
+  }
+}
+
 @media (max-width: 767px) {
   .posts-collapse {
     margin: 0 20px;
