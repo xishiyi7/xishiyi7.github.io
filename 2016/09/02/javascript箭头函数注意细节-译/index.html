@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="js," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -51,33 +51,24 @@
 
 
 
-<meta name="description" content="针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index&amp;lt;ul id=&quot;text&quot;&amp;gt;
-    &amp;lt;li&amp;gt;这是第一个li&amp;lt;/li&amp;gt;
-    &amp;lt;li&amp;gt;这是第二个li&amp;lt;/li&amp;gt;
-    &amp;lt;li&amp;gt;这是第三个li&amp;lt;/li&amp;gt;
-&amp;lt;/ul&amp;gt;
-解答一：bind，将当前匿名函数指向this，将i当参数传入var">
+<meta name="description" content="ES6(ES2015)带来了箭头函数，箭头函数带来了些许问题。
+关于{}第一个问题是关于箭头函数与{}。箭头函数，乍一看，用法似乎很简单，比如像下面这样用来给数组每一项乘以2：123const numbers = [1, 2, 3];   const result = numbers.map(n =&amp;gt; n * 2);   // produces [2,4,6]
+但是，如果使用不当，可能会引发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一个关于闭包/bind/this的面试题">
-<meta property="og:url" content="https://github.com/xishiyi7/xishiyi7.github.io/2015/12/03/一个关于闭包-bind-this的面试题/index.html">
+<meta property="og:title" content="javascript箭头函数注意细节(译)">
+<meta property="og:url" content="https://github.com/xishiyi7/xishiyi7.github.io/2016/09/02/javascript箭头函数注意细节-译/index.html">
 <meta property="og:site_name" content="阿根廷人。">
-<meta property="og:description" content="针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index&amp;lt;ul id=&quot;text&quot;&amp;gt;
-    &amp;lt;li&amp;gt;这是第一个li&amp;lt;/li&amp;gt;
-    &amp;lt;li&amp;gt;这是第二个li&amp;lt;/li&amp;gt;
-    &amp;lt;li&amp;gt;这是第三个li&amp;lt;/li&amp;gt;
-&amp;lt;/ul&amp;gt;
-解答一：bind，将当前匿名函数指向this，将i当参数传入var">
+<meta property="og:description" content="ES6(ES2015)带来了箭头函数，箭头函数带来了些许问题。
+关于{}第一个问题是关于箭头函数与{}。箭头函数，乍一看，用法似乎很简单，比如像下面这样用来给数组每一项乘以2：123const numbers = [1, 2, 3];   const result = numbers.map(n =&amp;gt; n * 2);   // produces [2,4,6]
+但是，如果使用不当，可能会引发">
 <meta property="og:image" content="https://github.com/xishiyi7/xishiyi7.github.io/../../../../images/money.png">
 <meta property="og:image" content="https://github.com/xishiyi7/xishiyi7.github.io/../../../../images/money.jpg">
-<meta property="og:updated_time" content="2015-12-06T12:29:04.980Z">
+<meta property="og:updated_time" content="2016-09-02T14:35:48.556Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一个关于闭包/bind/this的面试题">
-<meta name="twitter:description" content="针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index&amp;lt;ul id=&quot;text&quot;&amp;gt;
-    &amp;lt;li&amp;gt;这是第一个li&amp;lt;/li&amp;gt;
-    &amp;lt;li&amp;gt;这是第二个li&amp;lt;/li&amp;gt;
-    &amp;lt;li&amp;gt;这是第三个li&amp;lt;/li&amp;gt;
-&amp;lt;/ul&amp;gt;
-解答一：bind，将当前匿名函数指向this，将i当参数传入var">
+<meta name="twitter:title" content="javascript箭头函数注意细节(译)">
+<meta name="twitter:description" content="ES6(ES2015)带来了箭头函数，箭头函数带来了些许问题。
+关于{}第一个问题是关于箭头函数与{}。箭头函数，乍一看，用法似乎很简单，比如像下面这样用来给数组每一项乘以2：123const numbers = [1, 2, 3];   const result = numbers.map(n =&amp;gt; n * 2);   // produces [2,4,6]
+但是，如果使用不当，可能会引发">
 
 
 
@@ -89,7 +80,7 @@
   };
 </script>
 
-  <title> 一个关于闭包/bind/this的面试题 | 阿根廷人。 </title>
+  <title> javascript箭头函数注意细节(译) | 阿根廷人。 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -209,7 +200,7 @@
             
             
               
-                一个关于闭包/bind/this的面试题
+                javascript箭头函数注意细节(译)
               
             
           </h1>
@@ -218,8 +209,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-12-03T23:47:41+08:00" content="2015-12-03">
-              2015-12-03
+            <time itemprop="dateCreated" datetime="2016-09-02T22:18:42+08:00" content="2016-09-02">
+              2016-09-02
             </time>
           </span>
 
@@ -229,8 +220,8 @@
             
               <span class="post-comments-count" style="display:none">
                 &nbsp; | &nbsp;
-                <a href="/2015/12/03/一个关于闭包-bind-this的面试题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/03/一个关于闭包-bind-this的面试题/" itemprop="commentsCount"></span>
+                <a href="/2016/09/02/javascript箭头函数注意细节-译/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/02/javascript箭头函数注意细节-译/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -249,46 +240,14 @@
       
 
       
-        <span itemprop="articleBody"><h5 id="针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index"><strong><em>针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index</em></strong></h5><pre><code>&lt;ul id=<span class="string">"text"</span>&gt;
-    &lt;<span class="keyword">li</span>&gt;这是第一个<span class="keyword">li</span>&lt;/<span class="keyword">li</span>&gt;
-    &lt;<span class="keyword">li</span>&gt;这是第二个<span class="keyword">li</span>&lt;/<span class="keyword">li</span>&gt;
-    &lt;<span class="keyword">li</span>&gt;这是第三个<span class="keyword">li</span>&lt;/<span class="keyword">li</span>&gt;
-&lt;/ul&gt;
-</code></pre><h5 id="解答一：bind，将当前匿名函数指向this，将i当参数传入"><strong><em>解答一：bind，将当前匿名函数指向this，将i当参数传入</em></strong></h5><pre><code><span class="keyword">var</span> init = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{
-<span class="keyword">var</span> obj = <span class="built_in">document</span>.getElementById(<span class="string">'text'</span>);
-<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;obj.children.length;i++){
-  obj.children[i].addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>{
-    alert(i)
-  }.bind(<span class="keyword">this</span>,i))
-}
-}
-init();
-</code></pre><h5 id="解答二：闭包"><strong><em>解答二：闭包</em></strong></h5><pre><code><span class="keyword">var</span> init = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{
-<span class="keyword">var</span> lis=<span class="built_in">document</span>.querySelectorAll(<span class="string">"#text li"</span>);
-  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;lis.length;i++){
-        lis[i].onclick=(<span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>{
-              <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{
-                    alert(i);
-              };
-        })(i)
-  }
-}
-init();
-</code></pre><h5 id="解答三：最笨的方法，匹配"><strong><em>解答三：最笨的方法，匹配</em></strong></h5><pre><code><span class="keyword">var</span> init = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
-  <span class="keyword">var</span> obj = document.getElementById(<span class="string">'text'</span>);
-  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;obj.children.length;i++){
-    obj.children[i].addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span><span class="params">(item)</span></span>{
-      <span class="keyword">var</span> <span class="keyword">self</span> = item.target;
-      <span class="keyword">for</span>(<span class="keyword">var</span> j=<span class="number">0</span>;j&lt;obj.children.length;j++){
-        <span class="keyword">if</span>(<span class="keyword">self</span> == obj.children[j]){
-          alert(j);
-        }
-      }
-    })
-  }
-}
-init();
-</code></pre><hr>
+        <span itemprop="articleBody"><p>ES6(ES2015)带来了箭头函数，箭头函数带来了些许问题。</p>
+<h3 id="关于{}">关于<code>{}</code></h3><p>第一个问题是关于箭头函数与<code>{}</code>。<br>箭头函数，乍一看，用法似乎很简单，比如像下面这样用来给数组每一项乘以2：<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">   <span class="keyword">const</span> <span class="literal">result</span> = numbers.map(n =&gt; n * <span class="number">2</span>);</span><br><span class="line">   // produces [<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>]</span><br></pre></td></tr></table></figure></p>
+<p>但是，如果使用不当，可能会引发意想不到的问题。比如下面，尝试为数组中每一项去产生对象字面量，看上去挺简单的<code>map</code>操作，还是引发了意外。<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">   <span class="keyword">const</span> <span class="literal">result</span> = numbers.map(n =&gt; &#123; value: n &#125;);</span><br><span class="line">   // produces [undefined], [undefined], [undefined]</span><br></pre></td></tr></table></figure></p>
+<p>什么原因造成的呢？<br>稍微分析可知，引起上面问题在于，箭头函数内部包裹在花括号之间的代码，被认为是一段独立的代码块而不是对象字面量，因此其单独执行，显然得到的结果就是一个全为<code>undefined</code>的数组。<br>于是，在这种情况下，其中的代码就必须有明确的返回语句或者用圆括号<code>()</code>包括对象字面量。<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="literal">result</span> = numbers.map(n =&gt; (&#123; value: n &#125;));</span><br><span class="line">   // [&#123;value: <span class="number">1</span>&#125;, &#123;value:<span class="number">2</span>&#125;, &#123;value:<span class="number">3</span>&#125;]</span><br></pre></td></tr></table></figure></p>
+<h3 id="关于this">关于<code>this</code></h3><p>第二个问题是关于箭头函数与<code>this</code>。<br>使用箭头函数，你可以像下面这样写代码而不用额外在局部作用域中去暂存this：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> adder = &#123;</span><br><span class="line">       sum: <span class="number">0</span>,</span><br><span class="line">       add(numbers) &#123;</span><br><span class="line">           numbers.forEach(n =&gt; &#123;</span><br><span class="line">               <span class="keyword">this</span>.sum += n;</span><br><span class="line">           &#125;);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;;</span><br><span class="line">   adder.add([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);</span><br><span class="line">   <span class="comment">// adder.sum === 6</span></span><br></pre></td></tr></table></figure></p>
+<p>然而，很多时候你可能会自以为是的在不经意间写错。正如下面的代码所示，<code>this</code>并不指向”adder”对象，而指向”adder”对象所在的作用域：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> adder = &#123;</span><br><span class="line">       sum: <span class="number">0</span>,</span><br><span class="line">       add: (numbers) =&gt; &#123; <span class="comment">// scope here is important</span></span><br><span class="line">           numbers.forEach(n =&gt; &#123;</span><br><span class="line">               <span class="keyword">this</span>.sum += n;</span><br><span class="line">           &#125;);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   adder.add([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);</span><br><span class="line">   <span class="comment">// adder.sum === 0</span></span><br></pre></td></tr></table></figure></p>
+<p>最后请记住一点：箭头函数中的<code>this</code>继承自外围作用域的值，因此我们不能改变其指向。</p>
+<hr>
 <hr>
 <p><img src="../../../../images/money.png" alt="money">☜☜☜ <strong><em>wechat</em></strong> 『『『<strong><em> reward 点击扫码打赏 ~~~ ^_^ </em></strong>  』』』<strong><em>alipay</em></strong> ☞☞☞   <img src="../../../../images/money.jpg" alt="money"></p>
 <hr>
@@ -299,28 +258,18 @@ init();
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/js/" rel="tag">#js</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/12/03/hello-web/" rel="next" title="Hello Web">
-                <i class="fa fa-chevron-left"></i> Hello Web
+              <a href="/2016/09/01/利用-Page-Visibility-保持应用状态/" rel="next" title="移动端利用'Page Visibility'保持应用状态注意事项(译文)">
+                <i class="fa fa-chevron-left"></i> 移动端利用'Page Visibility'保持应用状态注意事项(译文)
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/12/06/Effective-JavaScript-一/" rel="prev" title="Effective JavaScript(一)">
-                Effective JavaScript(一) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -335,10 +284,10 @@ init();
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2015/12/03/一个关于闭包-bind-this的面试题/"
-     data-title="一个关于闭包/bind/this的面试题"
+        <div class="ds-share flat" data-thread-key="2016/09/02/javascript箭头函数注意细节-译/"
+     data-title="javascript箭头函数注意细节(译)"
      data-content=""
-     data-url="https://github.com/xishiyi7/xishiyi7.github.io/2015/12/03/一个关于闭包-bind-this的面试题/">
+     data-url="https://github.com/xishiyi7/xishiyi7.github.io/2016/09/02/javascript箭头函数注意细节-译/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -366,8 +315,8 @@ init();
         
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/12/03/一个关于闭包-bind-this的面试题/"
-           data-title="一个关于闭包/bind/this的面试题" data-url="https://github.com/xishiyi7/xishiyi7.github.io/2015/12/03/一个关于闭包-bind-this的面试题/">
+      <div class="ds-thread" data-thread-key="2016/09/02/javascript箭头函数注意细节-译/"
+           data-title="javascript箭头函数注意细节(译)" data-url="https://github.com/xishiyi7/xishiyi7.github.io/2016/09/02/javascript箭头函数注意细节-译/">
       </div>
     
   </div>
@@ -457,7 +406,7 @@ init();
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index"><span class="nav-number">1.</span> <span class="nav-text">针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#解答一：bind，将当前匿名函数指向this，将i当参数传入"><span class="nav-number">2.</span> <span class="nav-text">解答一：bind，将当前匿名函数指向this，将i当参数传入</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#解答二：闭包"><span class="nav-number">3.</span> <span class="nav-text">解答二：闭包</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#解答三：最笨的方法，匹配"><span class="nav-number">4.</span> <span class="nav-text">解答三：最笨的方法，匹配</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#关于{}"><span class="nav-number">1.</span> <span class="nav-text">关于{}</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于this"><span class="nav-number">2.</span> <span class="nav-text">关于this</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

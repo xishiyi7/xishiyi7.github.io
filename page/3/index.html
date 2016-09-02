@@ -205,6 +205,102 @@
             
               
                 
+                <a class="post-title-link" href="/2015/12/07/Effective-JavaScript-二/" itemprop="url">
+                  Effective JavaScript(二)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-12-07T13:02:47+08:00" content="2015-12-07">
+              2015-12-07
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count" style="display:none">
+                &nbsp; | &nbsp;
+                <a href="/2015/12/07/Effective-JavaScript-二/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/07/Effective-JavaScript-二/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>68 Specific Ways to Harness the Power of JavaScript<br>编写高质量JavaScript代码的68个有效方法</p>
+<p><strong><em>注：本文内容来自同名图书读书笔记，只涉及部分条目，序号会保持原书一致</em></strong></p>
+<h3 id="三-使用函数">三.使用函数</h3><h5 id="18-理解函数调用/方法调用及构造函数调用之间的不同">18.理解函数调用/方法调用及构造函数调用之间的不同</h5><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">函数调用示例：</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">(x)</span></span>&#123;</span><br><span class="line">		alert(x)</span><br><span class="line">	&#125;</span><br><span class="line">	test(<span class="string">'1'</span>);</span><br><span class="line"></span><br><span class="line">方法调用示例:</span><br><span class="line">	<span class="keyword">var</span> obj = &#123;</span><br><span class="line">		test:<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">			alert(<span class="keyword">this</span>.name);</span><br><span class="line">		&#125;,</span><br><span class="line">		name:<span class="string">'john'</span></span><br><span class="line">	&#125;</span><br><span class="line">	obj.test();	<span class="comment">//	'john'</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> obj2 = &#123;</span><br><span class="line">		test:obj.test,</span><br><span class="line">		name:<span class="string">'mike'</span></span><br><span class="line">	&#125;</span><br><span class="line">	obj2.test();	<span class="comment">//	'mike'</span></span><br><span class="line"></span><br><span class="line">需要注意的是,通过方法调用,绑定到<span class="keyword">this</span>变量的对象被称为调用接收者,也就是说被绑定到了调用方法的对象上.</span><br><span class="line"></span><br><span class="line">构造函数调用示例:</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">Test</span><span class="params">(name,age)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">		<span class="keyword">this</span>.age = age;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">var</span> t = <span class="keyword">new</span> Test(<span class="string">'john'</span>,<span class="number">20</span>);</span><br><span class="line"></span><br><span class="line">构造函数的主要职责是初始化对象.</span><br></pre></td></tr></table></figure>
+<h5 id="19-熟练掌握高阶函数">19.熟练掌握高阶函数</h5><p>高阶函数无非是那些将函数作为参数或者返回值的函数.<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">常见的sort/map等函数都属于高阶函数,加强学习,掌握.例如:</span><br><span class="line">	<span class="keyword">var</span> names = [<span class="string">'john'</span>,<span class="string">'lily'</span>,<span class="string">'tom'</span>];</span><br><span class="line">	<span class="keyword">var</span> upper = names.map(<span class="function"><span class="keyword">function</span><span class="params">(name)</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> name.toUpperCase();</span><br><span class="line">	&#125;);</span><br></pre></td></tr></table></figure></p>
+<hr>
+<hr>
+<p><img src="../../../../images/money.png" alt="money">☜☜☜ <strong><em>wechat</em></strong> 『『『<strong><em> reward 点击扫码打赏 ~~~ ^_^ </em></strong>  』』』<strong><em>alipay</em></strong> ☞☞☞   <img src="../../../../images/money.jpg" alt="money"></p>
+<hr>
+<hr>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/12/06/Effective-JavaScript-一/" itemprop="url">
                   Effective JavaScript(一)
                 </a>
@@ -562,7 +658,7 @@ init();
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-count">24</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
