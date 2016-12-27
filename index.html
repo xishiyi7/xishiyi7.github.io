@@ -177,15 +177,141 @@
 
     
     
+
+    
       
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/27/Curry-局部套用-or-Partial-Application-局部应用/" itemprop="url">
+                  Curry(局部套用) or Partial Application(局部应用)?
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-12-27T10:16:08+08:00" content="2016-12-27">
+              2016-12-27
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count" style="display:none">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/27/Curry-局部套用-or-Partial-Application-局部应用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/27/Curry-局部套用-or-Partial-Application-局部应用/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
       
-        
-        
-        
       
 
       
-    
+        
+          <span itemprop="articleBody">
+            
+              <h3 id="名词解释">名词解释</h3><p>Partial Application，也译作“偏应用”或“部分应用”。<br>Curring，也译作“柯里化”。<br>arity，元。表示函数的参数数量。如，unary(一元),binary(二元),ternary(三元),polyadic(多元)。</p>
+<h3 id="完全应用">完全应用</h3><p>假设有一个函数A，其需要n个参数来应用，而当我们调用函数A时，给它传入了n个参数。则A函数完全应用了我们传入的参数。</p>
+<h3 id="局部应用">局部应用</h3><p>即函数调用的时候只提供部分参数供其应用。例如以下：</p>
+<pre>
+    function mapWith(fn){
+        return function(list){
+            return map(list,fn);
+        }
+    }
+</pre>
+如上，当我们调用mapWith函数时，先传入一个参数，其返回一个函数结果，执行该结果的时候再传入第二个参数，返回最终结果。类似于：
+<pre>
+    mapWith(square)([1,2,3]);
+</pre>
+
+<h3 id="局部套用">局部套用</h3><p>上面的局部应用，其中的map函数为一个我们已知的具体函数，我们可以稍加修整，如下：<br>第一步，先将map用一个更抽象的函数<code>binaryFn</code>取代，暗示此处可以做任何一种二元函数的处理。同时，最外层的函数名，也就可以做相应的调整了，我们可以使用<code>wrapper</code>取代之。<br>第二步，既然用来最终处理的函数都抽象化了，那传入的参数自然也没有必要限定其类型。<br>于是，我们可以将其稍微调整为如下状态：</p>
+<pre>
+    function wrapper(secondArg){
+        return function(firstArg){
+            return binaryFn(firstArg,secondArg);
+        }
+    }
+</pre>
+
+<p>到这里，会突然发现其中的binaryFn函数并未做初始化，无法灵活的使用，于是我们可以再包装一层：</p>
+<p><pre><br>    function rightmostCurry(binaryFn) {<br>       return function (secondArg) {<br>         return function (firstArg) {<br>           return binaryFn(firstArg, secondArg);<br>         };<br>       };<br>    }<br></pre><br>到现在，我们可以试着调用一下<code>rightmostCurry</code>函数。</p>
+<p><pre><br>    var rightmostCurriedMap = rightmostCurry(map);<br>    var squareAll = rightmostCurriedMap(square);<br>    squareAll([2, 3, 5]);     // =&gt; [4, 9, 25]<br>    squareAll([1, 4, 7, 6]);  // =&gt; [1, 16, 49, 36]<br></pre><br>对比局部应用会发现，在局部应用中，最内层的处理函数是确定的。而在局部套用中，最内层的实际处理函数，是未知的，其最终结果是在最外层函数调用后，分批传入其他参数来获取的。<br>由此可以做如下解释：</p>
+<ul>
+<li><strong><em>局部应用：</em></strong> 返回最终结果的处理方式是限定的，每一层的函数调用所传入<br>的参数都将逐次参与最终处理过程中去；</li>
+<li><strong><em>局部套用：</em></strong> 返回最终结果的处理方式是未知的，需要我们在使用的时候将<br>其作为参数传入。</li>
+</ul>
+<h3 id="leftmost(最左形式)">leftmost(最左形式)</h3><p>仔细观察上面的函数，可能会有疑问，在中间层函数中，把参数调换会出现什么情况呢?先把函数改造下，如下：</p>
+<p><pre><br>    function leftmostCurry(binaryFn) {<br>      return function (firstArg) {<br>        return function (secondArg) {<br>          return binaryFn(firstArg, secondArg);<br>        };<br>      };<br>    }<br>    var leftmostCurriedMap = leftmostCurry(map);</pre></p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">square</span><span class="params">(n)</span> </span>{ <span class="keyword">return</span> n * n; }
+<span class="function"><span class="keyword">function</span> <span class="title">double</span><span class="params">(n)</span> </span>{ <span class="keyword">return</span> n + n; }
+
+<span class="keyword">var</span> oneToThreeEach = leftmostCurriedMap([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);
+oneToThreeEach(square);   <span class="comment">// =&gt; [1, 4, 9]</span>
+oneToThreeEach(<span class="keyword">double</span>);   <span class="comment">// =&gt; [2, 4, 6]</span>
+</code></pre><p><br>上面就是最左形式的局部套用示例用法。<br>由于一般代码逻辑都是“从左向右”，因此在其他项目中见过比较多的应该是leftmost形式。习惯上直接把leftmost形式叫做curry。</p>
+<h3 id="现实使用">现实使用</h3><p>现实中用到局部套用情况一般可能做如下处理：</p>
+<p><pre><br>    function rightmostUnaryPartialApplication(binaryFn, secondArg) {<br>      return function (firstArg) {<br>        return binaryFn(firstArg, secondArg);<br>      };<br>    }<br>    var applyLast = rightmostUnaryPartialApplication;</pre></p>
+<pre><code>var squareAll = applyLast(<span class="built_in">map</span>, square);
+var doubleAll = applyLast(<span class="built_in">map</span>, <span class="keyword">double</span>);
+squareAll([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]);
+doubleAll([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]);
+</code></pre><p><br>以上用法，仔细观察会发现有很多开发者都在多次使用，希望在用到或者看到这类用法时，能真正理解其区别及联系。</p>
+<h3 id="参考文献">参考文献</h3><p><strong><em><a href="https://segmentfault.com/a/1190000000765247" target="_blank" rel="external">函数式编程中局部应用（Partial Application）和局部套用（Currying）的区别</a></em></strong><br><strong><em><a href="https://medium.com/javascript-scene/curry-or-partial-application-8150044c78b8#.y39pewh95" target="_blank" rel="external">Curry or Partial Application?</a> Eric ElliottFollow Jul 20, 2015</em></strong></p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
@@ -1281,100 +1407,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/03/angular项目涉及多个应用的目录结构划分参考/" itemprop="url">
-                  angular项目涉及多个应用的目录结构划分参考
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-06-03T14:26:31+08:00" content="2016-06-03">
-              2016-06-03
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count" style="display:none">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/03/angular项目涉及多个应用的目录结构划分参考/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/03/angular项目涉及多个应用的目录结构划分参考/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>一般的angular项目都是单页应用，但是当项目逐渐庞大时，可能会需要拆分多个应用来具体实现。近期花时间将原有的项目结构进行改造，以便进行多应用开发，下图是我设计的初版项目目录结构，希望可以给有需要的人一点帮助。</p>
-<p><code class="normal-img"><img src="../../../../images/20160603/structure.png" alt="structure"></code></p>
-<hr>
-<hr>
-<p><img src="../../../../images/money.png" alt="money">☜☜☜ <strong><em>wechat</em></strong> 『『『<strong><em> reward 点击扫码打赏 ~~~ ^_^ </em></strong>  』』』<strong><em>alipay</em></strong> ☞☞☞   <img src="../../../../images/money.jpg" alt="money"></p>
-<hr>
-<hr>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1421,7 +1453,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-count">26</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

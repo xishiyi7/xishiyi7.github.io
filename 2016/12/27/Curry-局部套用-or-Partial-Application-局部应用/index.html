@@ -51,30 +51,22 @@
 
 
 
-<meta name="description" content="上面一篇文章简单介绍了gulp的相关知识及在项目中如何使用gulp进行自动化构建，本文简单介绍下如何搭配gulp做一些其他的逻辑处理，只是提供一种思路，不表示可以完全套用。
-如果没有合适的插件怎么办？通过npm安装的gulp插件，都是先想想自己要的需求，然后上npm社区找，万一找不到或者自己不会找，怎么办？
-
-假设一个需求我们先假设一个简单的需求：每次发布指令生成的文件带上当前时间信息。
-处理思路">
+<meta name="description" content="名词解释Partial Application，也译作“偏应用”或“部分应用”。Curring，也译作“柯里化”。arity，元。表示函数的参数数量。如，unary(一元),binary(二元),ternary(三元),polyadic(多元)。
+完全应用假设有一个函数A，其需要n个参数来应用，而当我们调用函数A时，给它传入了n个参数。则A函数完全应用了我们传入的参数。
+局部应用即函数调用的时候只">
 <meta property="og:type" content="article">
-<meta property="og:title" content="gulp搭配命令行参数实现前端自动化构建的多样化">
-<meta property="og:url" content="https://github.com/xishiyi7/xishiyi7.github.io/2016/07/10/gulp搭配命令行参数实现前端自动化构建的多样化/index.html">
+<meta property="og:title" content="Curry(局部套用) or Partial Application(局部应用)?">
+<meta property="og:url" content="https://github.com/xishiyi7/xishiyi7.github.io/2016/12/27/Curry-局部套用-or-Partial-Application-局部应用/index.html">
 <meta property="og:site_name" content="阿根廷人。">
-<meta property="og:description" content="上面一篇文章简单介绍了gulp的相关知识及在项目中如何使用gulp进行自动化构建，本文简单介绍下如何搭配gulp做一些其他的逻辑处理，只是提供一种思路，不表示可以完全套用。
-如果没有合适的插件怎么办？通过npm安装的gulp插件，都是先想想自己要的需求，然后上npm社区找，万一找不到或者自己不会找，怎么办？
-
-假设一个需求我们先假设一个简单的需求：每次发布指令生成的文件带上当前时间信息。
-处理思路">
-<meta property="og:image" content="https://github.com/xishiyi7/xishiyi7.github.io/../../../../images/money.png">
-<meta property="og:image" content="https://github.com/xishiyi7/xishiyi7.github.io/../../../../images/money.jpg">
-<meta property="og:updated_time" content="2016-07-10T15:23:45.813Z">
+<meta property="og:description" content="名词解释Partial Application，也译作“偏应用”或“部分应用”。Curring，也译作“柯里化”。arity，元。表示函数的参数数量。如，unary(一元),binary(二元),ternary(三元),polyadic(多元)。
+完全应用假设有一个函数A，其需要n个参数来应用，而当我们调用函数A时，给它传入了n个参数。则A函数完全应用了我们传入的参数。
+局部应用即函数调用的时候只">
+<meta property="og:updated_time" content="2016-12-27T05:48:30.499Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="gulp搭配命令行参数实现前端自动化构建的多样化">
-<meta name="twitter:description" content="上面一篇文章简单介绍了gulp的相关知识及在项目中如何使用gulp进行自动化构建，本文简单介绍下如何搭配gulp做一些其他的逻辑处理，只是提供一种思路，不表示可以完全套用。
-如果没有合适的插件怎么办？通过npm安装的gulp插件，都是先想想自己要的需求，然后上npm社区找，万一找不到或者自己不会找，怎么办？
-
-假设一个需求我们先假设一个简单的需求：每次发布指令生成的文件带上当前时间信息。
-处理思路">
+<meta name="twitter:title" content="Curry(局部套用) or Partial Application(局部应用)?">
+<meta name="twitter:description" content="名词解释Partial Application，也译作“偏应用”或“部分应用”。Curring，也译作“柯里化”。arity，元。表示函数的参数数量。如，unary(一元),binary(二元),ternary(三元),polyadic(多元)。
+完全应用假设有一个函数A，其需要n个参数来应用，而当我们调用函数A时，给它传入了n个参数。则A函数完全应用了我们传入的参数。
+局部应用即函数调用的时候只">
 
 
 
@@ -86,7 +78,7 @@
   };
 </script>
 
-  <title> gulp搭配命令行参数实现前端自动化构建的多样化 | 阿根廷人。 </title>
+  <title> Curry(局部套用) or Partial Application(局部应用)? | 阿根廷人。 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -206,7 +198,7 @@
             
             
               
-                gulp搭配命令行参数实现前端自动化构建的多样化
+                Curry(局部套用) or Partial Application(局部应用)?
               
             
           </h1>
@@ -215,8 +207,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2016-07-10T20:47:12+08:00" content="2016-07-10">
-              2016-07-10
+            <time itemprop="dateCreated" datetime="2016-12-27T10:16:08+08:00" content="2016-12-27">
+              2016-12-27
             </time>
           </span>
 
@@ -226,8 +218,8 @@
             
               <span class="post-comments-count" style="display:none">
                 &nbsp; | &nbsp;
-                <a href="/2016/07/10/gulp搭配命令行参数实现前端自动化构建的多样化/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/10/gulp搭配命令行参数实现前端自动化构建的多样化/" itemprop="commentsCount"></span>
+                <a href="/2016/12/27/Curry-局部套用-or-Partial-Application-局部应用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/27/Curry-局部套用-or-Partial-Application-局部应用/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -246,23 +238,54 @@
       
 
       
-        <span itemprop="articleBody"><p>上面一篇文章简单介绍了gulp的相关知识及在项目中如何使用gulp进行自动化构建，本文简单介绍下如何搭配gulp做一些其他的逻辑处理，只是提供一种思路，不表示可以完全套用。</p>
-<h3 id="如果没有合适的插件怎么办？">如果没有合适的插件怎么办？</h3><p>通过npm安装的gulp插件，都是先想想自己要的需求，然后上npm社区找，万一找不到或者自己不会找，怎么办？</p>
+        <span itemprop="articleBody"><h3 id="名词解释">名词解释</h3><p>Partial Application，也译作“偏应用”或“部分应用”。<br>Curring，也译作“柯里化”。<br>arity，元。表示函数的参数数量。如，unary(一元),binary(二元),ternary(三元),polyadic(多元)。</p>
+<h3 id="完全应用">完全应用</h3><p>假设有一个函数A，其需要n个参数来应用，而当我们调用函数A时，给它传入了n个参数。则A函数完全应用了我们传入的参数。</p>
+<h3 id="局部应用">局部应用</h3><p>即函数调用的时候只提供部分参数供其应用。例如以下：</p>
+<pre>
+    function mapWith(fn){
+        return function(list){
+            return map(list,fn);
+        }
+    }
+</pre>
+如上，当我们调用mapWith函数时，先传入一个参数，其返回一个函数结果，执行该结果的时候再传入第二个参数，返回最终结果。类似于：
+<pre>
+    mapWith(square)([1,2,3]);
+</pre>
+
+<h3 id="局部套用">局部套用</h3><p>上面的局部应用，其中的map函数为一个我们已知的具体函数，我们可以稍加修整，如下：<br>第一步，先将map用一个更抽象的函数<code>binaryFn</code>取代，暗示此处可以做任何一种二元函数的处理。同时，最外层的函数名，也就可以做相应的调整了，我们可以使用<code>wrapper</code>取代之。<br>第二步，既然用来最终处理的函数都抽象化了，那传入的参数自然也没有必要限定其类型。<br>于是，我们可以将其稍微调整为如下状态：</p>
+<pre>
+    function wrapper(secondArg){
+        return function(firstArg){
+            return binaryFn(firstArg,secondArg);
+        }
+    }
+</pre>
+
+<p>到这里，会突然发现其中的binaryFn函数并未做初始化，无法灵活的使用，于是我们可以再包装一层：</p>
+<p><pre><br>    function rightmostCurry(binaryFn) {<br>       return function (secondArg) {<br>         return function (firstArg) {<br>           return binaryFn(firstArg, secondArg);<br>         };<br>       };<br>    }<br></pre><br>到现在，我们可以试着调用一下<code>rightmostCurry</code>函数。</p>
+<p><pre><br>    var rightmostCurriedMap = rightmostCurry(map);<br>    var squareAll = rightmostCurriedMap(square);<br>    squareAll([2, 3, 5]);     // =&gt; [4, 9, 25]<br>    squareAll([1, 4, 7, 6]);  // =&gt; [1, 16, 49, 36]<br></pre><br>对比局部应用会发现，在局部应用中，最内层的处理函数是确定的。而在局部套用中，最内层的实际处理函数，是未知的，其最终结果是在最外层函数调用后，分批传入其他参数来获取的。<br>由此可以做如下解释：</p>
 <ul>
-<li>假设一个需求<br>我们先假设一个简单的需求：每次发布指令生成的文件带上当前时间信息。</li>
-<li>处理思路<br>拿到这个需求第一反应可能还是先上社区找一下，没找到，怎么办？试着变通一下，如果没找到，那我自己写一个插件岂不是也可以。<br>想法很好，也可以行得通，目前有<code>through2</code>插件可以帮助我们写gulp插件，但是写一个插件对一个gulp初学者来说可能还是比较难的事情，那么我们换一个思路。<br>我们可以尝试在每次<code>gulp.dest</code>前，先给最终要生成的文件重命名，添加时间戳，这样可以保证正常情况下每次构建后的文件跟之前文件名都不一样。</li>
-<li>实现<br>简单的根据时间戳重命名，单个文件还好，多个文件的话，由于很多异步操作，记录时间的时刻必须比较特别，选用执行命令的那一刻可能更好些。</li>
+<li><strong><em>局部应用：</em></strong> 返回最终结果的处理方式是限定的，每一层的函数调用所传入<br>的参数都将逐次参与最终处理过程中去；</li>
+<li><strong><em>局部套用：</em></strong> 返回最终结果的处理方式是未知的，需要我们在使用的时候将<br>其作为参数传入。</li>
 </ul>
-<p>有些时候，开发版指令可能需求简单些，或者单个task的需求简单些，这时可以用命令行参数搭配使用来方便构建。</p>
-<h3 id="搭配命令行参数">搭配命令行参数</h3><p>命令行参数可以用<code>process.argv</code>获取，拿到的第三个参数，可以表示为当前task的参数。<br>因此，我们可以拿这个来做简单的区分，如果是特殊命令，可以选择携带一个特殊的参数，这样不用每次都单独写任务来表示。</p>
-<h3 id="使用多彩的控制台输出">使用多彩的控制台输出</h3><p>npm社区有不少模块可以帮助生成多彩的控制台输出，虽然这对项目构建没有实际的作用，但是可以很清楚的区分当前使用的任务。</p>
-<h3 id="替换多个输出的文件名">替换多个输出的文件名</h3><p>如果有需求是替换某个文件夹中的所有文件名，此需求与上面的需求类似，可以一起进行。<br>具体代码可以自己琢磨，可以使用<code>path</code>模块的path.join方法来实现。</p>
-<h3 id="最后">最后</h3><p>由于自己对这方面也不是很熟悉，只是根据自己的经验提供一个解决问题的思路，希望可以举一反三，而不是滥用。</p>
-<hr>
-<hr>
-<p><img src="../../../../images/money.png" alt="money">☜☜☜ <strong><em>wechat</em></strong> 『『『<strong><em> reward 点击扫码打赏 ~~~ ^_^ </em></strong>  』』』<strong><em>alipay</em></strong> ☞☞☞   <img src="../../../../images/money.jpg" alt="money"></p>
-<hr>
-<hr>
+<h3 id="leftmost(最左形式)">leftmost(最左形式)</h3><p>仔细观察上面的函数，可能会有疑问，在中间层函数中，把参数调换会出现什么情况呢?先把函数改造下，如下：</p>
+<p><pre><br>    function leftmostCurry(binaryFn) {<br>      return function (firstArg) {<br>        return function (secondArg) {<br>          return binaryFn(firstArg, secondArg);<br>        };<br>      };<br>    }<br>    var leftmostCurriedMap = leftmostCurry(map);</pre></p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">square</span><span class="params">(n)</span> </span>{ <span class="keyword">return</span> n * n; }
+<span class="function"><span class="keyword">function</span> <span class="title">double</span><span class="params">(n)</span> </span>{ <span class="keyword">return</span> n + n; }
+
+<span class="keyword">var</span> oneToThreeEach = leftmostCurriedMap([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);
+oneToThreeEach(square);   <span class="comment">// =&gt; [1, 4, 9]</span>
+oneToThreeEach(<span class="keyword">double</span>);   <span class="comment">// =&gt; [2, 4, 6]</span>
+</code></pre><p><br>上面就是最左形式的局部套用示例用法。<br>由于一般代码逻辑都是“从左向右”，因此在其他项目中见过比较多的应该是leftmost形式。习惯上直接把leftmost形式叫做curry。</p>
+<h3 id="现实使用">现实使用</h3><p>现实中用到局部套用情况一般可能做如下处理：</p>
+<p><pre><br>    function rightmostUnaryPartialApplication(binaryFn, secondArg) {<br>      return function (firstArg) {<br>        return binaryFn(firstArg, secondArg);<br>      };<br>    }<br>    var applyLast = rightmostUnaryPartialApplication;</pre></p>
+<pre><code>var squareAll = applyLast(<span class="built_in">map</span>, square);
+var doubleAll = applyLast(<span class="built_in">map</span>, <span class="keyword">double</span>);
+squareAll([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]);
+doubleAll([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]);
+</code></pre><p><br>以上用法，仔细观察会发现有很多开发者都在多次使用，希望在用到或者看到这类用法时，能真正理解其区别及联系。</p>
+<h3 id="参考文献">参考文献</h3><p><strong><em><a href="https://segmentfault.com/a/1190000000765247" target="_blank" rel="external">函数式编程中局部应用（Partial Application）和局部套用（Currying）的区别</a></em></strong><br><strong><em><a href="https://medium.com/javascript-scene/curry-or-partial-application-8150044c78b8#.y39pewh95" target="_blank" rel="external">Curry or Partial Application?</a> Eric ElliottFollow Jul 20, 2015</em></strong></p>
 </span>
       
     </div>
@@ -274,17 +297,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/10/angular项目中比较好用的gulp构建插件/" rel="next" title="angular项目中比较好用的gulp构建插件">
-                <i class="fa fa-chevron-left"></i> angular项目中比较好用的gulp构建插件
+              <a href="/2016/10/14/使用Chrome-DevTools并行调试node-js/" rel="next" title="使用Chrome DevTools直接调试Node.js与JavaScript(并行)">
+                <i class="fa fa-chevron-left"></i> 使用Chrome DevTools直接调试Node.js与JavaScript(并行)
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/11/CSS一些偏僻用法-持续更新/" rel="prev" title="CSS一些偏僻用法(持续更新)">
-                CSS一些偏僻用法(持续更新) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -299,10 +318,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/07/10/gulp搭配命令行参数实现前端自动化构建的多样化/"
-     data-title="gulp搭配命令行参数实现前端自动化构建的多样化"
+        <div class="ds-share flat" data-thread-key="2016/12/27/Curry-局部套用-or-Partial-Application-局部应用/"
+     data-title="Curry(局部套用) or Partial Application(局部应用)?"
      data-content=""
-     data-url="https://github.com/xishiyi7/xishiyi7.github.io/2016/07/10/gulp搭配命令行参数实现前端自动化构建的多样化/">
+     data-url="https://github.com/xishiyi7/xishiyi7.github.io/2016/12/27/Curry-局部套用-or-Partial-Application-局部应用/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -330,8 +349,8 @@
         
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/07/10/gulp搭配命令行参数实现前端自动化构建的多样化/"
-           data-title="gulp搭配命令行参数实现前端自动化构建的多样化" data-url="https://github.com/xishiyi7/xishiyi7.github.io/2016/07/10/gulp搭配命令行参数实现前端自动化构建的多样化/">
+      <div class="ds-thread" data-thread-key="2016/12/27/Curry-局部套用-or-Partial-Application-局部应用/"
+           data-title="Curry(局部套用) or Partial Application(局部应用)?" data-url="https://github.com/xishiyi7/xishiyi7.github.io/2016/12/27/Curry-局部套用-or-Partial-Application-局部应用/">
       </div>
     
   </div>
@@ -421,7 +440,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#如果没有合适的插件怎么办？"><span class="nav-number">1.</span> <span class="nav-text">如果没有合适的插件怎么办？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搭配命令行参数"><span class="nav-number">2.</span> <span class="nav-text">搭配命令行参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用多彩的控制台输出"><span class="nav-number">3.</span> <span class="nav-text">使用多彩的控制台输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#替换多个输出的文件名"><span class="nav-number">4.</span> <span class="nav-text">替换多个输出的文件名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后"><span class="nav-number">5.</span> <span class="nav-text">最后</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#名词解释"><span class="nav-number">1.</span> <span class="nav-text">名词解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完全应用"><span class="nav-number">2.</span> <span class="nav-text">完全应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#局部应用"><span class="nav-number">3.</span> <span class="nav-text">局部应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#局部套用"><span class="nav-number">4.</span> <span class="nav-text">局部套用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#leftmost(最左形式)"><span class="nav-number">5.</span> <span class="nav-text">leftmost(最左形式)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#现实使用"><span class="nav-number">6.</span> <span class="nav-text">现实使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文献"><span class="nav-number">7.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
