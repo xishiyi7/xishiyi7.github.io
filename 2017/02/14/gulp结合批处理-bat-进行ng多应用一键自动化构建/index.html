@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="js," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -51,33 +51,21 @@
 
 
 
-<meta name="description" content="针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index&amp;lt;ul id=&quot;text&quot;&amp;gt;
-    &amp;lt;li&amp;gt;这是第一个li&amp;lt;/li&amp;gt;
-    &amp;lt;li&amp;gt;这是第二个li&amp;lt;/li&amp;gt;
-    &amp;lt;li&amp;gt;这是第三个li&amp;lt;/li&amp;gt;
-&amp;lt;/ul&amp;gt;
-解答一：bind，将当前匿名函数指向this，将i当参数传入var">
+<meta name="description" content="批处理常用常见的批处理文件有.bat文件，可用文本编辑器直接编辑内部代码，运行也比较方便，windows平台直接双击执行即可，具体请自行了解。
+需求背景angular项目中，当项目越来越大时，很多通用模块(module)可能需要抽象出来，这是一点，另外可能有某些子应用也会单独抽离出来，这是另一点。当一个大型项目同时包括多个子应用时，编码后的编译或者打包就会比较麻烦，特别是在项目持续集成的一种状态下">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一个关于闭包/bind/this的面试题">
-<meta property="og:url" content="https://github.com/xishiyi7/xishiyi7.github.io/2015/12/03/一个关于闭包-bind-this的面试题/index.html">
+<meta property="og:title" content="gulp结合批处理(.bat)进行ng多应用一键自动化构建">
+<meta property="og:url" content="https://github.com/xishiyi7/xishiyi7.github.io/2017/02/14/gulp结合批处理-bat-进行ng多应用一键自动化构建/index.html">
 <meta property="og:site_name" content="阿根廷人。">
-<meta property="og:description" content="针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index&amp;lt;ul id=&quot;text&quot;&amp;gt;
-    &amp;lt;li&amp;gt;这是第一个li&amp;lt;/li&amp;gt;
-    &amp;lt;li&amp;gt;这是第二个li&amp;lt;/li&amp;gt;
-    &amp;lt;li&amp;gt;这是第三个li&amp;lt;/li&amp;gt;
-&amp;lt;/ul&amp;gt;
-解答一：bind，将当前匿名函数指向this，将i当参数传入var">
+<meta property="og:description" content="批处理常用常见的批处理文件有.bat文件，可用文本编辑器直接编辑内部代码，运行也比较方便，windows平台直接双击执行即可，具体请自行了解。
+需求背景angular项目中，当项目越来越大时，很多通用模块(module)可能需要抽象出来，这是一点，另外可能有某些子应用也会单独抽离出来，这是另一点。当一个大型项目同时包括多个子应用时，编码后的编译或者打包就会比较麻烦，特别是在项目持续集成的一种状态下">
 <meta property="og:image" content="https://github.com/xishiyi7/xishiyi7.github.io/../../../../images/money.png">
 <meta property="og:image" content="https://github.com/xishiyi7/xishiyi7.github.io/../../../../images/money.jpg">
-<meta property="og:updated_time" content="2015-12-06T12:29:04.980Z">
+<meta property="og:updated_time" content="2017-02-14T13:48:52.195Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一个关于闭包/bind/this的面试题">
-<meta name="twitter:description" content="针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index&amp;lt;ul id=&quot;text&quot;&amp;gt;
-    &amp;lt;li&amp;gt;这是第一个li&amp;lt;/li&amp;gt;
-    &amp;lt;li&amp;gt;这是第二个li&amp;lt;/li&amp;gt;
-    &amp;lt;li&amp;gt;这是第三个li&amp;lt;/li&amp;gt;
-&amp;lt;/ul&amp;gt;
-解答一：bind，将当前匿名函数指向this，将i当参数传入var">
+<meta name="twitter:title" content="gulp结合批处理(.bat)进行ng多应用一键自动化构建">
+<meta name="twitter:description" content="批处理常用常见的批处理文件有.bat文件，可用文本编辑器直接编辑内部代码，运行也比较方便，windows平台直接双击执行即可，具体请自行了解。
+需求背景angular项目中，当项目越来越大时，很多通用模块(module)可能需要抽象出来，这是一点，另外可能有某些子应用也会单独抽离出来，这是另一点。当一个大型项目同时包括多个子应用时，编码后的编译或者打包就会比较麻烦，特别是在项目持续集成的一种状态下">
 
 
 
@@ -89,7 +77,7 @@
   };
 </script>
 
-  <title> 一个关于闭包/bind/this的面试题 | 阿根廷人。 </title>
+  <title> gulp结合批处理(.bat)进行ng多应用一键自动化构建 | 阿根廷人。 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -209,7 +197,7 @@
             
             
               
-                一个关于闭包/bind/this的面试题
+                gulp结合批处理(.bat)进行ng多应用一键自动化构建
               
             
           </h1>
@@ -218,8 +206,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-12-03T23:47:41+08:00" content="2015-12-03">
-              2015-12-03
+            <time itemprop="dateCreated" datetime="2017-02-14T12:02:43+08:00" content="2017-02-14">
+              2017-02-14
             </time>
           </span>
 
@@ -229,8 +217,8 @@
             
               <span class="post-comments-count" style="display:none">
                 &nbsp; | &nbsp;
-                <a href="/2015/12/03/一个关于闭包-bind-this的面试题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/03/一个关于闭包-bind-this的面试题/" itemprop="commentsCount"></span>
+                <a href="/2017/02/14/gulp结合批处理-bat-进行ng多应用一键自动化构建/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/14/gulp结合批处理-bat-进行ng多应用一键自动化构建/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -249,46 +237,129 @@
       
 
       
-        <span itemprop="articleBody"><h5 id="针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index"><strong><em>针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index</em></strong></h5><pre><code>&lt;ul id=<span class="string">"text"</span>&gt;
-    &lt;<span class="keyword">li</span>&gt;这是第一个<span class="keyword">li</span>&lt;/<span class="keyword">li</span>&gt;
-    &lt;<span class="keyword">li</span>&gt;这是第二个<span class="keyword">li</span>&lt;/<span class="keyword">li</span>&gt;
-    &lt;<span class="keyword">li</span>&gt;这是第三个<span class="keyword">li</span>&lt;/<span class="keyword">li</span>&gt;
-&lt;/ul&gt;
-</code></pre><h5 id="解答一：bind，将当前匿名函数指向this，将i当参数传入"><strong><em>解答一：bind，将当前匿名函数指向this，将i当参数传入</em></strong></h5><pre><code><span class="keyword">var</span> init = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{
-<span class="keyword">var</span> obj = <span class="built_in">document</span>.getElementById(<span class="string">'text'</span>);
-<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;obj.children.length;i++){
-  obj.children[i].addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>{
-    alert(i)
-  }.bind(<span class="keyword">this</span>,i))
-}
-}
-init();
-</code></pre><h5 id="解答二：闭包"><strong><em>解答二：闭包</em></strong></h5><pre><code><span class="keyword">var</span> init = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{
-<span class="keyword">var</span> lis=<span class="built_in">document</span>.querySelectorAll(<span class="string">"#text li"</span>);
-  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;lis.length;i++){
-        lis[i].onclick=(<span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>{
-              <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{
-                    alert(i);
-              };
-        })(i)
-  }
-}
-init();
-</code></pre><h5 id="解答三：最笨的方法，匹配"><strong><em>解答三：最笨的方法，匹配</em></strong></h5><pre><code><span class="keyword">var</span> init = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
-  <span class="keyword">var</span> obj = document.getElementById(<span class="string">'text'</span>);
-  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;obj.children.length;i++){
-    obj.children[i].addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span><span class="params">(item)</span></span>{
-      <span class="keyword">var</span> <span class="keyword">self</span> = item.target;
-      <span class="keyword">for</span>(<span class="keyword">var</span> j=<span class="number">0</span>;j&lt;obj.children.length;j++){
-        <span class="keyword">if</span>(<span class="keyword">self</span> == obj.children[j]){
-          alert(j);
-        }
-      }
-    })
-  }
-}
-init();
-</code></pre><hr>
+        <span itemprop="articleBody"><h3 id="批处理">批处理</h3><p>常用常见的批处理文件有.bat文件，可用文本编辑器直接编辑内部代码，运行也比较方便，windows平台直接双击执行即可，具体请自行了解。</p>
+<h3 id="需求背景">需求背景</h3><p>angular项目中，当项目越来越大时，很多通用模块(module)可能需要抽象出来，这是一点，另外可能有某些子应用也会单独抽离出来，这是另一点。<br>当一个大型项目同时包括多个子应用时，编码后的编译或者打包就会比较麻烦，特别是在项目持续集成的一种状态下，或者项目组有新成员(经验稍微薄弱)情况下。</p>
+<h3 id="需要了解">需要了解</h3><p>看下面的代码之前，如果您是angular使用者+gulp使用者，为了更好的理解下面的代码，你可能需要了解以下东西：node、npm、node_modules、gulp。<br>如果您不使用angular或者gulp，也没有太大关系，你可以通过我肤浅的解释来理解一些批处理相关的操作，以应用到其他用途。</p>
+<h3 id="示例&amp;&amp;解释">示例&amp;&amp;解释</h3><pre>
+    // 关闭回显，加上这句，当前执行的命令不会显示(即，下面这些代码不会显示在屏幕上)
+    @echo off
+
+    // 读取run_config.txt文件第一行数据，以参数domain存储，然后跳转到secondArgs命令执行
+    // 我这么写不可取，跳转secondArgs命令主要用于读取第二行数据
+    for /f %%i in (run_config.txt) do (
+    set domain=%%i
+    goto secondArgs
+    )
+
+    // 读取第二行数据以参数dir存储
+    :secondArgs
+    for /f %%i in (run_config.txt) do (
+    set dir=%%i
+    )
+
+    // 输出参数domain、dir
+    echo the root path is:%domain%
+    echo the project path is:%dir%
+
+    echo AUTO RUNING, PLEASE ENTER ACCORDING THE TIPS......
+
+    // begin命令
+    :begin
+    echo ************TIPS START************
+    echo at the first use,please input 'm' to set root path and project path according the tips.
+    echo ************TIPS ENDS!************
+
+    // 改变字体颜色，可选颜色不多
+    color 07
+    // 以命令选择的形式，给使用者选择的权利，其中将各个项目(各应用)需要的打包分离出来，分别对应相应的自动化构建脚本命令
+    // 以字母RCAPMQ一一对应，例如输入Q，则进入exit命令
+    choice /m ROOT,COMMONS,APP,PORTAL,MODIFY,EXIT /c:RCAPMQ
+
+    if errorlevel 6 goto exit
+    if errorlevel 5 goto modify
+    if errorlevel 4 goto portal
+    if errorlevel 3 goto app
+    if errorlevel 2 goto commons
+    if errorlevel 1 goto root
+
+    :root
+    color 0a
+    // 用于进入对应的盘符
+    %domain%
+    // 用于进入对应的项目目录
+    cd%dir%
+    // 执行当前目录下的gulp命令
+    node %domain%%dir%\node_modules\gulp\bin\gulp.js
+    echo -----------------------------ROOT PROCESS FINISHED!----------------------------
+    // 跳转begin命令，可以让使用者进行下一次使用
+    goto begin
+    // 以下几个命令类似上面
+
+    :commons
+    color 0d
+    %domain%
+    cd%dir%\commons
+    node %domain%%dir%\node_modules\gulp\bin\gulp.js
+    echo ----------------------------COMMONS PROCESS FINISHED!--------------------------
+    goto begin
+
+    :app
+    color oe
+    %domain%
+    cd%dir%\app
+    node %domain%%dir%\node_modules\gulp\bin\gulp.js debug
+    echo ---------------------------APP_BASE PROCESS FINISHED!--------------------------
+    goto begin
+
+    // 该命令可以进行多个应用的一键构建
+    :portal
+    color 0a
+    %domain%
+    cd%dir%
+    node %domain%%dir%\node_modules\gulp\bin\gulp.js
+    cls
+    echo -----------------------------ROOT PROCESS FINISHED!----------------------------
+    echo ***************************COMMONS PROCESS STARTING!***************************
+    color 0d
+    %domain%
+    cd%dir%\commons
+    node %domain%%dir%\node_modules\gulp\bin\gulp.js
+    cls
+    echo ----------------------------COMMONS PROCESS FINISHED!--------------------------
+    echo ******************************APP PROCESS STARTING*****************************
+    color 0e
+    %domain%
+    cd%dir%\app
+    node %domain%%dir%\node_modules\gulp\bin\gulp.js debug
+    cls
+    echo ------------------------------APP PROCESS FINISHED-----------------------------
+    echo *******************************************************************************
+    color 0f
+    goto begin
+
+    // modify命令用于修改盘符及项目目录路径
+    :modify
+    // 删除config文件
+    del run_config.txt
+    // '/p'会暂停当前命令
+    // 此处主要用于获取用户输入
+    set /p domain=please input yours root path，end with ':', eg.'d:':
+    echo the root path is:%domain%
+    // 输出输入的信息并保存到config文件中
+    @echo %domain%>>run_config.txt
+
+    set /p dir=please input yours project path, start with '/', eg. '/xx/xx':
+    echo the project path is:%dir%
+    @echo %dir%>>run_config.txt
+    goto begin
+
+    // 关闭当前窗口
+    :exit
+    pause
+</pre>
+
+<h3 id="心得">心得</h3><p>弄这个.bat文件，主要也是为了偷懒。花了一点时间查找了相应的操作、使用说明，也算是初步可用。<br>目前使用起来也比较方便，可以在以后有机会时再次自定义一个类似文件，便捷开发，提高效率。</p>
+<hr>
 <hr>
 <p><img src="../../../../images/money.png" alt="money">☜☜☜ <strong><em>wechat</em></strong> 『『『<strong><em> reward 点击扫码打赏 ~~~ ^_^ </em></strong>  』』』<strong><em>alipay</em></strong> ☞☞☞   <img src="../../../../images/money.jpg" alt="money"></p>
 <hr>
@@ -299,28 +370,18 @@ init();
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/js/" rel="tag">#js</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/12/03/hello-web/" rel="next" title="Hello Web">
-                <i class="fa fa-chevron-left"></i> Hello Web
+              <a href="/2016/12/27/Curry-局部套用-or-Partial-Application-局部应用/" rel="next" title="Curry(局部套用) or Partial Application(局部应用)?">
+                <i class="fa fa-chevron-left"></i> Curry(局部套用) or Partial Application(局部应用)?
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/12/06/Effective-JavaScript-一/" rel="prev" title="Effective JavaScript(一)">
-                Effective JavaScript(一) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -335,10 +396,10 @@ init();
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2015/12/03/一个关于闭包-bind-this的面试题/"
-     data-title="一个关于闭包/bind/this的面试题"
+        <div class="ds-share flat" data-thread-key="2017/02/14/gulp结合批处理-bat-进行ng多应用一键自动化构建/"
+     data-title="gulp结合批处理(.bat)进行ng多应用一键自动化构建"
      data-content=""
-     data-url="https://github.com/xishiyi7/xishiyi7.github.io/2015/12/03/一个关于闭包-bind-this的面试题/">
+     data-url="https://github.com/xishiyi7/xishiyi7.github.io/2017/02/14/gulp结合批处理-bat-进行ng多应用一键自动化构建/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -366,8 +427,8 @@ init();
         
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/12/03/一个关于闭包-bind-this的面试题/"
-           data-title="一个关于闭包/bind/this的面试题" data-url="https://github.com/xishiyi7/xishiyi7.github.io/2015/12/03/一个关于闭包-bind-this的面试题/">
+      <div class="ds-thread" data-thread-key="2017/02/14/gulp结合批处理-bat-进行ng多应用一键自动化构建/"
+           data-title="gulp结合批处理(.bat)进行ng多应用一键自动化构建" data-url="https://github.com/xishiyi7/xishiyi7.github.io/2017/02/14/gulp结合批处理-bat-进行ng多应用一键自动化构建/">
       </div>
     
   </div>
@@ -457,7 +518,7 @@ init();
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index"><span class="nav-number">1.</span> <span class="nav-text">针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#解答一：bind，将当前匿名函数指向this，将i当参数传入"><span class="nav-number">2.</span> <span class="nav-text">解答一：bind，将当前匿名函数指向this，将i当参数传入</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#解答二：闭包"><span class="nav-number">3.</span> <span class="nav-text">解答二：闭包</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#解答三：最笨的方法，匹配"><span class="nav-number">4.</span> <span class="nav-text">解答三：最笨的方法，匹配</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#批处理"><span class="nav-number">1.</span> <span class="nav-text">批处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需求背景"><span class="nav-number">2.</span> <span class="nav-text">需求背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需要了解"><span class="nav-number">3.</span> <span class="nav-text">需要了解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例&&解释"><span class="nav-number">4.</span> <span class="nav-text">示例&&解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#心得"><span class="nav-number">5.</span> <span class="nav-text">心得</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
