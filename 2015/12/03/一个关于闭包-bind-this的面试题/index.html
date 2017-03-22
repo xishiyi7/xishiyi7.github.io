@@ -51,33 +51,34 @@
 
 
 
-<meta name="description" content="针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index&amp;lt;ul id=&quot;text&quot;&amp;gt;
+<meta name="description" content="针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index&amp;lt;ul id=&amp;quot;text&amp;quot;&amp;gt;
     &amp;lt;li&amp;gt;这是第一个li&amp;lt;/li&amp;gt;
     &amp;lt;li&amp;gt;这是第二个li&amp;lt;/li&amp;gt;
     &amp;lt;li&amp;gt;这是第三个li&amp;lt;/li&amp;gt;
 &amp;lt;/ul&amp;gt;
-解答一：bind，将当前匿名函数指向this，将i当参数传入var">
+解答一：bind，将当前匿名函数指向this，将">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一个关于闭包/bind/this的面试题">
 <meta property="og:url" content="https://github.com/xishiyi7/xishiyi7.github.io/2015/12/03/一个关于闭包-bind-this的面试题/index.html">
 <meta property="og:site_name" content="阿根廷人。">
-<meta property="og:description" content="针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index&amp;lt;ul id=&quot;text&quot;&amp;gt;
+<meta property="og:description" content="针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index&amp;lt;ul id=&amp;quot;text&amp;quot;&amp;gt;
     &amp;lt;li&amp;gt;这是第一个li&amp;lt;/li&amp;gt;
     &amp;lt;li&amp;gt;这是第二个li&amp;lt;/li&amp;gt;
     &amp;lt;li&amp;gt;这是第三个li&amp;lt;/li&amp;gt;
 &amp;lt;/ul&amp;gt;
-解答一：bind，将当前匿名函数指向this，将i当参数传入var">
+解答一：bind，将当前匿名函数指向this，将">
 <meta property="og:image" content="https://github.com/xishiyi7/xishiyi7.github.io/../../../../images/money.png">
 <meta property="og:image" content="https://github.com/xishiyi7/xishiyi7.github.io/../../../../images/money.jpg">
 <meta property="og:updated_time" content="2015-12-06T12:29:04.980Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一个关于闭包/bind/this的面试题">
-<meta name="twitter:description" content="针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index&amp;lt;ul id=&quot;text&quot;&amp;gt;
+<meta name="twitter:description" content="针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index&amp;lt;ul id=&amp;quot;text&amp;quot;&amp;gt;
     &amp;lt;li&amp;gt;这是第一个li&amp;lt;/li&amp;gt;
     &amp;lt;li&amp;gt;这是第二个li&amp;lt;/li&amp;gt;
     &amp;lt;li&amp;gt;这是第三个li&amp;lt;/li&amp;gt;
 &amp;lt;/ul&amp;gt;
-解答一：bind，将当前匿名函数指向this，将i当参数传入var">
+解答一：bind，将当前匿名函数指向this，将">
+<meta name="twitter:image" content="https://github.com/xishiyi7/xishiyi7.github.io/../../../../images/money.png">
 
 
 
@@ -249,38 +250,38 @@
       
 
       
-        <span itemprop="articleBody"><h5 id="针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index"><strong><em>针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index</em></strong></h5><pre><code>&lt;ul id=<span class="string">"text"</span>&gt;
-    &lt;<span class="keyword">li</span>&gt;这是第一个<span class="keyword">li</span>&lt;/<span class="keyword">li</span>&gt;
-    &lt;<span class="keyword">li</span>&gt;这是第二个<span class="keyword">li</span>&lt;/<span class="keyword">li</span>&gt;
-    &lt;<span class="keyword">li</span>&gt;这是第三个<span class="keyword">li</span>&lt;/<span class="keyword">li</span>&gt;
+        <span itemprop="articleBody"><h5 id="针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index"><a href="#针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index" class="headerlink" title="针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index"></a><strong><em>针对下面这个ul，为每一个li添加一个点击事件，弹出对应的index</em></strong></h5><pre><code>&lt;ul id=&quot;text&quot;&gt;
+    &lt;li&gt;这是第一个li&lt;/li&gt;
+    &lt;li&gt;这是第二个li&lt;/li&gt;
+    &lt;li&gt;这是第三个li&lt;/li&gt;
 &lt;/ul&gt;
-</code></pre><h5 id="解答一：bind，将当前匿名函数指向this，将i当参数传入"><strong><em>解答一：bind，将当前匿名函数指向this，将i当参数传入</em></strong></h5><pre><code><span class="keyword">var</span> init = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{
-<span class="keyword">var</span> obj = <span class="built_in">document</span>.getElementById(<span class="string">'text'</span>);
-<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;obj.children.length;i++){
-  obj.children[i].addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>{
+</code></pre><h5 id="解答一：bind，将当前匿名函数指向this，将i当参数传入"><a href="#解答一：bind，将当前匿名函数指向this，将i当参数传入" class="headerlink" title="解答一：bind，将当前匿名函数指向this，将i当参数传入"></a><strong><em>解答一：bind，将当前匿名函数指向this，将i当参数传入</em></strong></h5><pre><code>var init = function(){
+var obj = document.getElementById(&apos;text&apos;);
+for(var i=0;i&lt;obj.children.length;i++){
+  obj.children[i].addEventListener(&apos;click&apos;,function(i){
     alert(i)
-  }.bind(<span class="keyword">this</span>,i))
+  }.bind(this,i))
 }
 }
 init();
-</code></pre><h5 id="解答二：闭包"><strong><em>解答二：闭包</em></strong></h5><pre><code><span class="keyword">var</span> init = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{
-<span class="keyword">var</span> lis=<span class="built_in">document</span>.querySelectorAll(<span class="string">"#text li"</span>);
-  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;lis.length;i++){
-        lis[i].onclick=(<span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>{
-              <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{
+</code></pre><h5 id="解答二：闭包"><a href="#解答二：闭包" class="headerlink" title="解答二：闭包"></a><strong><em>解答二：闭包</em></strong></h5><pre><code>var init = function(){
+var lis=document.querySelectorAll(&quot;#text li&quot;);
+  for(var i=0;i&lt;lis.length;i++){
+        lis[i].onclick=(function(i){
+              return function(){
                     alert(i);
               };
         })(i)
   }
 }
 init();
-</code></pre><h5 id="解答三：最笨的方法，匹配"><strong><em>解答三：最笨的方法，匹配</em></strong></h5><pre><code><span class="keyword">var</span> init = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
-  <span class="keyword">var</span> obj = document.getElementById(<span class="string">'text'</span>);
-  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;obj.children.length;i++){
-    obj.children[i].addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span><span class="params">(item)</span></span>{
-      <span class="keyword">var</span> <span class="keyword">self</span> = item.target;
-      <span class="keyword">for</span>(<span class="keyword">var</span> j=<span class="number">0</span>;j&lt;obj.children.length;j++){
-        <span class="keyword">if</span>(<span class="keyword">self</span> == obj.children[j]){
+</code></pre><h5 id="解答三：最笨的方法，匹配"><a href="#解答三：最笨的方法，匹配" class="headerlink" title="解答三：最笨的方法，匹配"></a><strong><em>解答三：最笨的方法，匹配</em></strong></h5><pre><code>var init = function(){
+  var obj = document.getElementById(&apos;text&apos;);
+  for(var i=0;i&lt;obj.children.length;i++){
+    obj.children[i].addEventListener(&apos;click&apos;,function(item){
+      var self = item.target;
+      for(var j=0;j&lt;obj.children.length;j++){
+        if(self == obj.children[j]){
           alert(j);
         }
       }
@@ -411,7 +412,7 @@ init();
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-count">29</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

@@ -83,6 +83,7 @@ Node.js 6.3+, 这个可上Node.js官网自行下载；
 Chrome 55+. 如果您本地的chrome升级到最新版后还是&amp;lt;55, 可以从此处下载：Chrome Canary，亲测可行。
 
 配置就目前来说，在浏览器端并行调试JavaScript与Node.js还属于新特性，新体验。为了能够正常使用，你还需要">
+<meta name="twitter:image" content="https://github.com/xishiyi7/xishiyi7.github.io/../../../../images/20161014/1.png">
 
 
 
@@ -255,11 +256,11 @@ Chrome 55+. 如果您本地的chrome升级到最新版后还是&amp;lt;55, 可�
 
       
         <span itemprop="articleBody"><p><strong><em>Good News：</em></strong> 现在我们可以用浏览器调试node.js了!!!</p>
-<h3 id="前提">前提</h3><ul>
+<h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><ul>
 <li>Node.js 6.3+, 这个可上<a href="https://nodejs.org/en/download/current/" target="_blank" rel="external">Node.js官网</a>自行下载；</li>
 <li>Chrome 55+. 如果您本地的chrome升级到最新版后还是&lt;55, 可以从此处下载：<a href="https://www.google.com/intl/en/chrome/browser/canary.html" target="_blank" rel="external">Chrome Canary</a>，亲测可行。</li>
 </ul>
-<h3 id="配置">配置</h3><p>就目前来说，在浏览器端并行调试JavaScript与Node.js还属于新特性，新体验。为了能够正常使用，你还需要做如下配置：</p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>就目前来说，在浏览器端并行调试JavaScript与Node.js还属于新特性，新体验。为了能够正常使用，你还需要做如下配置：</p>
 <ul>
 <li>输入url：chrome://flags/#enable-devtools-experiments. 注：如果使用中文版Chrome，显示的配置项名称应该为： <code>开发者工具实验性功能</code> ,如下图;<br><code class="normal-img"><img src="../../../../images/20161014/1.png" alt="flags"></code></li>
 <li>启用它;</li>
@@ -268,10 +269,10 @@ Chrome 55+. 如果您本地的chrome升级到最新版后还是&amp;lt;55, 可�
 <li>找到 <strong><em>Node debugging</em></strong> , 勾选.</li>
 </ul>
 <p>最后应该能看到类似下图，表示环境已准备好:<br><code class="normal-img"><img src="../../../../images/20161014/2.png" alt="debugging"></code></p>
-<h3 id="调试">调试</h3><p>调试很简单，像普通的js文件一样，利用DevTools进行断点调试.</p>
-<h3 id="运行Node-js_app">运行Node.js app</h3><p>需要在debug模式下运行Node.js应用，很简单，只要添加 –inspect 参数即可。<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">node</span><span class="identifier"> </span><span class="title">--inpect</span> server.js</span><br></pre></td></tr></table></figure></p>
+<h3 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h3><p>调试很简单，像普通的js文件一样，利用DevTools进行断点调试.</p>
+<h3 id="运行Node-js-app"><a href="#运行Node-js-app" class="headerlink" title="运行Node.js app"></a>运行Node.js app</h3><p>需要在debug模式下运行Node.js应用，很简单，只要添加 –inspect 参数即可。<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">node</span> <span class="title">--inpect</span> server.js</div></pre></td></tr></table></figure></p>
 <p>注：server.js 为我自己的应用文件，自定义，下图中为’ node.js ‘。如果顺利的话，应该能看到类似下图信息：<br><code class="normal-img"><img src="../../../../images/20161014/3.png" alt="debugging"></code><br>运行后，可以看到在 <strong><em>DevTools -&gt; Sources</em></strong> 有 <strong><em>server.js</em></strong> 应用：<br><code class="normal-img"><img src="../../../../images/20161014/4.png" alt="source"></code><br>展开后，可以查看当前node应用的js文件，至此，您已经可以利用Chrome进行并行调试操作了。<br><code class="normal-img"><img src="../../../../images/20161014/5.png" alt="success"></code></p>
-<h3 id="最后">最后</h3><p>使用此新版Chrome，还有许多其他的功能，比如在调试期间修改文件内容、保存文件快照等。<br>最后的最后，感谢原作者 <strong><em>Serg Hospodarets</em></strong> 的分享，Thank You!</p>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>使用此新版Chrome，还有许多其他的功能，比如在调试期间修改文件内容、保存文件快照等。<br>最后的最后，感谢原作者 <strong><em>Serg Hospodarets</em></strong> 的分享，Thank You!</p>
 <p><strong><em>(本文译自：<a href="https://blog.hospodarets.com/nodejs-debugging-in-chrome-devtools?utm_source=javascriptweekly&amp;utm_medium=email" target="_blank" rel="external">Node.js debugging with Chrome DevTools (in parallel with browser JavaScript)</a> By Serg Hospodarets, September 29, 2016)</em></strong></p>
 <hr>
 <hr>
@@ -390,7 +391,7 @@ Chrome 55+. 如果您本地的chrome升级到最新版后还是&amp;lt;55, 可�
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-count">29</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -436,7 +437,7 @@ Chrome 55+. 如果您本地的chrome升级到最新版后还是&amp;lt;55, 可�
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前提"><span class="nav-number">1.</span> <span class="nav-text">前提</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置"><span class="nav-number">2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调试"><span class="nav-number">3.</span> <span class="nav-text">调试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行Node-js_app"><span class="nav-number">4.</span> <span class="nav-text">运行Node.js app</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后"><span class="nav-number">5.</span> <span class="nav-text">最后</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前提"><span class="nav-number">1.</span> <span class="nav-text">前提</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置"><span class="nav-number">2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调试"><span class="nav-number">3.</span> <span class="nav-text">调试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行Node-js-app"><span class="nav-number">4.</span> <span class="nav-text">运行Node.js app</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后"><span class="nav-number">5.</span> <span class="nav-text">最后</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

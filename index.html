@@ -177,15 +177,93 @@
 
     
     
+
+    
       
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/22/JavaScript发展简介/" itemprop="url">
+                  'JavaScript发展简介'
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2017-03-22T00:05:10+08:00" content="2017-03-22">
+              2017-03-22
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count" style="display:none">
+                &nbsp; | &nbsp;
+                <a href="/2017/03/22/JavaScript发展简介/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/22/JavaScript发展简介/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
       
-        
-        
-        
       
 
       
-    
+        
+          <span itemprop="articleBody">
+            
+              
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
@@ -254,8 +332,8 @@
         
           <span itemprop="articleBody">
             
-              <h3 id="JS模块简介">JS模块简介</h3><p>js模块化，简单说就是将系统或者功能分隔成单独的、互不影响的代码片段，经过严格定义接口，使各模块间互不影响，且可以为其他所用。<br>常见的模块化有，C中的include (.h)文件、java中的import等。</p>
-<h3 id="为什么JS需要模块">为什么JS需要模块</h3><p>很显然，没有模块我们也可以实现同样的功能，为什么我们还要使用模块来写js代码呢？下面几点是模块化给我们带来的一些变化：</p>
+              <h3 id="JS模块简介"><a href="#JS模块简介" class="headerlink" title="JS模块简介"></a>JS模块简介</h3><p>js模块化，简单说就是将系统或者功能分隔成单独的、互不影响的代码片段，经过严格定义接口，使各模块间互不影响，且可以为其他所用。<br>常见的模块化有，C中的include (.h)文件、java中的import等。</p>
+<h3 id="为什么JS需要模块"><a href="#为什么JS需要模块" class="headerlink" title="为什么JS需要模块"></a>为什么JS需要模块</h3><p>很显然，没有模块我们也可以实现同样的功能，为什么我们还要使用模块来写js代码呢？下面几点是模块化给我们带来的一些变化：</p>
 <ul>
 <li>抽象代码：我们在使用模块来调用一个api时，可以不用知道内部是如何实现的，避免去理解其中复杂的代码；</li>
 <li>封装代码：在不需要再次修改代码的前提下，我们可以在模块内部隐藏其具体实现；</li>
@@ -263,21 +341,21 @@
 <li>管理依赖：可以通过简单的修改依赖项来管理功能的实现，而不需要去重新修改自己内部的代码实现。</li>
 <li>…</li>
 </ul>
-<h3 id="ES5及之前的模块系统">ES5及之前的模块系统</h3><p>在ES5及之前版本，还没有原生的模块语法。不过这并不代表ES5之前，前端没有使用模块。简单介绍两种：IIFE、Revealing Module.</p>
-<h3 id="IIFE">IIFE</h3><p>Immediately Invoked Function Expression，立即执行函数表达式。<br><figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">function</span><span class="list">()</span><span class="collection">&#123;</span><br><span class="line">     // ...</span><br><span class="line">   &#125;</span>)</span><span class="list">()</span></span><br></pre></td></tr></table></figure></p>
-<p>看上面的代码，IIFE可以说成是一个在定义的时候就执行的匿名函数。注意函数是先被”()”包起来了，然后后面紧跟”()”表示执行函数。如果是以下代码，将会报错：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="string">'test'</span>);</span><br><span class="line">   &#125;()</span><br><span class="line"></span><br><span class="line">   <span class="comment">// =&gt; Uncaught SyntaxError: Unexpected token )</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="ES5及之前的模块系统"><a href="#ES5及之前的模块系统" class="headerlink" title="ES5及之前的模块系统"></a>ES5及之前的模块系统</h3><p>在ES5及之前版本，还没有原生的模块语法。不过这并不代表ES5之前，前端没有使用模块。简单介绍两种：IIFE、Revealing Module.</p>
+<h3 id="IIFE"><a href="#IIFE" class="headerlink" title="IIFE"></a>IIFE</h3><p>Immediately Invoked Function Expression，立即执行函数表达式。<br><figure class="highlight clojure"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(<span class="name">function</span>()&#123;</div><div class="line">     // ...</div><div class="line">   &#125;)()</div></pre></td></tr></table></figure></p>
+<p>看上面的代码，IIFE可以说成是一个在定义的时候就执行的匿名函数。注意函数是先被”()”包起来了，然后后面紧跟”()”表示执行函数。如果是以下代码，将会报错：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">     <span class="built_in">console</span>.log(<span class="string">'test'</span>);</div><div class="line">   &#125;()</div><div class="line"></div><div class="line">   <span class="comment">// =&gt; Uncaught SyntaxError: Unexpected token )</span></div></pre></td></tr></table></figure></p>
 <p>这种写法表示，先定义一个匿名函数，然后再去解析”()”。由于在第一行”function”出现在首位，这表明此处定义一个函数，函数后紧跟”()”，此时表示单独解析”()”，就会报出上面的错误信息，因此需要先将函数定义包裹起来。<br>“(function…)”这种写法表示执行”()”内部代码，并返回该语句执行结果，此处返回结果为该函数，后面紧跟”()”即表示执行该函数。IIFE可以帮助我们做到：</p>
 <ul>
 <li>不需要了解具体的代码实现情况下取得想要的效果；</li>
 <li>在内部定义的变量不会污染全局作用域。</li>
 </ul>
 <p>显而易见，这种编码方式并没有提供良好的机制来解决依赖管理问题。</p>
-<h3 id="Revealing_Module">Revealing Module</h3><p>根据字面暂解释为揭示模式，与IIFE形式类似，但是提供了一个返回值。方便集中管理公有的api，使模块、公用api更加简洁清晰。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Expose module as global variable</span></span><br><span class="line">   <span class="keyword">var</span> singleton = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="comment">// Inner logic</span></span><br><span class="line">     <span class="function"><span class="keyword">function</span> <span class="title">sayHello</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="string">'Hello'</span>);</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="comment">// Expose API</span></span><br><span class="line">     <span class="keyword">return</span> &#123;</span><br><span class="line">       sayHello: sayHello</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;()</span><br></pre></td></tr></table></figure></p>
-<p>稍微注意下，上面的代码，我们并没有用”()”去包裹，因为关键字”function”并不在该行的开头。<br>我们可以像下面这样使用模块api:<br><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Access module functionality</span></span><br><span class="line">   singleton.sayHello();</span><br><span class="line">   <span class="comment">// =&gt; Hello</span></span><br></pre></td></tr></table></figure></p>
-<p>当然，我们也可以以构造函数形式导出：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Expose module as global variable</span></span><br><span class="line">   <span class="keyword">var</span> Module = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">     <span class="comment">// Inner logic</span></span><br><span class="line">     <span class="function"><span class="keyword">function</span> <span class="title">sayHello</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="string">'Hello'</span>);</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="comment">// Expose API</span></span><br><span class="line">     <span class="keyword">return</span> &#123;</span><br><span class="line">       sayHello: sayHello</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
-<p>请注意，上面函数在定义的时候并没有执行。<br>我们可以这么使用它：<br><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="keyword">module</span> = <span class="keyword">new</span> <span class="keyword">Module</span>();</span><br><span class="line"><span class="keyword">module</span>.sayHello();	<span class="comment">// =&gt; Hello</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="Revealing-Module"><a href="#Revealing-Module" class="headerlink" title="Revealing Module"></a>Revealing Module</h3><p>根据字面暂解释为揭示模式，与IIFE形式类似，但是提供了一个返回值。方便集中管理公有的api，使模块、公用api更加简洁清晰。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Expose module as global variable</span></div><div class="line">   <span class="keyword">var</span> singleton = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">     <span class="comment">// Inner logic</span></div><div class="line">     <span class="function"><span class="keyword">function</span> <span class="title">sayHello</span>(<span class="params"></span>)</span>&#123;</div><div class="line">       <span class="built_in">console</span>.log(<span class="string">'Hello'</span>);</div><div class="line">     &#125;</div><div class="line">     <span class="comment">// Expose API</span></div><div class="line">     <span class="keyword">return</span> &#123;</div><div class="line">       <span class="attr">sayHello</span>: sayHello</div><div class="line">     &#125;</div><div class="line">   &#125;()</div></pre></td></tr></table></figure></p>
+<p>稍微注意下，上面的代码，我们并没有用”()”去包裹，因为关键字”function”并不在该行的开头。<br>我们可以像下面这样使用模块api:<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Access module functionality</span></div><div class="line">   <span class="selector-tag">singleton</span><span class="selector-class">.sayHello</span>();</div><div class="line">   <span class="comment">// =&gt; Hello</span></div></pre></td></tr></table></figure></p>
+<p>当然，我们也可以以构造函数形式导出：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Expose module as global variable</span></div><div class="line">   <span class="keyword">var</span> Module = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line"></div><div class="line">     <span class="comment">// Inner logic</span></div><div class="line">     <span class="function"><span class="keyword">function</span> <span class="title">sayHello</span>(<span class="params"></span>)</span>&#123;</div><div class="line">       <span class="built_in">console</span>.log(<span class="string">'Hello'</span>);</div><div class="line">     &#125;</div><div class="line"></div><div class="line">     <span class="comment">// Expose API</span></div><div class="line">     <span class="keyword">return</span> &#123;</div><div class="line">       <span class="attr">sayHello</span>: sayHello</div><div class="line">     &#125;</div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
+<p>请注意，上面函数在定义的时候并没有执行。<br>我们可以这么使用它：<br><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> <span class="keyword">module</span> = <span class="keyword">new</span> <span class="keyword">Module</span>();</div><div class="line"><span class="keyword">module</span>.sayHello();	<span class="comment">// =&gt; Hello</span></div></pre></td></tr></table></figure></p>
 <p>与IIFE一样，揭示模式并没有提供良好的解决依赖管理的方案。</p>
-<h3 id="更多模块化解决方案">更多模块化解决方案</h3><p>ES6或者ES2015，自带原生的模块语法。<br>在这之前，有以下几种常见的用于模块化的解决方案：</p>
+<h3 id="更多模块化解决方案"><a href="#更多模块化解决方案" class="headerlink" title="更多模块化解决方案"></a>更多模块化解决方案</h3><p>ES6或者ES2015，自带原生的模块语法。<br>在这之前，有以下几种常见的用于模块化的解决方案：</p>
 <ul>
 <li>AMD</li>
 <li>CMD</li>
@@ -286,15 +364,15 @@
 <li>System.register</li>
 <li>ES6</li>
 </ul>
-<h3 id="AMD">AMD</h3><p>AMD，Asynchronous Module Definition，异步模块定义。AMD形式被用于浏览器端，使用”define”来定义模块依赖：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Calling define with a dependency array and a factory function</span></span><br><span class="line">   define([<span class="string">'dep1'</span>, <span class="string">'dep2'</span>], <span class="function"><span class="keyword">function</span> <span class="params">(dep1, dep2)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="comment">//Define the module value by returning a value.</span></span><br><span class="line">       <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;&#125;;</span><br><span class="line">   &#125;);</span><br></pre></td></tr></table></figure></p>
-<h3 id="CMD">CMD</h3><p>CMD，Common Module Definition，通用模块定义。该规范由国内大神玉伯提出，与AMD区别在与AMD是依赖关系前置，有该依赖就必须先加载依赖，CMD是按需加载。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// CMD</span></span><br><span class="line">   define(<span class="function"><span class="keyword">function</span>(<span class="params">require, exports, module</span>) </span>&#123;</span><br><span class="line">   <span class="keyword">var</span> a = <span class="built_in">require</span>(<span class="string">'./a'</span>)</span><br><span class="line">   a.doSomething()</span><br><span class="line">   <span class="comment">// 此处略去 100 行</span></span><br><span class="line">   <span class="keyword">var</span> b = <span class="built_in">require</span>(<span class="string">'./b'</span>) <span class="comment">// 依赖可以就近书写</span></span><br><span class="line">   b.doSomething()</span><br><span class="line">   <span class="comment">// ...</span></span><br><span class="line">   &#125;)</span><br><span class="line"></span><br><span class="line">   <span class="comment">// AMD 默认推荐的是</span></span><br><span class="line">   define([<span class="string">'./a'</span>, <span class="string">'./b'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123; <span class="comment">// 依赖必须一开始就写好</span></span><br><span class="line">   a.doSomething()</span><br><span class="line">   <span class="comment">// 此处略去 100 行</span></span><br><span class="line">   b.doSomething()</span><br><span class="line">   ...</span><br><span class="line">   &#125;)</span><br></pre></td></tr></table></figure></p>
-<h3 id="CommonJs">CommonJs</h3><p>CommonJs在Node.js中用的较多，使用”require”来定义依赖，使用”module.exports”来定义模块:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> dep1 = <span class="built_in">require</span>(<span class="string">'./dep1'</span>);</span><br><span class="line">   <span class="keyword">var</span> dep2 = <span class="built_in">require</span>(<span class="string">'./dep2'</span>);</span><br><span class="line"></span><br><span class="line">   <span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="comment">// ...</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="UMD">UMD</h3><p>UMD，Universal Module Definition，通用模块定义。可以用于浏览器端与Node.js端：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">root, factory</span>) </span>&#123;</span><br><span class="line">     <span class="keyword">if</span> (<span class="keyword">typeof</span> define === <span class="string">'function'</span> &amp;&amp; define.amd) &#123;</span><br><span class="line">       <span class="comment">// AMD. Register as an anonymous module.</span></span><br><span class="line">         define([<span class="string">'b'</span>], factory);</span><br><span class="line">     &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">module</span> === <span class="string">'object'</span> &amp;&amp; <span class="built_in">module</span>.exports) &#123;</span><br><span class="line">       <span class="comment">// Node. Does not work with strict CommonJS, but</span></span><br><span class="line">       <span class="comment">// only CommonJS-like environments that support module.exports,</span></span><br><span class="line">       <span class="comment">// like Node.</span></span><br><span class="line">       <span class="built_in">module</span>.exports = factory(<span class="built_in">require</span>(<span class="string">'b'</span>));</span><br><span class="line">     &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">       <span class="comment">// Browser globals (root is window)</span></span><br><span class="line">       root.returnExports = factory(root.b);</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;(<span class="keyword">this</span>, <span class="function"><span class="keyword">function</span> (<span class="params">b</span>) </span>&#123;</span><br><span class="line">     <span class="comment">//use b in some fashion.</span></span><br><span class="line"></span><br><span class="line">     <span class="comment">// Just return a value to define the module export.</span></span><br><span class="line">     <span class="comment">// This example returns an object, but the module</span></span><br><span class="line">     <span class="comment">// can return a function as the exported value.</span></span><br><span class="line">     <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">   &#125;));</span><br></pre></td></tr></table></figure></p>
-<h3 id="System-register">System.register</h3><p>System.register方式设计初衷主要是为了在ES5中能够支持ES6模块语法:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; p <span class="keyword">as</span> q &#125; <span class="keyword">from</span> <span class="string">'./dep'</span>;</span><br><span class="line">   <span class="keyword">var</span> s = <span class="string">'local'</span>;</span><br><span class="line">   <span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">     <span class="keyword">return</span> q;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">C</span> </span>&#123;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="ES6_module">ES6 module</h3><p>ES6中自带原生的模块语法，使用关键字”export”来导出模块的公用api：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// lib.js</span></span><br><span class="line">   <span class="comment">// Export the function</span></span><br><span class="line">   <span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">sayHello</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="string">'Hello'</span>);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">// Do not export the function</span></span><br><span class="line">   <span class="function"><span class="keyword">function</span> <span class="title">somePrivateFunction</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="comment">// ...</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
-<p>以关键字”import”来导入模块：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; sayHello &#125; <span class="keyword">from</span> <span class="string">'./lib'</span>;</span><br><span class="line">   sayHello();</span><br><span class="line">   <span class="comment">// =&gt; Hello</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="AMD"><a href="#AMD" class="headerlink" title="AMD"></a>AMD</h3><p>AMD，Asynchronous Module Definition，异步模块定义。AMD形式被用于浏览器端，使用”define”来定义模块依赖：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//Calling define with a dependency array and a factory function</span></div><div class="line">   define([<span class="string">'dep1'</span>, <span class="string">'dep2'</span>], <span class="function"><span class="keyword">function</span> <span class="params">(dep1, dep2)</span> </span>&#123;</div><div class="line"></div><div class="line">       <span class="comment">//Define the module value by returning a value.</span></div><div class="line">       <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;&#125;;</div><div class="line">   &#125;);</div></pre></td></tr></table></figure></p>
+<h3 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a>CMD</h3><p>CMD，Common Module Definition，通用模块定义。该规范由国内大神玉伯提出，与AMD区别在与AMD是依赖关系前置，有该依赖就必须先加载依赖，CMD是按需加载。<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// CMD</span></div><div class="line">   define(function(require, exports, module) &#123;</div><div class="line">   <span class="selector-tag">var</span> <span class="selector-tag">a</span> = require(<span class="string">'./a'</span>)</div><div class="line">   <span class="selector-tag">a</span>.doSomething()</div><div class="line">   <span class="comment">// 此处略去 100 行</span></div><div class="line">   <span class="selector-tag">var</span> <span class="selector-tag">b</span> = require(<span class="string">'./b'</span>) <span class="comment">// 依赖可以就近书写</span></div><div class="line">   <span class="selector-tag">b</span>.doSomething()</div><div class="line">   <span class="comment">// ...</span></div><div class="line">   &#125;)</div><div class="line"></div><div class="line">   <span class="comment">// AMD 默认推荐的是</span></div><div class="line">   define([<span class="string">'./a'</span>, <span class="string">'./b'</span>], function(<span class="selector-tag">a</span>, b) &#123; <span class="comment">// 依赖必须一开始就写好</span></div><div class="line">   <span class="selector-tag">a</span>.doSomething()</div><div class="line">   <span class="comment">// 此处略去 100 行</span></div><div class="line">   <span class="selector-tag">b</span>.doSomething()</div><div class="line">   ...</div><div class="line">   &#125;)</div></pre></td></tr></table></figure></p>
+<h3 id="CommonJs"><a href="#CommonJs" class="headerlink" title="CommonJs"></a>CommonJs</h3><p>CommonJs在Node.js中用的较多，使用”require”来定义依赖，使用”module.exports”来定义模块:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> dep1 = <span class="built_in">require</span>(<span class="string">'./dep1'</span>);</div><div class="line">   <span class="keyword">var</span> dep2 = <span class="built_in">require</span>(<span class="string">'./dep2'</span>);</div><div class="line"></div><div class="line">   <span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">     <span class="comment">// ...</span></div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
+<h3 id="UMD"><a href="#UMD" class="headerlink" title="UMD"></a>UMD</h3><p>UMD，Universal Module Definition，通用模块定义。可以用于浏览器端与Node.js端：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">root, factory</span>) </span>&#123;</div><div class="line">     <span class="keyword">if</span> (<span class="keyword">typeof</span> define === <span class="string">'function'</span> &amp;&amp; define.amd) &#123;</div><div class="line">       <span class="comment">// AMD. Register as an anonymous module.</span></div><div class="line">         define([<span class="string">'b'</span>], factory);</div><div class="line">     &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">module</span> === <span class="string">'object'</span> &amp;&amp; <span class="built_in">module</span>.exports) &#123;</div><div class="line">       <span class="comment">// Node. Does not work with strict CommonJS, but</span></div><div class="line">       <span class="comment">// only CommonJS-like environments that support module.exports,</span></div><div class="line">       <span class="comment">// like Node.</span></div><div class="line">       <span class="built_in">module</span>.exports = factory(<span class="built_in">require</span>(<span class="string">'b'</span>));</div><div class="line">     &#125; <span class="keyword">else</span> &#123;</div><div class="line">       <span class="comment">// Browser globals (root is window)</span></div><div class="line">       root.returnExports = factory(root.b);</div><div class="line">     &#125;</div><div class="line">   &#125;(<span class="keyword">this</span>, <span class="function"><span class="keyword">function</span> (<span class="params">b</span>) </span>&#123;</div><div class="line">     <span class="comment">//use b in some fashion.</span></div><div class="line"></div><div class="line">     <span class="comment">// Just return a value to define the module export.</span></div><div class="line">     <span class="comment">// This example returns an object, but the module</span></div><div class="line">     <span class="comment">// can return a function as the exported value.</span></div><div class="line">     <span class="keyword">return</span> &#123;&#125;;</div><div class="line">   &#125;));</div></pre></td></tr></table></figure></p>
+<h3 id="System-register"><a href="#System-register" class="headerlink" title="System.register"></a>System.register</h3><p>System.register方式设计初衷主要是为了在ES5中能够支持ES6模块语法:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; p <span class="keyword">as</span> q &#125; <span class="keyword">from</span> <span class="string">'./dep'</span>;</div><div class="line">   <span class="keyword">var</span> s = <span class="string">'local'</span>;</div><div class="line">   <span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"></span>) </span>&#123;</div><div class="line">     <span class="keyword">return</span> q;</div><div class="line">   &#125;</div><div class="line">   <span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">C</span> </span>&#123;</div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
+<h3 id="ES6-module"><a href="#ES6-module" class="headerlink" title="ES6 module"></a>ES6 module</h3><p>ES6中自带原生的模块语法，使用关键字”export”来导出模块的公用api：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// lib.js</span></div><div class="line">   <span class="comment">// Export the function</span></div><div class="line">   <span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">sayHello</span>(<span class="params"></span>)</span>&#123;</div><div class="line">     <span class="built_in">console</span>.log(<span class="string">'Hello'</span>);</div><div class="line">   &#125;</div><div class="line">   <span class="comment">// Do not export the function</span></div><div class="line">   <span class="function"><span class="keyword">function</span> <span class="title">somePrivateFunction</span>(<span class="params"></span>)</span>&#123;</div><div class="line">     <span class="comment">// ...</span></div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
+<p>以关键字”import”来导入模块：<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; sayHello &#125; <span class="keyword">from</span> <span class="string">'./lib'</span>;</div><div class="line">   sayHello();</div><div class="line">   <span class="comment">// =&gt; Hello</span></div></pre></td></tr></table></figure></p>
 <p>目前各浏览器对ES6的支持度不一，因此我们现在需要使用编译器，像Babel，来将ES6的代码编译成ES5的形式。</p>
-<h3 id="模块加载器">模块加载器</h3><p>一个模块加载器可以理解模块，并以固定的形式来加载模块。<br>模块加载器工作在运行时，流程大致如下：</p>
+<h3 id="模块加载器"><a href="#模块加载器" class="headerlink" title="模块加载器"></a>模块加载器</h3><p>一个模块加载器可以理解模块，并以固定的形式来加载模块。<br>模块加载器工作在运行时，流程大致如下：</p>
 <ul>
 <li>你在浏览器中运行模块加载器；</li>
 <li>你告诉模块加载器需要加载哪个主文件；</li>
@@ -308,7 +386,7 @@
 <li>SystemJS：以AMD, CommonJS, UMD 或者 System.register风格加载模块；</li>
 <li>jspm：jspm基于SystemJS，是模块加载器，同时也具备浏览器端包管理功能。</li>
 </ul>
-<h3 id="模块打包">模块打包</h3><p>模块打包可以替换模块加载器。<br>然而，相比模块加载器，模块打包动作是在编译时运行的：</p>
+<h3 id="模块打包"><a href="#模块打包" class="headerlink" title="模块打包"></a>模块打包</h3><p>模块打包可以替换模块加载器。<br>然而，相比模块加载器，模块打包动作是在编译时运行的：</p>
 <ul>
 <li>使用模块打包在编译期生成一个js文件；(例如bundle.js)</li>
 <li>在浏览器中加载该文件。</li>
@@ -318,8 +396,8 @@
 <li>Browserify:为CommonJS模块打包；</li>
 <li>Webpack: 为AMD、CommonJS、ES6模块打包。</li>
 </ul>
-<h3 id="总结">总结</h3><p>为了在现代js开发环境中更好的使用这些工具，你首先需要知道模块、模块化解决方案、模块加载、模块打包之前的区别。<br>模块是一段封装好的代码，可以以公用api形式导出并在其他代码中被加载和调用；<br>模块化解决方案或者模块化思想，实际含义是定义一个模块的语法。由于定义语法的差异，目前常用的有AMD、CMD、CommonJS、UMD等；<br>模块加载，在运行期解析和加载模块。常见的有RequireJS、SeaJS、SystemJS和jspm；<br>模块打包，其替换了模块加载的概念，在编译期间生成一个所有代码整合后的bundle.js文件。常见的有Browserify和Webpack。<br>另，想要了解更多可以查阅下面几处链接。</p>
-<h3 id="参考&amp;学习">参考&amp;学习</h3><p><strong><em> <a href="https://segmentfault.com/a/1190000000733959" target="_blank" rel="external">详解JavaScript模块化开发</a></em></strong><br><strong><em> <a href="https://www.douban.com/note/283566440/" target="_blank" rel="external">SeaJS与RequireJS最大的区别</a></em></strong><br><strong><em> <a href="http://www.tuicool.com/articles/zu6bAfb" target="_blank" rel="external">使用 jspm 把握 JavaScript 模块的未来</a></em></strong><br><strong><em> <a href="http://www.ruanyifeng.com/blog/2012/10/javascript_module.html" target="_blank" rel="external">Javascript模块化编程（一）：模块的写法 </a> By 阮一峰 2012年10月26日 </em></strong><br><strong><em> <a href="http://www.ruanyifeng.com/blog/2012/10/asynchronous_module_definition.html" target="_blank" rel="external">Javascript模块化编程（二）：AMD规范 </a> By 阮一峰 2012年10月30日 </em></strong><br><strong><em> <a href="http://www.ruanyifeng.com/blog/2012/11/require_js.html" target="_blank" rel="external">Javascript模块化编程（三）：require.js的用法 </a> By 阮一峰 2012年11月07日 </em></strong></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>为了在现代js开发环境中更好的使用这些工具，你首先需要知道模块、模块化解决方案、模块加载、模块打包之前的区别。<br>模块是一段封装好的代码，可以以公用api形式导出并在其他代码中被加载和调用；<br>模块化解决方案或者模块化思想，实际含义是定义一个模块的语法。由于定义语法的差异，目前常用的有AMD、CMD、CommonJS、UMD等；<br>模块加载，在运行期解析和加载模块。常见的有RequireJS、SeaJS、SystemJS和jspm；<br>模块打包，其替换了模块加载的概念，在编译期间生成一个所有代码整合后的bundle.js文件。常见的有Browserify和Webpack。<br>另，想要了解更多可以查阅下面几处链接。</p>
+<h3 id="参考-amp-学习"><a href="#参考-amp-学习" class="headerlink" title="参考&amp;学习"></a>参考&amp;学习</h3><p><strong><em> <a href="https://segmentfault.com/a/1190000000733959" target="_blank" rel="external">详解JavaScript模块化开发</a></em></strong><br><strong><em> <a href="https://www.douban.com/note/283566440/" target="_blank" rel="external">SeaJS与RequireJS最大的区别</a></em></strong><br><strong><em> <a href="http://www.tuicool.com/articles/zu6bAfb" target="_blank" rel="external">使用 jspm 把握 JavaScript 模块的未来</a></em></strong><br><strong><em> <a href="http://www.ruanyifeng.com/blog/2012/10/javascript_module.html" target="_blank" rel="external">Javascript模块化编程（一）：模块的写法 </a> By 阮一峰 2012年10月26日 </em></strong><br><strong><em> <a href="http://www.ruanyifeng.com/blog/2012/10/asynchronous_module_definition.html" target="_blank" rel="external">Javascript模块化编程（二）：AMD规范 </a> By 阮一峰 2012年10月30日 </em></strong><br><strong><em> <a href="http://www.ruanyifeng.com/blog/2012/11/require_js.html" target="_blank" rel="external">Javascript模块化编程（三）：require.js的用法 </a> By 阮一峰 2012年11月07日 </em></strong></p>
 <p><strong><em>(本文译自：<a href="http://jvandemo.com/a-10-minute-primer-to-javascript-modules-module-formats-module-loaders-and-module-bundlers/?utm_source=javascriptweekly&amp;utm_medium=email" target="_blank" rel="external">A 10 minute primer to JavaScript modules, module formats, module loaders and module bundlers</a> By  Jurgen Van de Moere, February 21st, 2017)</em></strong></p>
 <hr>
 <hr>
@@ -413,10 +491,10 @@
         
           <span itemprop="articleBody">
             
-              <h3 id="批处理">批处理</h3><p>常用常见的批处理文件有.bat文件，可用文本编辑器直接编辑内部代码，运行也比较方便，windows平台直接双击执行即可，具体请自行了解。</p>
-<h3 id="需求背景">需求背景</h3><p>angular项目中，当项目越来越大时，很多通用模块(module)可能需要抽象出来，这是一点，另外可能有某些子应用也会单独抽离出来，这是另一点。<br>当一个大型项目同时包括多个子应用时，编码后的编译或者打包就会比较麻烦，特别是在项目持续集成的一种状态下，或者项目组有新成员(经验稍微薄弱)情况下。</p>
-<h3 id="需要了解">需要了解</h3><p>看下面的代码之前，如果您是angular使用者+gulp使用者，为了更好的理解下面的代码，你可能需要了解以下东西：node、npm、node_modules、gulp。<br>如果您不使用angular或者gulp，也没有太大关系，你可以通过我肤浅的解释来理解一些批处理相关的操作，以应用到其他用途。</p>
-<h3 id="示例&amp;&amp;解释">示例&amp;&amp;解释</h3><pre>
+              <h3 id="批处理"><a href="#批处理" class="headerlink" title="批处理"></a>批处理</h3><p>常用常见的批处理文件有.bat文件，可用文本编辑器直接编辑内部代码，运行也比较方便，windows平台直接双击执行即可，具体请自行了解。</p>
+<h3 id="需求背景"><a href="#需求背景" class="headerlink" title="需求背景"></a>需求背景</h3><p>angular项目中，当项目越来越大时，很多通用模块(module)可能需要抽象出来，这是一点，另外可能有某些子应用也会单独抽离出来，这是另一点。<br>当一个大型项目同时包括多个子应用时，编码后的编译或者打包就会比较麻烦，特别是在项目持续集成的一种状态下，或者项目组有新成员(经验稍微薄弱)情况下。</p>
+<h3 id="需要了解"><a href="#需要了解" class="headerlink" title="需要了解"></a>需要了解</h3><p>看下面的代码之前，如果您是angular使用者+gulp使用者，为了更好的理解下面的代码，你可能需要了解以下东西：node、npm、node_modules、gulp。<br>如果您不使用angular或者gulp，也没有太大关系，你可以通过我肤浅的解释来理解一些批处理相关的操作，以应用到其他用途。</p>
+<h3 id="示例-amp-amp-解释"><a href="#示例-amp-amp-解释" class="headerlink" title="示例&amp;&amp;解释"></a>示例&amp;&amp;解释</h3><pre>
     // 关闭回显，加上这句，当前执行的命令不会显示(即，下面这些代码不会显示在屏幕上)
     @echo off
 
@@ -534,7 +612,7 @@
     pause
 </pre>
 
-<h3 id="心得">心得</h3><p>弄这个.bat文件，主要也是为了偷懒。花了一点时间查找了相应的操作、使用说明，也算是初步可用。<br>目前使用起来也比较方便，可以在以后有机会时再次自定义一个类似文件，便捷开发，提高效率。</p>
+<h3 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h3><p>弄这个.bat文件，主要也是为了偷懒。花了一点时间查找了相应的操作、使用说明，也算是初步可用。<br>目前使用起来也比较方便，可以在以后有机会时再次自定义一个类似文件，便捷开发，提高效率。</p>
 <hr>
 <hr>
 <p><img src="../../../../images/money.png" alt="money">☜☜☜ <strong><em>wechat</em></strong> 『『『<strong><em> reward 点击扫码打赏 ~~~ ^_^ </em></strong>  』』』<strong><em>alipay</em></strong> ☞☞☞   <img src="../../../../images/money.jpg" alt="money"></p>
@@ -627,9 +705,9 @@
         
           <span itemprop="articleBody">
             
-              <h3 id="名词解释">名词解释</h3><p>Partial Application，也译作“偏应用”或“部分应用”。<br>Curring，也译作“柯里化”。<br>arity，元。表示函数的参数数量。如，unary(一元),binary(二元),ternary(三元),polyadic(多元)。</p>
-<h3 id="完全应用">完全应用</h3><p>假设有一个函数A，其需要n个参数来应用，而当我们调用函数A时，给它传入了n个参数。则A函数完全应用了我们传入的参数。</p>
-<h3 id="局部应用">局部应用</h3><p>即函数调用的时候只提供部分参数供其应用。例如以下：</p>
+              <h3 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h3><p>Partial Application，也译作“偏应用”或“部分应用”。<br>Curring，也译作“柯里化”。<br>arity，元。表示函数的参数数量。如，unary(一元),binary(二元),ternary(三元),polyadic(多元)。</p>
+<h3 id="完全应用"><a href="#完全应用" class="headerlink" title="完全应用"></a>完全应用</h3><p>假设有一个函数A，其需要n个参数来应用，而当我们调用函数A时，给它传入了n个参数。则A函数完全应用了我们传入的参数。</p>
+<h3 id="局部应用"><a href="#局部应用" class="headerlink" title="局部应用"></a>局部应用</h3><p>即函数调用的时候只提供部分参数供其应用。例如以下：</p>
 <pre>
     function mapWith(fn){
         return function(list){
@@ -642,7 +720,7 @@
     mapWith(square)([1,2,3]);
 </pre>
 
-<h3 id="局部套用">局部套用</h3><p>上面的局部应用，其中的map函数为一个我们已知的具体函数，我们可以稍加修整，如下：<br>第一步，先将map用一个更抽象的函数<code>binaryFn</code>取代，暗示此处可以做任何一种二元函数的处理。同时，最外层的函数名，也就可以做相应的调整了，我们可以使用<code>wrapper</code>取代之。<br>第二步，既然用来最终处理的函数都抽象化了，那传入的参数自然也没有必要限定其类型。<br>于是，我们可以将其稍微调整为如下状态：</p>
+<h3 id="局部套用"><a href="#局部套用" class="headerlink" title="局部套用"></a>局部套用</h3><p>上面的局部应用，其中的map函数为一个我们已知的具体函数，我们可以稍加修整，如下：<br>第一步，先将map用一个更抽象的函数<code>binaryFn</code>取代，暗示此处可以做任何一种二元函数的处理。同时，最外层的函数名，也就可以做相应的调整了，我们可以使用<code>wrapper</code>取代之。<br>第二步，既然用来最终处理的函数都抽象化了，那传入的参数自然也没有必要限定其类型。<br>于是，我们可以将其稍微调整为如下状态：</p>
 <pre>
     function wrapper(secondArg){
         return function(firstArg){
@@ -658,23 +736,23 @@
 <li><strong><em>局部应用：</em></strong> 返回最终结果的处理方式是限定的，每一层的函数调用所传入<br>的参数都将逐次参与最终处理过程中去；</li>
 <li><strong><em>局部套用：</em></strong> 返回最终结果的处理方式是未知的，需要我们在使用的时候将<br>其作为参数传入。</li>
 </ul>
-<h3 id="leftmost(最左形式)">leftmost(最左形式)</h3><p>仔细观察上面的函数，可能会有疑问，在中间层函数中，把参数调换会出现什么情况呢?先把函数改造下，如下：</p>
+<h3 id="leftmost-最左形式"><a href="#leftmost-最左形式" class="headerlink" title="leftmost(最左形式)"></a>leftmost(最左形式)</h3><p>仔细观察上面的函数，可能会有疑问，在中间层函数中，把参数调换会出现什么情况呢?先把函数改造下，如下：</p>
 <p><pre><br>    function leftmostCurry(binaryFn) {<br>      return function (firstArg) {<br>        return function (secondArg) {<br>          return binaryFn(firstArg, secondArg);<br>        };<br>      };<br>    }<br>    var leftmostCurriedMap = leftmostCurry(map);</pre></p>
-<pre><code><span class="function"><span class="keyword">function</span> <span class="title">square</span><span class="params">(n)</span> </span>{ <span class="keyword">return</span> n * n; }
-<span class="function"><span class="keyword">function</span> <span class="title">double</span><span class="params">(n)</span> </span>{ <span class="keyword">return</span> n + n; }
+<pre><code>function square(n) { return n * n; }
+function double(n) { return n + n; }
 
-<span class="keyword">var</span> oneToThreeEach = leftmostCurriedMap([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);
-oneToThreeEach(square);   <span class="comment">// =&gt; [1, 4, 9]</span>
-oneToThreeEach(<span class="keyword">double</span>);   <span class="comment">// =&gt; [2, 4, 6]</span>
+var oneToThreeEach = leftmostCurriedMap([1, 2, 3]);
+oneToThreeEach(square);   // =&gt; [1, 4, 9]
+oneToThreeEach(double);   // =&gt; [2, 4, 6]
 </code></pre><p><br>上面就是最左形式的局部套用示例用法。<br>由于一般代码逻辑都是“从左向右”，因此在其他项目中见过比较多的应该是leftmost形式。习惯上直接把leftmost形式叫做curry。</p>
-<h3 id="现实使用">现实使用</h3><p>现实中用到局部套用情况一般可能做如下处理：</p>
+<h3 id="现实使用"><a href="#现实使用" class="headerlink" title="现实使用"></a>现实使用</h3><p>现实中用到局部套用情况一般可能做如下处理：</p>
 <p><pre><br>    function rightmostUnaryPartialApplication(binaryFn, secondArg) {<br>      return function (firstArg) {<br>        return binaryFn(firstArg, secondArg);<br>      };<br>    }<br>    var applyLast = rightmostUnaryPartialApplication;</pre></p>
-<pre><code>var squareAll = applyLast(<span class="built_in">map</span>, square);
-var doubleAll = applyLast(<span class="built_in">map</span>, <span class="keyword">double</span>);
-squareAll([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]);
-doubleAll([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]);
+<pre><code>var squareAll = applyLast(map, square);
+var doubleAll = applyLast(map, double);
+squareAll([1,2,3]);
+doubleAll([1,2,3]);
 </code></pre><p><br>以上用法，仔细观察会发现有很多开发者都在多次使用，希望在用到或者看到这类用法时，能真正理解其区别及联系。</p>
-<h3 id="参考文献">参考文献</h3><p><strong><em><a href="https://segmentfault.com/a/1190000000765247" target="_blank" rel="external">函数式编程中局部应用（Partial Application）和局部套用（Currying）的区别</a></em></strong><br><strong><em><a href="https://medium.com/javascript-scene/curry-or-partial-application-8150044c78b8#.y39pewh95" target="_blank" rel="external">Curry or Partial Application?</a> Eric ElliottFollow Jul 20, 2015</em></strong></p>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p><strong><em><a href="https://segmentfault.com/a/1190000000765247" target="_blank" rel="external">函数式编程中局部应用（Partial Application）和局部套用（Currying）的区别</a></em></strong><br><strong><em><a href="https://medium.com/javascript-scene/curry-or-partial-application-8150044c78b8#.y39pewh95" target="_blank" rel="external">Curry or Partial Application?</a> Eric ElliottFollow Jul 20, 2015</em></strong></p>
 <hr>
 <hr>
 <p><img src="../../../../images/money.png" alt="money">☜☜☜ <strong><em>wechat</em></strong> 『『『<strong><em> reward 点击扫码打赏 ~~~ ^_^ </em></strong>  』』』<strong><em>alipay</em></strong> ☞☞☞   <img src="../../../../images/money.jpg" alt="money"></p>
@@ -768,11 +846,11 @@ doubleAll([<span class="number">1</span>,<span class="number">2</span>,<span cla
           <span itemprop="articleBody">
             
               <p><strong><em>Good News：</em></strong> 现在我们可以用浏览器调试node.js了!!!</p>
-<h3 id="前提">前提</h3><ul>
+<h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><ul>
 <li>Node.js 6.3+, 这个可上<a href="https://nodejs.org/en/download/current/" target="_blank" rel="external">Node.js官网</a>自行下载；</li>
 <li>Chrome 55+. 如果您本地的chrome升级到最新版后还是&lt;55, 可以从此处下载：<a href="https://www.google.com/intl/en/chrome/browser/canary.html" target="_blank" rel="external">Chrome Canary</a>，亲测可行。</li>
 </ul>
-<h3 id="配置">配置</h3><p>就目前来说，在浏览器端并行调试JavaScript与Node.js还属于新特性，新体验。为了能够正常使用，你还需要做如下配置：</p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>就目前来说，在浏览器端并行调试JavaScript与Node.js还属于新特性，新体验。为了能够正常使用，你还需要做如下配置：</p>
 <ul>
 <li>输入url：chrome://flags/#enable-devtools-experiments. 注：如果使用中文版Chrome，显示的配置项名称应该为： <code>开发者工具实验性功能</code> ,如下图;<br><code class="normal-img"><img src="../../../../images/20161014/1.png" alt="flags"></code></li>
 <li>启用它;</li>
@@ -781,10 +859,10 @@ doubleAll([<span class="number">1</span>,<span class="number">2</span>,<span cla
 <li>找到 <strong><em>Node debugging</em></strong> , 勾选.</li>
 </ul>
 <p>最后应该能看到类似下图，表示环境已准备好:<br><code class="normal-img"><img src="../../../../images/20161014/2.png" alt="debugging"></code></p>
-<h3 id="调试">调试</h3><p>调试很简单，像普通的js文件一样，利用DevTools进行断点调试.</p>
-<h3 id="运行Node-js_app">运行Node.js app</h3><p>需要在debug模式下运行Node.js应用，很简单，只要添加 –inspect 参数即可。<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">node</span><span class="identifier"> </span><span class="title">--inpect</span> server.js</span><br></pre></td></tr></table></figure></p>
+<h3 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h3><p>调试很简单，像普通的js文件一样，利用DevTools进行断点调试.</p>
+<h3 id="运行Node-js-app"><a href="#运行Node-js-app" class="headerlink" title="运行Node.js app"></a>运行Node.js app</h3><p>需要在debug模式下运行Node.js应用，很简单，只要添加 –inspect 参数即可。<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">node</span> <span class="title">--inpect</span> server.js</div></pre></td></tr></table></figure></p>
 <p>注：server.js 为我自己的应用文件，自定义，下图中为’ node.js ‘。如果顺利的话，应该能看到类似下图信息：<br><code class="normal-img"><img src="../../../../images/20161014/3.png" alt="debugging"></code><br>运行后，可以看到在 <strong><em>DevTools -&gt; Sources</em></strong> 有 <strong><em>server.js</em></strong> 应用：<br><code class="normal-img"><img src="../../../../images/20161014/4.png" alt="source"></code><br>展开后，可以查看当前node应用的js文件，至此，您已经可以利用Chrome进行并行调试操作了。<br><code class="normal-img"><img src="../../../../images/20161014/5.png" alt="success"></code></p>
-<h3 id="最后">最后</h3><p>使用此新版Chrome，还有许多其他的功能，比如在调试期间修改文件内容、保存文件快照等。<br>最后的最后，感谢原作者 <strong><em>Serg Hospodarets</em></strong> 的分享，Thank You!</p>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>使用此新版Chrome，还有许多其他的功能，比如在调试期间修改文件内容、保存文件快照等。<br>最后的最后，感谢原作者 <strong><em>Serg Hospodarets</em></strong> 的分享，Thank You!</p>
 <p><strong><em>(本文译自：<a href="https://blog.hospodarets.com/nodejs-debugging-in-chrome-devtools?utm_source=javascriptweekly&amp;utm_medium=email" target="_blank" rel="external">Node.js debugging with Chrome DevTools (in parallel with browser JavaScript)</a> By Serg Hospodarets, September 29, 2016)</em></strong></p>
 <hr>
 <hr>
@@ -879,11 +957,11 @@ doubleAll([<span class="number">1</span>,<span class="number">2</span>,<span cla
           <span itemprop="articleBody">
             
               <p>ES6(ES2015)带来了箭头函数，箭头函数带来了些许问题。</p>
-<h3 id="关于{}">关于<code>{}</code></h3><p>第一个问题是关于箭头函数与<code>{}</code>。<br>箭头函数，乍一看，用法似乎很简单，比如像下面这样用来给数组每一项乘以2：<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">   <span class="keyword">const</span> <span class="literal">result</span> = numbers.map(n =&gt; n * <span class="number">2</span>);</span><br><span class="line">   // produces [<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>]</span><br></pre></td></tr></table></figure></p>
-<p>但是，如果使用不当，可能会引发意想不到的问题。比如下面，尝试为数组中每一项去产生对象字面量，看上去挺简单的<code>map</code>操作，还是引发了意外。<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">   <span class="keyword">const</span> <span class="literal">result</span> = numbers.map(n =&gt; &#123; value: n &#125;);</span><br><span class="line">   // produces [undefined], [undefined], [undefined]</span><br></pre></td></tr></table></figure></p>
-<p>什么原因造成的呢？<br>稍微分析可知，引起上面问题在于，箭头函数内部包裹在花括号之间的代码，被认为是一段独立的代码块而不是对象字面量，因此其单独执行，显然得到的结果就是一个全为<code>undefined</code>的数组。<br>于是，在这种情况下，其中的代码就必须有明确的返回语句或者用圆括号<code>()</code>包括对象字面量。<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="literal">result</span> = numbers.map(n =&gt; (&#123; value: n &#125;));</span><br><span class="line">   // [&#123;value: <span class="number">1</span>&#125;, &#123;value:<span class="number">2</span>&#125;, &#123;value:<span class="number">3</span>&#125;]</span><br></pre></td></tr></table></figure></p>
-<h3 id="关于this">关于<code>this</code></h3><p>第二个问题是关于箭头函数与<code>this</code>。<br>使用箭头函数，你可以像下面这样写代码而不用额外在局部作用域中去暂存this：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> adder = &#123;</span><br><span class="line">       sum: <span class="number">0</span>,</span><br><span class="line">       add(numbers) &#123;</span><br><span class="line">           numbers.forEach(n =&gt; &#123;</span><br><span class="line">               <span class="keyword">this</span>.sum += n;</span><br><span class="line">           &#125;);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;;</span><br><span class="line">   adder.add([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);</span><br><span class="line">   <span class="comment">// adder.sum === 6</span></span><br></pre></td></tr></table></figure></p>
-<p>然而，很多时候你可能会自以为是的在不经意间写错。正如下面的代码所示，<code>this</code>并不指向”adder”对象，而指向”adder”对象所在的作用域：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> adder = &#123;</span><br><span class="line">       sum: <span class="number">0</span>,</span><br><span class="line">       add: (numbers) =&gt; &#123; <span class="comment">// scope here is important</span></span><br><span class="line">           numbers.forEach(n =&gt; &#123;</span><br><span class="line">               <span class="keyword">this</span>.sum += n;</span><br><span class="line">           &#125;);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   adder.add([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);</span><br><span class="line">   <span class="comment">// adder.sum === 0</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="关于"><a href="#关于" class="headerlink" title="关于{}"></a>关于<code>{}</code></h3><p>第一个问题是关于箭头函数与<code>{}</code>。<br>箭头函数，乍一看，用法似乎很简单，比如像下面这样用来给数组每一项乘以2：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</div><div class="line">   <span class="keyword">const</span> result = numbers.map(<span class="function"><span class="params">n</span> =&gt;</span> n * <span class="number">2</span>);</div><div class="line">   <span class="comment">// produces [2,4,6]</span></div></pre></td></tr></table></figure></p>
+<p>但是，如果使用不当，可能会引发意想不到的问题。比如下面，尝试为数组中每一项去产生对象字面量，看上去挺简单的<code>map</code>操作，还是引发了意外。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</div><div class="line">   <span class="keyword">const</span> result = numbers.map(<span class="function"><span class="params">n</span> =&gt;</span> &#123; <span class="attr">value</span>: n &#125;);</div><div class="line">   <span class="comment">// produces [undefined], [undefined], [undefined]</span></div></pre></td></tr></table></figure></p>
+<p>什么原因造成的呢？<br>稍微分析可知，引起上面问题在于，箭头函数内部包裹在花括号之间的代码，被认为是一段独立的代码块而不是对象字面量，因此其单独执行，显然得到的结果就是一个全为<code>undefined</code>的数组。<br>于是，在这种情况下，其中的代码就必须有明确的返回语句或者用圆括号<code>()</code>包括对象字面量。<br><figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">const result = numbers.<span class="keyword">map</span>(n =&gt; (&#123; value: n &#125;));</div><div class="line">   // [&#123;value: <span class="number">1</span>&#125;, &#123;value:<span class="number">2</span>&#125;, &#123;value:<span class="number">3</span>&#125;]</div></pre></td></tr></table></figure></p>
+<h3 id="关于this"><a href="#关于this" class="headerlink" title="关于this"></a>关于<code>this</code></h3><p>第二个问题是关于箭头函数与<code>this</code>。<br>使用箭头函数，你可以像下面这样写代码而不用额外在局部作用域中去暂存this：<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> adder = &#123;</div><div class="line">       sum: <span class="number">0</span>,</div><div class="line">       <span class="keyword">add</span>(numbers) &#123;</div><div class="line">           numbers.forEach(n =&gt; &#123;</div><div class="line">               <span class="keyword">this</span>.sum += n;</div><div class="line">           &#125;);</div><div class="line">       &#125;</div><div class="line">   &#125;;</div><div class="line">   adder.<span class="keyword">add</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);</div><div class="line">   <span class="comment">// adder.sum === 6</span></div></pre></td></tr></table></figure></p>
+<p>然而，很多时候你可能会自以为是的在不经意间写错。正如下面的代码所示，<code>this</code>并不指向”adder”对象，而指向”adder”对象所在的作用域：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> adder = &#123;</div><div class="line">       <span class="attr">sum</span>: <span class="number">0</span>,</div><div class="line">       <span class="attr">add</span>: <span class="function">(<span class="params">numbers</span>) =&gt;</span> &#123; <span class="comment">// scope here is important</span></div><div class="line">           numbers.forEach(<span class="function"><span class="params">n</span> =&gt;</span> &#123;</div><div class="line">               <span class="keyword">this</span>.sum += n;</div><div class="line">           &#125;);</div><div class="line">       &#125;</div><div class="line"></div><div class="line">   &#125;;</div><div class="line"></div><div class="line">   adder.add([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);</div><div class="line">   <span class="comment">// adder.sum === 0</span></div></pre></td></tr></table></figure></p>
 <p>最后请记住一点：箭头函数中的<code>this</code>继承自外围作用域的值，因此我们不能改变其指向。</p>
 <p><strong><em>(本文译自：<a href="http://odetocode.com/blogs/scott/archive/2016/09/01/the-troubles-with-javascript-arrow-functions.aspx" target="_blank" rel="external">The Troubles with JavaScript Arrow Functions</a> By K. Scott Allen , Thursday, September 1, 2016 )</em></strong></p>
 <hr>
@@ -979,7 +1057,7 @@ doubleAll([<span class="number">1</span>,<span class="number">2</span>,<span cla
           <span itemprop="articleBody">
             
               <p>当浏览器最小化或者打开其他页签时，很多情况下，你可能并不希望当前页签应用被中止或者打断，而是期望当前页签应用的状态能够维持原状。<br>幸运的是，我们可以使用<code>Page Visibility APi</code>来实现。PC系统中规中矩的参照api使用即可，下面主要介绍几点Mobile端使用需要注意的几点。</p>
-<h3 id="visibilityState,_pageshow,_pagehide,_beforeunload,_unload">visibilityState, pageshow, pagehide, beforeunload, unload</h3><p>很多移动应用中使用此api遇到的问题在于他们没有考虑手机的生命周期：他们监听了一些可能永远都不会触发的事件，或者忽视了少数高耗用户的用户体验。<br>老实说，移动平台对于探索不同的事件也确实并非易事，那针对上面的那些事件，我们到底该在何时何处，如何使用呢？<br>先上一张图说明app的生命周期：<br><code class="normal-img"><img src="../../../../images/20160901/1.png" alt="lifecycle"></code></p>
+<h3 id="visibilityState-pageshow-pagehide-beforeunload-unload"><a href="#visibilityState-pageshow-pagehide-beforeunload-unload" class="headerlink" title="visibilityState, pageshow, pagehide, beforeunload, unload"></a>visibilityState, pageshow, pagehide, beforeunload, unload</h3><p>很多移动应用中使用此api遇到的问题在于他们没有考虑手机的生命周期：他们监听了一些可能永远都不会触发的事件，或者忽视了少数高耗用户的用户体验。<br>老实说，移动平台对于探索不同的事件也确实并非易事，那针对上面的那些事件，我们到底该在何时何处，如何使用呢？<br>先上一张图说明app的生命周期：<br><code class="normal-img"><img src="../../../../images/20160901/1.png" alt="lifecycle"></code></p>
 <p>你别寄希望在移动平台触发上面的<code>pagehide</code>、<code>beforeunload</code>及<code>unload</code>事件了。这个问题并不来源于你喜爱的浏览器出现的bug，根源在于所有的移动操作系统的工作原理。<br>一个应用从<code>active</code>状态到<code>background</code>状态，可能由以下几种方式触发：</p>
 <ul>
 <li>用户可以通过点击消息通知等切换到其他app；</li>
@@ -987,16 +1065,16 @@ doubleAll([<span class="number">1</span>,<span class="number">2</span>,<span cla
 <li>用户可以点击<code>home</code>返回桌面；</li>
 <li>操作系统选择是否中断用户的行为-例如：有来电。<br>一旦应用切换到<code>background</code>状态，它就可能在未来某一刻被杀死-例如：操作系统可能会中止进程并释放资源、用户可能会通过任务管理器关闭app。<br>这样导致的结果就是你期望触发的上面三个事件，都没有触发。</li>
 </ul>
-<p>为了良好的用户体验，不管是Mobile端还是PC端的应用，都必须使用<code>Page Visibility Api</code>，在<code>visibilityChange</code>事件触发时来执行<code>session</code>保存及暂存逻辑等操作，这是你应用可以依赖的唯一一个事件。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// query current page visibility state: prerender, visible, hidden</span><br><span class="line">var pageVisibility = document.visibilityState;</span><br><span class="line"></span><br><span class="line">// subscribe to visibility <span class="operator"><span class="keyword">change</span> <span class="keyword">events</span></span><br><span class="line"><span class="keyword">document</span>.addEventListener(<span class="string">'visibilitychange'</span>, <span class="keyword">function</span>() &#123;</span><br><span class="line"> 		// fires <span class="keyword">when</span> <span class="keyword">user</span> switches tabs, apps, goes <span class="keyword">to</span> homescreen, etc.</span><br><span class="line">   	<span class="keyword">if</span> (<span class="keyword">document</span>.visibilityState == <span class="string">'hidden'</span>) &#123; ... &#125;</span><br><span class="line"></span><br><span class="line">   	// fires <span class="keyword">when</span> app transitions <span class="keyword">from</span> prerender, <span class="keyword">user</span> <span class="keyword">returns</span> <span class="keyword">to</span> the app / tab.</span><br><span class="line">   	<span class="keyword">if</span> (<span class="keyword">document</span>.visibilityState == <span class="string">'visible'</span>) &#123; ... &#125;</span><br><span class="line">&#125;);</span></span><br></pre></td></tr></table></figure></p>
+<p>为了良好的用户体验，不管是Mobile端还是PC端的应用，都必须使用<code>Page Visibility Api</code>，在<code>visibilityChange</code>事件触发时来执行<code>session</code>保存及暂存逻辑等操作，这是你应用可以依赖的唯一一个事件。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// query current page visibility state: prerender, visible, hidden</span></div><div class="line"><span class="keyword">var</span> pageVisibility = <span class="built_in">document</span>.visibilityState;</div><div class="line"></div><div class="line"><span class="comment">// subscribe to visibility change events</span></div><div class="line"><span class="built_in">document</span>.addEventListener(<span class="string">'visibilitychange'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"> 		<span class="comment">// fires when user switches tabs, apps, goes to homescreen, etc.</span></div><div class="line">   	<span class="keyword">if</span> (<span class="built_in">document</span>.visibilityState == <span class="string">'hidden'</span>) &#123; ... &#125;</div><div class="line"></div><div class="line">   	<span class="comment">// fires when app transitions from prerender, user returns to the app / tab.</span></div><div class="line">   	<span class="keyword">if</span> (<span class="built_in">document</span>.visibilityState == <span class="string">'visible'</span>) &#123; ... &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
 <p>如果你指望<code>unload</code>事件来做这些事，你就忽视了移动端可能永远不会触发<code>unload</code>事件。同样的，如果你指望<code>beforeunload</code>事件，你就忽视了在清理应用情况下关闭应用时将不会触发此事件。</p>
-<h3 id="实际情况下的考虑">实际情况下的考虑</h3><p>一般情况下，你只需要使用<code>Page Visibility Api</code>就够了。然而在今天，你可能会想讨论下<code>pagehide</code>，这算是当页面进入<code>unloaded</code>状态的一种特例。下面是一些主流浏览器在哪些情况下会触发哪些事件的一个简要说明：</p>
+<h3 id="实际情况下的考虑"><a href="#实际情况下的考虑" class="headerlink" title="实际情况下的考虑"></a>实际情况下的考虑</h3><p>一般情况下，你只需要使用<code>Page Visibility Api</code>就够了。然而在今天，你可能会想讨论下<code>pagehide</code>，这算是当页面进入<code>unloaded</code>状态的一种特例。下面是一些主流浏览器在哪些情况下会触发哪些事件的一个简要说明：</p>
 <p><code class="normal-img"><img src="../../../../images/20160901/2.png" alt="can i use?"></code></p>
 <ul>
 <li><code>visibilityChange</code>在移动平台的任务切换状态下可以正常工作；</li>
 <li><code>beforeunload</code>备受限制，只能在PC端可以正常使用；</li>
 <li><code>unload</code>不能在Safari浏览器中正常工作。</li>
 </ul>
-<h3 id="最后(自己想法)">最后(自己想法)</h3><p><code>Page Visibility Api</code>用途有哪些呢，比如音视频播放，切换后台可以暂停，再切换进来保持状态等，希望通过此文可以在使用过程中避免一些莫名的坑。</p>
+<h3 id="最后-自己想法"><a href="#最后-自己想法" class="headerlink" title="最后(自己想法)"></a>最后(自己想法)</h3><p><code>Page Visibility Api</code>用途有哪些呢，比如音视频播放，切换后台可以暂停，再切换进来保持状态等，希望通过此文可以在使用过程中避免一些莫名的坑。</p>
 <p><strong><em>(本文译自：<a href="https://www.igvita.com/2015/11/20/dont-lose-user-and-app-state-use-page-visibility/" target="_blank" rel="external">dont-lose-user-and-app-state-use-page-visibility</a> By Ilya Grigorik on November 20, 2015 )</em></strong></p>
 <hr>
 <hr>
@@ -1091,13 +1169,13 @@ doubleAll([<span class="number">1</span>,<span class="number">2</span>,<span cla
           <span itemprop="articleBody">
             
               <p>本文主要介绍一些对自己技术有很大帮助的网站，后续也将更新，感谢这些网站的相关人员，致敬!</p>
-<h3 id="Can_I_Use"><a href="http://caniuse.com/" target="_blank" rel="external">Can I Use</a></h3><p><code>can i use</code>网站很常见，很多博客里面介绍一些CSS/JS/H5新特性的时候，会用到它，可以用来查看某一特性在各浏览器的支持程度，使用效果如下图：<br><code class="normal-img"><img src="../../../../images/20160818/1.png" alt="function"></code></p>
-<h3 id="学习CSS布局"><a href="http://zh.learnlayout.com/" target="_blank" rel="external">学习CSS布局</a></h3><p>该网站虽然功能比较单一，只介绍CSS布局相关的知识，但是界面和介绍比较通俗易懂，适合CSS初学者学习，如下图：<br><code class="normal-img"><img src="../../../../images/20160818/2.png" alt="function"></code></p>
-<h3 id="Understanding_JavaScript_OOP"><span style="color:coral;"><a href="http://robotlolita.me/2011/10/09/understanding-javascript-oop.html" target="_blank" rel="external">Understanding JavaScript OOP</a></span></h3><p>本文是一篇2011年的国外文章，主要介绍<code>JavaScript OOP</code>。推荐这篇文章的原因并不是写的有多好，而是个人觉得此文比较适合作为慢慢阅读英文博客的开始，另外该站还有一些其他技术博客可供赏阅。<br><code class="normal-img"><img src="../../../../images/20160818/3.png" alt="function"></code></p>
-<h3 id="奇舞周刊"><a href="http://old.75team.com/weekly" target="_blank" rel="external">奇舞周刊</a></h3><p>本站每周会更新一次，更新的内容都是一些比较有质量的前端知识。<br><code class="normal-img"><img src="../../../../images/20160818/4.png" alt="function"></code></p>
-<h3 id="free-programming-books"><a href="https://github.com/vhf/free-programming-books/blob/master/free-programming-books.md">free-programming-books</a></h3><p>该资源提供广大网友贡献的一些编程书籍列表，涉及领域很多，每个领域也有细分多个分支，如果有需要可以上去看看，不过大多是英文版。</p>
-<h3 id="JavaScript_标准库"><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects" target="_blank" rel="external">JavaScript 标准库</a></h3><p>该资源由<code>MOZILIA MDN</code>提供，算是一份比较详尽的JavaScript参考文档，唯一的缺点是由网友贡献，并不算完善。<br><code class="normal-img"><img src="../../../../images/20160818/5.png" alt="function"></code></p>
-<h3 id="FontAwesome"><a href="http://fontawesome.io/icons" target="_blank" rel="external">FontAwesome</a></h3><p>提供字体图标，我介绍这个并不只是简单的引用后当图标来用—-你可以将字体文件下载下来，然后用PS，按照自己需求，做成透明雪碧图，可换颜色。<br><code class="normal-img"><img src="../../../../images/20160818/8.png" alt="function"></code></p>
+<h3 id="Can-I-Use"><a href="#Can-I-Use" class="headerlink" title="Can I Use"></a><a href="http://caniuse.com/" target="_blank" rel="external">Can I Use</a></h3><p><code>can i use</code>网站很常见，很多博客里面介绍一些CSS/JS/H5新特性的时候，会用到它，可以用来查看某一特性在各浏览器的支持程度，使用效果如下图：<br><code class="normal-img"><img src="../../../../images/20160818/1.png" alt="function"></code></p>
+<h3 id="学习CSS布局"><a href="#学习CSS布局" class="headerlink" title="学习CSS布局"></a><a href="http://zh.learnlayout.com/" target="_blank" rel="external">学习CSS布局</a></h3><p>该网站虽然功能比较单一，只介绍CSS布局相关的知识，但是界面和介绍比较通俗易懂，适合CSS初学者学习，如下图：<br><code class="normal-img"><img src="../../../../images/20160818/2.png" alt="function"></code></p>
+<h3 id="Understanding-JavaScript-OOP"><a href="#Understanding-JavaScript-OOP" class="headerlink" title="Understanding JavaScript OOP"></a><span style="color:coral;"><a href="http://robotlolita.me/2011/10/09/understanding-javascript-oop.html" target="_blank" rel="external">Understanding JavaScript OOP</a></span></h3><p>本文是一篇2011年的国外文章，主要介绍<code>JavaScript OOP</code>。推荐这篇文章的原因并不是写的有多好，而是个人觉得此文比较适合作为慢慢阅读英文博客的开始，另外该站还有一些其他技术博客可供赏阅。<br><code class="normal-img"><img src="../../../../images/20160818/3.png" alt="function"></code></p>
+<h3 id="奇舞周刊"><a href="#奇舞周刊" class="headerlink" title="奇舞周刊"></a><a href="http://old.75team.com/weekly" target="_blank" rel="external">奇舞周刊</a></h3><p>本站每周会更新一次，更新的内容都是一些比较有质量的前端知识。<br><code class="normal-img"><img src="../../../../images/20160818/4.png" alt="function"></code></p>
+<h3 id="free-programming-books"><a href="#free-programming-books" class="headerlink" title="free-programming-books"></a><a href="https://github.com/vhf/free-programming-books/blob/master/free-programming-books.md">free-programming-books</a></h3><p>该资源提供广大网友贡献的一些编程书籍列表，涉及领域很多，每个领域也有细分多个分支，如果有需要可以上去看看，不过大多是英文版。</p>
+<h3 id="JavaScript-标准库"><a href="#JavaScript-标准库" class="headerlink" title="JavaScript 标准库"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects" target="_blank" rel="external">JavaScript 标准库</a></h3><p>该资源由<code>MOZILIA MDN</code>提供，算是一份比较详尽的JavaScript参考文档，唯一的缺点是由网友贡献，并不算完善。<br><code class="normal-img"><img src="../../../../images/20160818/5.png" alt="function"></code></p>
+<h3 id="FontAwesome"><a href="#FontAwesome" class="headerlink" title="FontAwesome"></a><a href="http://fontawesome.io/icons" target="_blank" rel="external">FontAwesome</a></h3><p>提供字体图标，我介绍这个并不只是简单的引用后当图标来用—-你可以将字体文件下载下来，然后用PS，按照自己需求，做成透明雪碧图，可换颜色。<br><code class="normal-img"><img src="../../../../images/20160818/8.png" alt="function"></code></p>
 <hr>
 <hr>
 <p><img src="../../../../images/money.png" alt="money">☜☜☜ <strong><em>wechat</em></strong> 『『『<strong><em> reward 点击扫码打赏 ~~~ ^_^ </em></strong>  』』』<strong><em>alipay</em></strong> ☞☞☞   <img src="../../../../images/money.jpg" alt="money"></p>
@@ -1191,14 +1269,14 @@ doubleAll([<span class="number">1</span>,<span class="number">2</span>,<span cla
           <span itemprop="articleBody">
             
               <p>对js对象创建、原型、原形链、继承及”类”的理解，由于其间各种复杂的关系及掌握程度不够，个人经常需要翻资料确认，于是找时间整理了下当时的理解，并以此文形式记录下来。</p>
-<h3 id="面向对象">面向对象</h3><p>oop，面向对象编程。主要有以下几大特征:</p>
+<h3 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h3><p>oop，面向对象编程。主要有以下几大特征:</p>
 <ul>
 <li>类，具有相同结构和行为的集合。</li>
 <li>封装，将操作封闭，对外提供接口供使用。</li>
 <li>继承，子类具有基类(父类)的特征，还可以有自己的新的特性。</li>
 <li>多态，一个功能可以有多种不同用法，或者说一个子类可以将父类某个属性替换，具体的包括重写(override, 方法名称与参数相同)和重载(overload, 方法名称相同，参数不同)。</li>
 </ul>
-<h3 id="JavaScript对象">JavaScript对象</h3><p>js对象，除“null”外，其他的可以看做是属性的无序集合，每个属性都是一个名/值对，<span style="color:coral;">且其拥有一个连接到原型对象的隐藏连接。</span>“null”可以理解成不是对象的对象。函数，也是对象。js对象是动态的，可以新增和删除属性，通过引用而非值来操作对象。每个属性还有与之相关的一些其他值，称为“属性特性(property attribute)”:</p>
+<h3 id="JavaScript对象"><a href="#JavaScript对象" class="headerlink" title="JavaScript对象"></a>JavaScript对象</h3><p>js对象，除“null”外，其他的可以看做是属性的无序集合，每个属性都是一个名/值对，<span style="color:coral;">且其拥有一个连接到原型对象的隐藏连接。</span>“null”可以理解成不是对象的对象。函数，也是对象。js对象是动态的，可以新增和删除属性，通过引用而非值来操作对象。每个属性还有与之相关的一些其他值，称为“属性特性(property attribute)”:</p>
 <ul>
 <li>可写(writable attribute)，表明是否可以设置该属性的值；</li>
 <li>可枚举(enumerable attribute)，表明是否可以通过for/in循环返回该属性；</li>
@@ -1211,7 +1289,7 @@ doubleAll([<span class="number">1</span>,<span class="number">2</span>,<span cla
 <li>对象的扩展标记(extensible flag)指明了是否可以向该对象添加新属性。</li>
 </ul>
 <p>js对象的属性包括两类：自有属性(own property)及继承属性(inherited property)。</p>
-<h3 id="原型">原型</h3><p>原型是对象的内部属性，可以将其理解为指向<code>构造函数原型对象</code>的内部指针，默认不可访问，部分浏览器实现可以通过<code>.__proto__</code>访问(eg.Chrome)，我们可以结合<code>.__proto__</code>来加深理解。<br>先说我知道的几个没有原型的对象：</p>
+<h3 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h3><p>原型是对象的内部属性，可以将其理解为指向<code>构造函数原型对象</code>的内部指针，默认不可访问，部分浏览器实现可以通过<code>.__proto__</code>访问(eg.Chrome)，我们可以结合<code>.__proto__</code>来加深理解。<br>先说我知道的几个没有原型的对象：</p>
 <ul>
 <li><code>null</code>没有原型；</li>
 <li><code>Object.prototype</code>没有原型(或者说原型为<code>null</code>)。</li>
@@ -1222,7 +1300,7 @@ doubleAll([<span class="number">1</span>,<span class="number">2</span>,<span cla
 <li>通过关键字new和构造函数调用创建的对象，<span style="color:coral;">它的原型就是构造函数的prototype属性的值</span>。即，通过new Date()创建的对象，其原型就是Date.prototype；</li>
 <li>通过Object.create()创建的对象使用第一个参数(可以是null)作为它们的原型；</li>
 </ul>
-<p>每个<span style="color:coral;">函数对象</span>在创建时会带有一个<code>prototype</code>属性，它的值是一个拥有<code>constructor</code>属性且值即为该函数本身的对象。<br>当一个函数对象被创建时，Function构造器产生的函数对象会运行类似下面的代码：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.prototype = &#123;<span class="string">constructor:</span><span class="keyword">this</span>, <span class="string">__proto__:</span>...&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>每个<span style="color:coral;">函数对象</span>在创建时会带有一个<code>prototype</code>属性，它的值是一个拥有<code>constructor</code>属性且值即为该函数本身的对象。<br>当一个函数对象被创建时，Function构造器产生的函数对象会运行类似下面的代码：<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">this</span>.prototype = &#123;<span class="keyword">constructor</span>:<span class="keyword">this</span>, __proto__:...&#125;;</div></pre></td></tr></table></figure></p>
 <p><span style="color:coral;">新函数对象被赋予一个<code>prototype</code>属性，其值包含一个<code>constructor</code>属性且属性值为该新函数对象本身。</span></p>
 <pre>
     var C = function(){
@@ -1253,7 +1331,7 @@ doubleAll([<span class="number">1</span>,<span class="number">2</span>,<span cla
 </pre>
 
 <p><code class="normal-img"><img src="../../../../images/20160812/2.png" alt="__proto__"></code></p>
-<h3 id="原形链">原形链</h3><p>如上面所述，几乎每个对象都有<code>原型(__proto__)</code>。如果其原型不为null，且是以构造函数形式创建的对象，其原型指向该<code>构造函数的prototype属性</code>。该<code>构造函数的prototype属性</code>也有<code>原型(__proto__)</code>，如果不为null，则接着往上引用，直到原型为null。如下代码所示：</p>
+<h3 id="原形链"><a href="#原形链" class="headerlink" title="原形链"></a>原形链</h3><p>如上面所述，几乎每个对象都有<code>原型(__proto__)</code>。如果其原型不为null，且是以构造函数形式创建的对象，其原型指向该<code>构造函数的prototype属性</code>。该<code>构造函数的prototype属性</code>也有<code>原型(__proto__)</code>，如果不为null，则接着往上引用，直到原型为null。如下代码所示：</p>
 <pre>
     var A = function(){};
     var a = new A();
@@ -1294,7 +1372,7 @@ doubleAll([<span class="number">1</span>,<span class="number">2</span>,<span cla
 <li>原型模式与构造函数组合使用，此模式将共享的属性和方法写在<code>prototype</code>上，构造函数里面用于自定义属性，比较通用。</li>
 <li>…</li>
 </ul>
-<h3 id="继承">继承</h3><p>js实现继承的方式很多，下面我介绍的只是用的比较多的一种，可以叫做：组合继承。其将原形链和借用构造函数技术组合到一块，发挥各自的长处实现的一种继承模式。<br>其背后的思路是使用原形链实现对原型属性和方法的继承，而通过借用构造函数来实现对实例属性的继承，如下面例子：</p>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>js实现继承的方式很多，下面我介绍的只是用的比较多的一种，可以叫做：组合继承。其将原形链和借用构造函数技术组合到一块，发挥各自的长处实现的一种继承模式。<br>其背后的思路是使用原形链实现对原型属性和方法的继承，而通过借用构造函数来实现对实例属性的继承，如下面例子：</p>
 <pre>
     function Man(name){
         this.name = name;
@@ -1320,8 +1398,8 @@ doubleAll([<span class="number">1</span>,<span class="number">2</span>,<span cla
     li.sex;        // male
 </pre>
 
-<h3 id="最后">最后</h3><p>继承、创建对象，还有其他的一些形式，目前我不大常用，所以没有在上文提及，有兴趣的可以自行了解。</p>
-<h3 id="参考资料">参考资料</h3><p>《JavaScript语言精粹》<br>《JavaScript权威指南(第6版)》<br>《JavaScript高级程序设计(第2版)》等</p>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>继承、创建对象，还有其他的一些形式，目前我不大常用，所以没有在上文提及，有兴趣的可以自行了解。</p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p>《JavaScript语言精粹》<br>《JavaScript权威指南(第6版)》<br>《JavaScript高级程序设计(第2版)》等</p>
 <hr>
 <hr>
 <p><img src="../../../../images/money.png" alt="money">☜☜☜ <strong><em>wechat</em></strong> 『『『<strong><em> reward 点击扫码打赏 ~~~ ^_^ </em></strong>  』』』<strong><em>alipay</em></strong> ☞☞☞   <img src="../../../../images/money.jpg" alt="money"></p>
@@ -1467,110 +1545,6 @@ doubleAll([<span class="number">1</span>,<span class="number">2</span>,<span cla
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/10/gulp搭配命令行参数实现前端自动化构建的多样化/" itemprop="url">
-                  gulp搭配命令行参数实现前端自动化构建的多样化
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-07-10T20:47:12+08:00" content="2016-07-10">
-              2016-07-10
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count" style="display:none">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/10/gulp搭配命令行参数实现前端自动化构建的多样化/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/10/gulp搭配命令行参数实现前端自动化构建的多样化/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>上面一篇文章简单介绍了gulp的相关知识及在项目中如何使用gulp进行自动化构建，本文简单介绍下如何搭配gulp做一些其他的逻辑处理，只是提供一种思路，不表示可以完全套用。</p>
-<h3 id="如果没有合适的插件怎么办？">如果没有合适的插件怎么办？</h3><p>通过npm安装的gulp插件，都是先想想自己要的需求，然后上npm社区找，万一找不到或者自己不会找，怎么办？</p>
-<ul>
-<li>假设一个需求<br>我们先假设一个简单的需求：每次发布指令生成的文件带上当前时间信息。</li>
-<li>处理思路<br>拿到这个需求第一反应可能还是先上社区找一下，没找到，怎么办？试着变通一下，如果没找到，那我自己写一个插件岂不是也可以。<br>想法很好，也可以行得通，目前有<code>through2</code>插件可以帮助我们写gulp插件，但是写一个插件对一个gulp初学者来说可能还是比较难的事情，那么我们换一个思路。<br>我们可以尝试在每次<code>gulp.dest</code>前，先给最终要生成的文件重命名，添加时间戳，这样可以保证正常情况下每次构建后的文件跟之前文件名都不一样。</li>
-<li>实现<br>简单的根据时间戳重命名，单个文件还好，多个文件的话，由于很多异步操作，记录时间的时刻必须比较特别，选用执行命令的那一刻可能更好些。</li>
-</ul>
-<p>有些时候，开发版指令可能需求简单些，或者单个task的需求简单些，这时可以用命令行参数搭配使用来方便构建。</p>
-<h3 id="搭配命令行参数">搭配命令行参数</h3><p>命令行参数可以用<code>process.argv</code>获取，拿到的第三个参数，可以表示为当前task的参数。<br>因此，我们可以拿这个来做简单的区分，如果是特殊命令，可以选择携带一个特殊的参数，这样不用每次都单独写任务来表示。</p>
-<h3 id="使用多彩的控制台输出">使用多彩的控制台输出</h3><p>npm社区有不少模块可以帮助生成多彩的控制台输出，虽然这对项目构建没有实际的作用，但是可以很清楚的区分当前使用的任务。</p>
-<h3 id="替换多个输出的文件名">替换多个输出的文件名</h3><p>如果有需求是替换某个文件夹中的所有文件名，此需求与上面的需求类似，可以一起进行。<br>具体代码可以自己琢磨，可以使用<code>path</code>模块的path.join方法来实现。</p>
-<h3 id="最后">最后</h3><p>由于自己对这方面也不是很熟悉，只是根据自己的经验提供一个解决问题的思路，希望可以举一反三，而不是滥用。</p>
-<hr>
-<hr>
-<p><img src="../../../../images/money.png" alt="money">☜☜☜ <strong><em>wechat</em></strong> 『『『<strong><em> reward 点击扫码打赏 ~~~ ^_^ </em></strong>  』』』<strong><em>alipay</em></strong> ☞☞☞   <img src="../../../../images/money.jpg" alt="money"></p>
-<hr>
-<hr>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1617,7 +1591,7 @@ doubleAll([<span class="number">1</span>,<span class="number">2</span>,<span cla
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-count">29</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

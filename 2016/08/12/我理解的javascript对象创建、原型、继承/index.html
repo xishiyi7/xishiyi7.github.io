@@ -83,6 +83,7 @@
 封装，将操作封闭，对外提供接口供使用。
 继承，子类具有基类(父类)的特征，还可以有自己的新的特性。
 多态，一个功能可以有多种不同用法，或者说一个子类">
+<meta name="twitter:image" content="https://github.com/xishiyi7/xishiyi7.github.io/../../../../images/20160812/1.png">
 
 
 
@@ -255,14 +256,14 @@
 
       
         <span itemprop="articleBody"><p>对js对象创建、原型、原形链、继承及”类”的理解，由于其间各种复杂的关系及掌握程度不够，个人经常需要翻资料确认，于是找时间整理了下当时的理解，并以此文形式记录下来。</p>
-<h3 id="面向对象">面向对象</h3><p>oop，面向对象编程。主要有以下几大特征:</p>
+<h3 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h3><p>oop，面向对象编程。主要有以下几大特征:</p>
 <ul>
 <li>类，具有相同结构和行为的集合。</li>
 <li>封装，将操作封闭，对外提供接口供使用。</li>
 <li>继承，子类具有基类(父类)的特征，还可以有自己的新的特性。</li>
 <li>多态，一个功能可以有多种不同用法，或者说一个子类可以将父类某个属性替换，具体的包括重写(override, 方法名称与参数相同)和重载(overload, 方法名称相同，参数不同)。</li>
 </ul>
-<h3 id="JavaScript对象">JavaScript对象</h3><p>js对象，除“null”外，其他的可以看做是属性的无序集合，每个属性都是一个名/值对，<span style="color:coral;">且其拥有一个连接到原型对象的隐藏连接。</span>“null”可以理解成不是对象的对象。函数，也是对象。js对象是动态的，可以新增和删除属性，通过引用而非值来操作对象。每个属性还有与之相关的一些其他值，称为“属性特性(property attribute)”:</p>
+<h3 id="JavaScript对象"><a href="#JavaScript对象" class="headerlink" title="JavaScript对象"></a>JavaScript对象</h3><p>js对象，除“null”外，其他的可以看做是属性的无序集合，每个属性都是一个名/值对，<span style="color:coral;">且其拥有一个连接到原型对象的隐藏连接。</span>“null”可以理解成不是对象的对象。函数，也是对象。js对象是动态的，可以新增和删除属性，通过引用而非值来操作对象。每个属性还有与之相关的一些其他值，称为“属性特性(property attribute)”:</p>
 <ul>
 <li>可写(writable attribute)，表明是否可以设置该属性的值；</li>
 <li>可枚举(enumerable attribute)，表明是否可以通过for/in循环返回该属性；</li>
@@ -275,7 +276,7 @@
 <li>对象的扩展标记(extensible flag)指明了是否可以向该对象添加新属性。</li>
 </ul>
 <p>js对象的属性包括两类：自有属性(own property)及继承属性(inherited property)。</p>
-<h3 id="原型">原型</h3><p>原型是对象的内部属性，可以将其理解为指向<code>构造函数原型对象</code>的内部指针，默认不可访问，部分浏览器实现可以通过<code>.__proto__</code>访问(eg.Chrome)，我们可以结合<code>.__proto__</code>来加深理解。<br>先说我知道的几个没有原型的对象：</p>
+<h3 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h3><p>原型是对象的内部属性，可以将其理解为指向<code>构造函数原型对象</code>的内部指针，默认不可访问，部分浏览器实现可以通过<code>.__proto__</code>访问(eg.Chrome)，我们可以结合<code>.__proto__</code>来加深理解。<br>先说我知道的几个没有原型的对象：</p>
 <ul>
 <li><code>null</code>没有原型；</li>
 <li><code>Object.prototype</code>没有原型(或者说原型为<code>null</code>)。</li>
@@ -286,7 +287,7 @@
 <li>通过关键字new和构造函数调用创建的对象，<span style="color:coral;">它的原型就是构造函数的prototype属性的值</span>。即，通过new Date()创建的对象，其原型就是Date.prototype；</li>
 <li>通过Object.create()创建的对象使用第一个参数(可以是null)作为它们的原型；</li>
 </ul>
-<p>每个<span style="color:coral;">函数对象</span>在创建时会带有一个<code>prototype</code>属性，它的值是一个拥有<code>constructor</code>属性且值即为该函数本身的对象。<br>当一个函数对象被创建时，Function构造器产生的函数对象会运行类似下面的代码：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.prototype = &#123;<span class="string">constructor:</span><span class="keyword">this</span>, <span class="string">__proto__:</span>...&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>每个<span style="color:coral;">函数对象</span>在创建时会带有一个<code>prototype</code>属性，它的值是一个拥有<code>constructor</code>属性且值即为该函数本身的对象。<br>当一个函数对象被创建时，Function构造器产生的函数对象会运行类似下面的代码：<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">this</span>.prototype = &#123;<span class="keyword">constructor</span>:<span class="keyword">this</span>, __proto__:...&#125;;</div></pre></td></tr></table></figure></p>
 <p><span style="color:coral;">新函数对象被赋予一个<code>prototype</code>属性，其值包含一个<code>constructor</code>属性且属性值为该新函数对象本身。</span></p>
 <pre>
     var C = function(){
@@ -317,7 +318,7 @@
 </pre>
 
 <p><code class="normal-img"><img src="../../../../images/20160812/2.png" alt="__proto__"></code></p>
-<h3 id="原形链">原形链</h3><p>如上面所述，几乎每个对象都有<code>原型(__proto__)</code>。如果其原型不为null，且是以构造函数形式创建的对象，其原型指向该<code>构造函数的prototype属性</code>。该<code>构造函数的prototype属性</code>也有<code>原型(__proto__)</code>，如果不为null，则接着往上引用，直到原型为null。如下代码所示：</p>
+<h3 id="原形链"><a href="#原形链" class="headerlink" title="原形链"></a>原形链</h3><p>如上面所述，几乎每个对象都有<code>原型(__proto__)</code>。如果其原型不为null，且是以构造函数形式创建的对象，其原型指向该<code>构造函数的prototype属性</code>。该<code>构造函数的prototype属性</code>也有<code>原型(__proto__)</code>，如果不为null，则接着往上引用，直到原型为null。如下代码所示：</p>
 <pre>
     var A = function(){};
     var a = new A();
@@ -358,7 +359,7 @@
 <li>原型模式与构造函数组合使用，此模式将共享的属性和方法写在<code>prototype</code>上，构造函数里面用于自定义属性，比较通用。</li>
 <li>…</li>
 </ul>
-<h3 id="继承">继承</h3><p>js实现继承的方式很多，下面我介绍的只是用的比较多的一种，可以叫做：组合继承。其将原形链和借用构造函数技术组合到一块，发挥各自的长处实现的一种继承模式。<br>其背后的思路是使用原形链实现对原型属性和方法的继承，而通过借用构造函数来实现对实例属性的继承，如下面例子：</p>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>js实现继承的方式很多，下面我介绍的只是用的比较多的一种，可以叫做：组合继承。其将原形链和借用构造函数技术组合到一块，发挥各自的长处实现的一种继承模式。<br>其背后的思路是使用原形链实现对原型属性和方法的继承，而通过借用构造函数来实现对实例属性的继承，如下面例子：</p>
 <pre>
     function Man(name){
         this.name = name;
@@ -384,8 +385,8 @@
     li.sex;        // male
 </pre>
 
-<h3 id="最后">最后</h3><p>继承、创建对象，还有其他的一些形式，目前我不大常用，所以没有在上文提及，有兴趣的可以自行了解。</p>
-<h3 id="参考资料">参考资料</h3><p>《JavaScript语言精粹》<br>《JavaScript权威指南(第6版)》<br>《JavaScript高级程序设计(第2版)》等</p>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>继承、创建对象，还有其他的一些形式，目前我不大常用，所以没有在上文提及，有兴趣的可以自行了解。</p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p>《JavaScript语言精粹》<br>《JavaScript权威指南(第6版)》<br>《JavaScript高级程序设计(第2版)》等</p>
 <hr>
 <hr>
 <p><img src="../../../../images/money.png" alt="money">☜☜☜ <strong><em>wechat</em></strong> 『『『<strong><em> reward 点击扫码打赏 ~~~ ^_^ </em></strong>  』』』<strong><em>alipay</em></strong> ☞☞☞   <img src="../../../../images/money.jpg" alt="money"></p>
@@ -509,7 +510,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-count">29</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
