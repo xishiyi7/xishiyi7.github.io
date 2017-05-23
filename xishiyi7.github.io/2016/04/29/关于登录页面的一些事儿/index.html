@@ -1,0 +1,704 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="以下皆为个人原创见解，不当之处烦请指正。
+首先，我有些话想说在前面。现在网上的各种开放的资源，很多都是有访客模式，即不用登录也能浏览或者操作，但是现今时代没有登录功能或者登录页面的网站，几乎绝迹了。说实话，登录页面除了验证信息作用外，其他的都不是主要的，因此可能很多人觉得没有必要花很多时间在这上面。我也同意上述观点！但是呢，既然做了，当然希望做的更好点啦，废话不说，下面进入主题。
+吐槽各大公司的网">
+<meta property="og:type" content="article">
+<meta property="og:title" content="你以为BAT的登录天衣无缝?">
+<meta property="og:url" content="https://github.com/xishiyi7/xishiyi7.github.io/2016/04/29/关于登录页面的一些事儿/index.html">
+<meta property="og:site_name" content="阿根廷人。">
+<meta property="og:description" content="以下皆为个人原创见解，不当之处烦请指正。
+首先，我有些话想说在前面。现在网上的各种开放的资源，很多都是有访客模式，即不用登录也能浏览或者操作，但是现今时代没有登录功能或者登录页面的网站，几乎绝迹了。说实话，登录页面除了验证信息作用外，其他的都不是主要的，因此可能很多人觉得没有必要花很多时间在这上面。我也同意上述观点！但是呢，既然做了，当然希望做的更好点啦，废话不说，下面进入主题。
+吐槽各大公司的网">
+<meta property="og:image" content="https://github.com/xishiyi7/xishiyi7.github.io/../../../../images/money.png">
+<meta property="og:image" content="https://github.com/xishiyi7/xishiyi7.github.io/../../../../images/money.jpg">
+<meta property="og:updated_time" content="2016-04-30T12:07:30.703Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="你以为BAT的登录天衣无缝?">
+<meta name="twitter:description" content="以下皆为个人原创见解，不当之处烦请指正。
+首先，我有些话想说在前面。现在网上的各种开放的资源，很多都是有访客模式，即不用登录也能浏览或者操作，但是现今时代没有登录功能或者登录页面的网站，几乎绝迹了。说实话，登录页面除了验证信息作用外，其他的都不是主要的，因此可能很多人觉得没有必要花很多时间在这上面。我也同意上述观点！但是呢，既然做了，当然希望做的更好点啦，废话不说，下面进入主题。
+吐槽各大公司的网">
+<meta name="twitter:image" content="https://github.com/xishiyi7/xishiyi7.github.io/../../../../images/money.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    sidebar: 'hide',
+    motion: true
+  };
+</script>
+
+  <title> 你以为BAT的登录天衣无缝? | 阿根廷人。 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?ba79b70fc8075ea38398e9197ab4fc9e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">阿根廷人。</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">xishiyi7</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                你以为BAT的登录天衣无缝?
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-04-29T14:32:12+08:00" content="2016-04-29">
+              2016-04-29
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count" style="display:none">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/29/关于登录页面的一些事儿/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/29/关于登录页面的一些事儿/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p><strong><small style="font-weight:100;color:rgba(255,128,0,1)">以下皆为个人原创见解，不当之处烦请指正。</small></strong></p>
+<p>首先，我有些话想说在前面。现在网上的各种开放的资源，很多都是有访客模式，即不用登录也能浏览或者操作，但是现今时代没有登录功能或者登录页面的网站，几乎绝迹了。<br>说实话，登录页面除了验证信息作用外，其他的都不是主要的，因此可能很多人觉得没有必要花很多时间在这上面。<br>我也同意上述观点！<br>但是呢，既然做了，当然希望做的更好点啦，废话不说，下面进入主题。</p>
+<h3 id="吐槽"><a href="#吐槽" class="headerlink" title="吐槽"></a>吐槽</h3><p>各大公司的网站，做的已经非常棒了，至少我是很佩服。<br>但是有时候会遇到一点小瑕疵，比如说下面几个例子，我平时也会拿出来吐槽下，用以慰藉下像我这种技术渣幼小的心灵。</p>
+<ul>
+<li><strong><em>JD</em></strong></li>
+</ul>
+<ol>
+<li>JD的登录页面，如果没输入用户名和密码，或者只输入密码，点击登录按钮，会请求服务器拿两个log.gif文件，我并不知道这个文件是干嘛用的，为什么要这么做。然后当输入了用户名再删去，也会发出请求。不是应该只有都输了，才发出请求的吗???<hr style="background-color:#CFE8A8;margin:5px 0;"></li>
+<li>第二点，就是点击右下角扫码登录后，按钮居然跑下面来了，居然不是在同一个地方，每次点完都要移动鼠标才能点回去，这体验太差了吧。<hr style="background-color:#CFE8A8;margin:5px 0;"></li>
+<li>第三点，从普通登录切换扫码登录，拿一个code图片，我能理解，但是为什么切回来的时候，还要拿一次吖？？？<hr style="background-color:#CFE8A8;margin:5px 0;"></li>
+<li>第四点，登录页面没有做自适应处理，缩放后出现滚动条。</li>
+</ol>
+<ul>
+<li><strong><em>BD</em></strong><br>BD的登录弹框，每次修改完密码再失焦，会请求一次publicKey。然后从扫码登录页面切换回来，也还会再请求一次gif文件。但至少切换的按钮，位置没变，不需要再移动鼠标。也没有做自适应处理，缩放屏幕出现滚动条。</li>
+<li><strong><em>ALI</em></strong></li>
+</ul>
+<ol>
+<li>TB的登录页面做了自适应，有一个767的分界。屏宽小于767px，会让登录窗口居中显示，去掉背景。<br>但是关于TB登录页面的自适应做的，也有问题。当屏宽超过767px时，由于其左边的背景看着像是广告图片，图片的宽度设置为屏宽100%，而整个页面内容区域宽度也是固定的，目前是1200px，当屏宽在767与1200之间时，还是出现了横向滚动条。<br>关键的来了，由于TB登录框的position是relative，此时被固定在右侧了，你要看到首先得拖动滚动条，一拖滚动条，背景就跟不过来了，就会很容易出现我看到登录框整个背景是白色的！<br>或者部分背景是白色的！没有背景！或者说脱离背景图片了！这个看着视觉效果太差了感觉。<hr style="background-color:#CFE8A8;margin:5px 0;"></li>
+<li>第二点，当我输入用户名和密码后，不管我有没有拖动验证条，都会去执行登录请求服务器。而且我很奇怪的是，登录失败也要整个页面重新刷新一次！！！<br>我的天呐，我不知道为什么需要重新刷新一次，而且我感觉好像是有意为之，因为登录失败再加载页面很慢，还有专门的加载进度圈圈。。。</li>
+</ol>
+<h3 id="界面"><a href="#界面" class="headerlink" title="界面"></a>界面</h3><p>吐槽完了，说下我自己写的渣渣页面吧。由于h5很多元素用的不多，语义性可能有点乱，但是大致思想在那。<br>首先界面，主要是三块，header、section及footer，大致如下：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--login header--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">header</span> <span class="attr">class</span> = <span class="string">"login-header"</span>&gt;</span></div><div class="line">	  <span class="comment">&lt;!--login logo--&gt;</span></div><div class="line">	  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span> = <span class="string">"login-logo"</span>&gt;</span></div><div class="line">		...</div><div class="line">	  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">header</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!--login content--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span> = <span class="string">"login-content"</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!--login background--&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span> = <span class="string">"login-bg"</span>&gt;</span></div><div class="line">  	...</div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!--login layout--&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span> = <span class="string">"login-layout"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span> = <span class="string">"login-box-wrap"</span>&gt;</span></div><div class="line">		...</div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">section</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!--login footer--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">footer</span> <span class="attr">class</span> = <span class="string">"login-footer"</span>&gt;</span></div><div class="line">	...</div><div class="line"><span class="tag">&lt;/<span class="name">footer</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>header部分现在是放一个logo区域。<br>footer部门现在是放一些友链啥的。<br>section是主要内容区域。内容区域放一个可以独立出来的弹出框，因为有些网站，像BD，可能不光有登录页面，还有登录弹框。<br>单独拿出来可以保证此页面可以复用，比如项目是用ng开发的时候，写成指令。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&lt;div <span class="class"><span class="keyword">class</span> </span>= <span class="string">"login-box"</span>&gt;</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span> = <span class="string">"login-box-content"</span>&gt;</span></span></div><div class="line">    <span class="comment">&lt;!--login quick--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span> = <span class="string">"login-quick"</span>&gt;</span></div><div class="line">    	...</div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!--login static form--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">form</span> <span class="attr">class</span> = <span class="string">"login-static"</span> <span class="attr">submit</span> = <span class="string">"signIn();"</span>&gt;</span></div><div class="line">    	... (账户)</div><div class="line">    	... (密码)</div><div class="line">    	... (验证码)</div><div class="line">      <span class="comment">&lt;!--login button--&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span> = <span class="string">"login-btn"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span> = <span class="string">"submit"</span> <span class="attr">class</span> = <span class="string">"btn btn-success"</span>&gt;</span>登 录<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">&lt;<span class="regexp">/div&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="自适应-amp-视效-样式"><a href="#自适应-amp-视效-样式" class="headerlink" title="自适应&amp;视效(样式)"></a>自适应&amp;视效(样式)</h3><p>可能不算视效啦，只是不知道怎么描述。<br>首先，内容区域，即section部分，我设置position为relative，相对定位。宽度100%。背景图片宽度100%，绝对定位。<br>添加媒介查询，屏宽小于768px时，背景不要了。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.login-content</span> &#123;</div><div class="line">       <span class="attribute">width</span>: <span class="number">100%</span>;</div><div class="line">       <span class="attribute">position</span>: relative;</div><div class="line">   &#125;</div><div class="line">@<span class="keyword">media</span> (min-width: <span class="number">768px</span>)</div><div class="line">   .login-bg&#123;</div><div class="line">       <span class="selector-tag">position</span>: <span class="selector-tag">absolute</span>;</div><div class="line">       <span class="selector-tag">width</span>: 100%;</div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
+<p>然后登录内容区域，宽度先固定1200px，相对定位。先保证在大屏幕情况下，正常显示，再去滚动条。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.login-layout</span>&#123;</div><div class="line">	<span class="attribute">width</span>: <span class="number">1200px</span>;</div><div class="line">	<span class="attribute">margin</span>: <span class="number">0</span> auto;</div><div class="line">	<span class="attribute">overflow</span>: hidden;</div><div class="line">	<span class="attribute">position</span>: relative;</div><div class="line">	<span class="attribute">transition</span>: width .<span class="number">25s</span> linear;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>注意最后一行，我还加了点别的东西–transition，这个小过渡主要是变化窗体宽度的时候触发。<br>有人会说我width固定了，也触发不了呀，下面还有一点东西。<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@media (<span class="built_in">max</span>-<span class="built_in">width</span>: <span class="number">1200</span>px) and (<span class="built_in">min</span>-<span class="built_in">width</span>: <span class="number">768</span>px)</div><div class="line">   .login-layout &#123;</div><div class="line">       <span class="built_in">width</span>: <span class="number">100</span>%!important;</div><div class="line">  	&#125;</div></pre></td></tr></table></figure></p>
+<p>上面这句样式的作用就是用来动态改变登录内容区域宽度的。这句样式个人感觉还是蛮重要的，可以保证屏宽在这两者之间时，内容区域宽度动态变化，这样做的好处就在于里面的子元素相对其定位时，感觉上子元素所处的位置没有发生变化。<br>接下来看下登录框的样式。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.login-box-wrap</span> &#123;</div><div class="line">       <span class="attribute">position</span>: absolute;</div><div class="line">       <span class="attribute">top</span>: <span class="number">40px</span>;</div><div class="line">       <span class="attribute">right</span>: <span class="number">15%</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>相对父元素(此处为登录内容区域)，加一个top和right，以保证在宽度变化的时候，视觉上看登录框所处位置不变。<br>以上样式生效后，可以保证屏宽在768px以下时，只居中显示登陆框，在1200px以上时，正常显示。在两者之间时，屏宽有变化则登录窗体也跟着一起变化，不出现滚动条，背景不丢失，且登录框所处位置相对固定。</p>
+<h3 id="登录-功能"><a href="#登录-功能" class="headerlink" title="登录(功能)"></a>登录(功能)</h3><p>h5提供一些基础的表单校验功能，其中有一条–必填检验(required)。而且允许用户自定义一些校验提示，还支持正则匹配。此特性规定，在校验不合法的情况下，不允许用户提交表单。<br>因此我在form内利用这些新知识，可以避免在没有输入用户及密码的情况下，进行表单提交，请求后台服务器。我不知道其他网站为何要在未输入用户名密码的情况下请求后台服务器，我觉得在我看来没有这个必要。<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;input <span class="attr">type</span> = <span class="string">"text"</span></div><div class="line">	<span class="attr">class</span> = <span class="string">"form-control"</span> required <span class="attr">autofocus</span> = <span class="string">"autofocus"</span></div><div class="line">	<span class="attr">autocomplete="on"</span> <span class="attr">placeholder</span> = <span class="string">"手机号/会员名/邮箱"</span></div><div class="line">    <span class="attr">oninvalid</span> = <span class="string">"setCustomValidity('请输入账号')"</span></div><div class="line">    <span class="attr">oninput</span> = <span class="string">"setCustomValidity('')"</span></div><div class="line">/&gt;</div></pre></td></tr></table></figure></p>
+<p>‘autofocus’属性可以让当前元素在页面初始化的时候，自动获取焦点。<br>‘autocomplete’设置为on可以让浏览器记住输入内容。<br>‘oninvalid’属性可以自己设定输入非法时的提示语。<br>‘oninput’属性表示输入时要执行的操作。<br>‘placeholder’属性表示占位时显示的字符。</p>
+<p>这些都是普通的h5新特性，可以添加你们适用的属性来满足需求，个人感觉还比较方便。</p>
+<h3 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h3><p>目前登录机制是利用cookie。有时候可能需要跳转到当前系统，即利用单点登录验证身份，此时是请求服务器产生一个唯一的一次可用的authId，携带这个authId的即视为合法用户。登录安全这块内容东西太多，做的时候需要考虑仔细点，以上就是登录页面我个人的看法。</p>
+<hr>
+<hr>
+<p><img src="../../../../images/money.png" alt="money">☜☜☜ <strong><em>wechat</em></strong> 『『『<strong><em> reward 点击扫码打赏 ~~~ ^_^ </em></strong>  』』』<strong><em>alipay</em></strong> ☞☞☞   <img src="../../../../images/money.jpg" alt="money"></p>
+<hr>
+<hr>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/01/高性能网站建设指南-笔记/" rel="next" title="高性能网站建设指南(笔记)">
+                <i class="fa fa-chevron-left"></i> 高性能网站建设指南(笔记)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/03/angular项目涉及多个应用的目录结构划分参考/" rel="prev" title="angular项目涉及多个应用的目录结构划分参考">
+                angular项目涉及多个应用的目录结构划分参考 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/04/29/关于登录页面的一些事儿/"
+     data-title="你以为BAT的登录天衣无缝?"
+     data-content=""
+     data-url="https://github.com/xishiyi7/xishiyi7.github.io/2016/04/29/关于登录页面的一些事儿/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/04/29/关于登录页面的一些事儿/"
+           data-title="你以为BAT的登录天衣无缝?" data-url="https://github.com/xishiyi7/xishiyi7.github.io/2016/04/29/关于登录页面的一些事儿/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle" >
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="xishiyi7" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">xishiyi7</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">this is my personal post</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">分类</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">标签</span>
+              
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#吐槽"><span class="nav-number">1.</span> <span class="nav-text">吐槽</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#界面"><span class="nav-number">2.</span> <span class="nav-text">界面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自适应-amp-视效-样式"><span class="nav-number">3.</span> <span class="nav-text">自适应&视效(样式)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#登录-功能"><span class="nav-number">4.</span> <span class="nav-text">登录(功能)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安全"><span class="nav-number">5.</span> <span class="nav-text">安全</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xishiyi7</span>
+</div>
+<!-- 隐藏部分footer
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+-->
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"xishiyi7"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>

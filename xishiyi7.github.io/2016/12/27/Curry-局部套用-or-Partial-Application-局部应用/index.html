@@ -1,0 +1,720 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="名词解释Partial Application，也译作“偏应用”或“部分应用”。Curring，也译作“柯里化”。arity，元。表示函数的参数数量。如，unary(一元),binary(二元),ternary(三元),polyadic(多元)。
+完全应用假设有一个函数A，其需要n个参数来应用，而当我们调用函数A时，给它传入了n个参数。则A函数完全应用了我们传入的参数。
+局部应用即函数调用的时候只">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Curry(局部套用) or Partial Application(局部应用)?">
+<meta property="og:url" content="https://github.com/xishiyi7/xishiyi7.github.io/2016/12/27/Curry-局部套用-or-Partial-Application-局部应用/index.html">
+<meta property="og:site_name" content="阿根廷人。">
+<meta property="og:description" content="名词解释Partial Application，也译作“偏应用”或“部分应用”。Curring，也译作“柯里化”。arity，元。表示函数的参数数量。如，unary(一元),binary(二元),ternary(三元),polyadic(多元)。
+完全应用假设有一个函数A，其需要n个参数来应用，而当我们调用函数A时，给它传入了n个参数。则A函数完全应用了我们传入的参数。
+局部应用即函数调用的时候只">
+<meta property="og:image" content="https://github.com/xishiyi7/xishiyi7.github.io/../../../../images/money.png">
+<meta property="og:image" content="https://github.com/xishiyi7/xishiyi7.github.io/../../../../images/money.jpg">
+<meta property="og:updated_time" content="2016-12-27T08:32:10.361Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Curry(局部套用) or Partial Application(局部应用)?">
+<meta name="twitter:description" content="名词解释Partial Application，也译作“偏应用”或“部分应用”。Curring，也译作“柯里化”。arity，元。表示函数的参数数量。如，unary(一元),binary(二元),ternary(三元),polyadic(多元)。
+完全应用假设有一个函数A，其需要n个参数来应用，而当我们调用函数A时，给它传入了n个参数。则A函数完全应用了我们传入的参数。
+局部应用即函数调用的时候只">
+<meta name="twitter:image" content="https://github.com/xishiyi7/xishiyi7.github.io/../../../../images/money.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    sidebar: 'hide',
+    motion: true
+  };
+</script>
+
+  <title> Curry(局部套用) or Partial Application(局部应用)? | 阿根廷人。 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?ba79b70fc8075ea38398e9197ab4fc9e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">阿根廷人。</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">xishiyi7</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Curry(局部套用) or Partial Application(局部应用)?
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-12-27T10:16:08+08:00" content="2016-12-27">
+              2016-12-27
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count" style="display:none">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/27/Curry-局部套用-or-Partial-Application-局部应用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/27/Curry-局部套用-or-Partial-Application-局部应用/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h3 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h3><p>Partial Application，也译作“偏应用”或“部分应用”。<br>Curring，也译作“柯里化”。<br>arity，元。表示函数的参数数量。如，unary(一元),binary(二元),ternary(三元),polyadic(多元)。</p>
+<h3 id="完全应用"><a href="#完全应用" class="headerlink" title="完全应用"></a>完全应用</h3><p>假设有一个函数A，其需要n个参数来应用，而当我们调用函数A时，给它传入了n个参数。则A函数完全应用了我们传入的参数。</p>
+<h3 id="局部应用"><a href="#局部应用" class="headerlink" title="局部应用"></a>局部应用</h3><p>即函数调用的时候只提供部分参数供其应用。例如以下：</p>
+<pre>
+    function mapWith(fn){
+        return function(list){
+            return map(list,fn);
+        }
+    }
+</pre>
+如上，当我们调用mapWith函数时，先传入一个参数，其返回一个函数结果，执行该结果的时候再传入第二个参数，返回最终结果。类似于：
+<pre>
+    mapWith(square)([1,2,3]);
+</pre>
+
+<h3 id="局部套用"><a href="#局部套用" class="headerlink" title="局部套用"></a>局部套用</h3><p>上面的局部应用，其中的map函数为一个我们已知的具体函数，我们可以稍加修整，如下：<br>第一步，先将map用一个更抽象的函数<code>binaryFn</code>取代，暗示此处可以做任何一种二元函数的处理。同时，最外层的函数名，也就可以做相应的调整了，我们可以使用<code>wrapper</code>取代之。<br>第二步，既然用来最终处理的函数都抽象化了，那传入的参数自然也没有必要限定其类型。<br>于是，我们可以将其稍微调整为如下状态：</p>
+<pre>
+    function wrapper(secondArg){
+        return function(firstArg){
+            return binaryFn(firstArg,secondArg);
+        }
+    }
+</pre>
+
+<p>到这里，会突然发现其中的binaryFn函数并未做初始化，无法灵活的使用，于是我们可以再包装一层：</p>
+<p><pre><br>    function rightmostCurry(binaryFn) {<br>       return function (secondArg) {<br>         return function (firstArg) {<br>           return binaryFn(firstArg, secondArg);<br>         };<br>       };<br>    }<br></pre><br>到现在，我们可以试着调用一下<code>rightmostCurry</code>函数。</p>
+<p><pre><br>    var rightmostCurriedMap = rightmostCurry(map);<br>    var squareAll = rightmostCurriedMap(square);<br>    squareAll([2, 3, 5]);     // =&gt; [4, 9, 25]<br>    squareAll([1, 4, 7, 6]);  // =&gt; [1, 16, 49, 36]<br></pre><br>对比局部应用会发现，在局部应用中，最内层的处理函数是确定的。而在局部套用中，最内层的实际处理函数，是未知的，其最终结果是在最外层函数调用后，分批传入其他参数来获取的。<br>由此可以做如下解释：</p>
+<ul>
+<li><strong><em>局部应用：</em></strong> 返回最终结果的处理方式是限定的，每一层的函数调用所传入<br>的参数都将逐次参与最终处理过程中去；</li>
+<li><strong><em>局部套用：</em></strong> 返回最终结果的处理方式是未知的，需要我们在使用的时候将<br>其作为参数传入。</li>
+</ul>
+<h3 id="leftmost-最左形式"><a href="#leftmost-最左形式" class="headerlink" title="leftmost(最左形式)"></a>leftmost(最左形式)</h3><p>仔细观察上面的函数，可能会有疑问，在中间层函数中，把参数调换会出现什么情况呢?先把函数改造下，如下：</p>
+<p><pre><br>    function leftmostCurry(binaryFn) {<br>      return function (firstArg) {<br>        return function (secondArg) {<br>          return binaryFn(firstArg, secondArg);<br>        };<br>      };<br>    }<br>    var leftmostCurriedMap = leftmostCurry(map);</pre></p>
+<pre><code>function square(n) { return n * n; }
+function double(n) { return n + n; }
+
+var oneToThreeEach = leftmostCurriedMap([1, 2, 3]);
+oneToThreeEach(square);   // =&gt; [1, 4, 9]
+oneToThreeEach(double);   // =&gt; [2, 4, 6]
+</code></pre><p><br>上面就是最左形式的局部套用示例用法。<br>由于一般代码逻辑都是“从左向右”，因此在其他项目中见过比较多的应该是leftmost形式。习惯上直接把leftmost形式叫做curry。</p>
+<h3 id="现实使用"><a href="#现实使用" class="headerlink" title="现实使用"></a>现实使用</h3><p>现实中用到局部套用情况一般可能做如下处理：</p>
+<p><pre><br>    function rightmostUnaryPartialApplication(binaryFn, secondArg) {<br>      return function (firstArg) {<br>        return binaryFn(firstArg, secondArg);<br>      };<br>    }<br>    var applyLast = rightmostUnaryPartialApplication;</pre></p>
+<pre><code>var squareAll = applyLast(map, square);
+var doubleAll = applyLast(map, double);
+squareAll([1,2,3]);
+doubleAll([1,2,3]);
+</code></pre><p><br>以上用法，仔细观察会发现有很多开发者都在多次使用，希望在用到或者看到这类用法时，能真正理解其区别及联系。</p>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p><strong><em><a href="https://segmentfault.com/a/1190000000765247" target="_blank" rel="external">函数式编程中局部应用（Partial Application）和局部套用（Currying）的区别</a></em></strong><br><strong><em><a href="https://medium.com/javascript-scene/curry-or-partial-application-8150044c78b8#.y39pewh95" target="_blank" rel="external">Curry or Partial Application?</a> Eric ElliottFollow Jul 20, 2015</em></strong></p>
+<hr>
+<hr>
+<p><img src="../../../../images/money.png" alt="money">☜☜☜ <strong><em>wechat</em></strong> 『『『<strong><em> reward 点击扫码打赏 ~~~ ^_^ </em></strong>  』』』<strong><em>alipay</em></strong> ☞☞☞   <img src="../../../../images/money.jpg" alt="money"></p>
+<hr>
+<hr>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/14/使用Chrome-DevTools并行调试node-js/" rel="next" title="使用Chrome DevTools直接调试Node.js与JavaScript(并行)">
+                <i class="fa fa-chevron-left"></i> 使用Chrome DevTools直接调试Node.js与JavaScript(并行)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/14/gulp结合批处理-bat-进行ng多应用一键自动化构建/" rel="prev" title="gulp结合批处理(.bat)进行ng多应用一键自动化构建">
+                gulp结合批处理(.bat)进行ng多应用一键自动化构建 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/12/27/Curry-局部套用-or-Partial-Application-局部应用/"
+     data-title="Curry(局部套用) or Partial Application(局部应用)?"
+     data-content=""
+     data-url="https://github.com/xishiyi7/xishiyi7.github.io/2016/12/27/Curry-局部套用-or-Partial-Application-局部应用/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/27/Curry-局部套用-or-Partial-Application-局部应用/"
+           data-title="Curry(局部套用) or Partial Application(局部应用)?" data-url="https://github.com/xishiyi7/xishiyi7.github.io/2016/12/27/Curry-局部套用-or-Partial-Application-局部应用/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle" >
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="xishiyi7" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">xishiyi7</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">this is my personal post</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">分类</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">标签</span>
+              
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#名词解释"><span class="nav-number">1.</span> <span class="nav-text">名词解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完全应用"><span class="nav-number">2.</span> <span class="nav-text">完全应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#局部应用"><span class="nav-number">3.</span> <span class="nav-text">局部应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#局部套用"><span class="nav-number">4.</span> <span class="nav-text">局部套用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#leftmost-最左形式"><span class="nav-number">5.</span> <span class="nav-text">leftmost(最左形式)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#现实使用"><span class="nav-number">6.</span> <span class="nav-text">现实使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文献"><span class="nav-number">7.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xishiyi7</span>
+</div>
+<!-- 隐藏部分footer
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+-->
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"xishiyi7"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>
