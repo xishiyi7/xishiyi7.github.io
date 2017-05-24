@@ -177,6 +177,235 @@
 
     
     
+      
+      
+
+      
+    
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/12/我理解的javascript对象创建、原型、继承/" itemprop="url">
+                  我理解的javascript对象创建、原型、继承
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-08-12T12:01:29+08:00" content="2016-08-12">
+              2016-08-12
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count" style="display:none">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/12/我理解的javascript对象创建、原型、继承/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/12/我理解的javascript对象创建、原型、继承/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>对js对象创建、原型、原形链、继承及”类”的理解，由于其间各种复杂的关系及掌握程度不够，个人经常需要翻资料确认，于是找时间整理了下当时的理解，并以此文形式记录下来。</p>
+<h3 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h3><p>oop，面向对象编程。主要有以下几大特征:</p>
+<ul>
+<li>类，具有相同结构和行为的集合。</li>
+<li>封装，将操作封闭，对外提供接口供使用。</li>
+<li>继承，子类具有基类(父类)的特征，还可以有自己的新的特性。</li>
+<li>多态，一个功能可以有多种不同用法，或者说一个子类可以将父类某个属性替换，具体的包括重写(override, 方法名称与参数相同)和重载(overload, 方法名称相同，参数不同)。</li>
+</ul>
+<h3 id="JavaScript对象"><a href="#JavaScript对象" class="headerlink" title="JavaScript对象"></a>JavaScript对象</h3><p>js对象，除“null”外，其他的可以看做是属性的无序集合，每个属性都是一个名/值对，<span style="color:coral;">且其拥有一个连接到原型对象的隐藏连接。</span>“null”可以理解成不是对象的对象。函数，也是对象。js对象是动态的，可以新增和删除属性，通过引用而非值来操作对象。每个属性还有与之相关的一些其他值，称为“属性特性(property attribute)”:</p>
+<ul>
+<li>可写(writable attribute)，表明是否可以设置该属性的值；</li>
+<li>可枚举(enumerable attribute)，表明是否可以通过for/in循环返回该属性；</li>
+<li>可配置(configurable attribute)，表明是否可以删除或修改该属性。</li>
+</ul>
+<p>这三个特性是在ES5之后可以加以配置，在ES5之前，通过代码给对象创建的属性都是可写的、可枚举的和可配置的。除了包含属性之外，每个对象还拥有三个相关的对象特性(object attribute):</p>
+<ul>
+<li>对象的原型(prototype)指向另外一个对象，本对象的属性继承自它的原型对象；</li>
+<li>对象的类(class)是一个标识对象类型的字符串；</li>
+<li>对象的扩展标记(extensible flag)指明了是否可以向该对象添加新属性。</li>
+</ul>
+<p>js对象的属性包括两类：自有属性(own property)及继承属性(inherited property)。</p>
+<h3 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h3><p>原型是对象的内部属性，可以将其理解为指向<code>构造函数原型对象</code>的内部指针，默认不可访问，部分浏览器实现可以通过<code>.__proto__</code>访问(eg.Chrome)，我们可以结合<code>.__proto__</code>来加深理解。<br>先说我知道的几个没有原型的对象：</p>
+<ul>
+<li><code>null</code>没有原型；</li>
+<li><code>Object.prototype</code>没有原型(或者说原型为<code>null</code>)。</li>
+</ul>
+<p>然后介绍几种获取对象的原型属性的方法：</p>
+<ul>
+<li>所有通过对象直接量创建的对象都具有同一个原型对象—<code>Object.prototype</code>；</li>
+<li>通过关键字new和构造函数调用创建的对象，<span style="color:coral;">它的原型就是构造函数的prototype属性的值</span>。即，通过new Date()创建的对象，其原型就是Date.prototype；</li>
+<li>通过Object.create()创建的对象使用第一个参数(可以是null)作为它们的原型；</li>
+</ul>
+<p>每个<span style="color:coral;">函数对象</span>在创建时会带有一个<code>prototype</code>属性，它的值是一个拥有<code>constructor</code>属性且值即为该函数本身的对象。<br>当一个函数对象被创建时，Function构造器产生的函数对象会运行类似下面的代码：<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">this</span>.prototype = &#123;<span class="keyword">constructor</span>:<span class="keyword">this</span>, __proto__:...&#125;;</div></pre></td></tr></table></figure></p>
+<p><span style="color:coral;">新函数对象被赋予一个<code>prototype</code>属性，其值包含一个<code>constructor</code>属性且属性值为该新函数对象本身。</span></p>
+<pre>
+    var C = function(){
+        this.key = 'key';
+    };
+    C.prototype.constructor === C;    // <span style="color:limegreen;">true</span>
+</pre>
+
+<p><code class="normal-img"><img src="../../../../images/20160812/1.png" alt="function"></code></p>
+<p>上面的概念说完了，可以利用chrome的console面板，通过以下代码加深理解：</p>
+<pre>
+    null.__proto__    // <span style="color:limegreen;">Uncaught TypeError: Cannot read property '__proto__' of null</span>
+    Object.prototype.__proto__    // <span style="color:limegreen;">null</span>
+    var o = {};
+    o.__proto__ === Object.prototype    // <span style="color:limegreen;">true</span>
+    var A = function(){};
+    A.__proto__ === Function.prototype    // <span style="color:limegreen;">true</span>
+    A.prototype.constructor === A    // <span style="color:limegreen;">true</span>
+    A.prototype.__proto__ === Object.prototype    // <span style="color:limegreen;">true</span>
+    var a = new A();
+    a.__proto__ === A.prototype    // <span style="color:limegreen;">true</span>
+    var b = Object.create(A);
+    var c = Object.create(A.prototype);
+    var empty = Object.create(null);
+    b.__proto__ === A    // <span style="color:limegreen;">true 注意此处，对象b的原型为A</span>
+    c.__proto__ === A.prototype    // <span style="color:limegreen;">true 注意此处，对象c的原型为A.prototype</span>
+    empty.__proto__    // <span style="color:limegreen;">undefined 注意跟上面对象o的区别</span>
+</pre>
+
+<p><code class="normal-img"><img src="../../../../images/20160812/2.png" alt="__proto__"></code></p>
+<h3 id="原形链"><a href="#原形链" class="headerlink" title="原形链"></a>原形链</h3><p>如上面所述，几乎每个对象都有<code>原型(__proto__)</code>。如果其原型不为null，且是以构造函数形式创建的对象，其原型指向该<code>构造函数的prototype属性</code>。该<code>构造函数的prototype属性</code>也有<code>原型(__proto__)</code>，如果不为null，则接着往上引用，直到原型为null。如下代码所示：</p>
+<pre>
+    var A = function(){};
+    var a = new A();
+    a.__proto__ === A.prototype;    // <span style="color:limegreen;">true</span>
+    A.prototype.__proto__ === Object.prototype;    // <span style="color:limegreen;">true</span>
+    Object.prototype.__proto__ === null;    // <span style="color:limegreen;">true</span>
+</pre>
+像上面这样通过`原型(__proto__)`一直往上可以串联起来就是原型链。
+
+<h3 id="创建对象">创建对象</h3>
+可以通过对象字面量、new及(ES5)Object.create()方法来创建对象。
++ 对象字面量创建方式很简单，`var a = {}`；
++ 通过关键字`new`创建，也可以叫做通过`构造函数`创建，比如：`var date = new Date()`；
++ 通过ES5新提供的方法，`Object.create()`创建。其接收两个参数，第一个参数是当前要创建对象的原型，第二个参数表示当前要创建对象的特性约束，即是否可写、可配置等。下面代码简单介绍下使用及细节：
+<pre>
+    var a = Object.create(null);
+    a.__proto__        // <span style="color:limegreen;">undefined 此时a是一个连原型都没有的空对象</span>
+    var b = Object.create({});
+    b.__proto__        // <span style="color:limegreen;">Object {}, b是一个普通的空对象，其有原型，指向空的Object`{}`</span>
+    var c = Object.create(Object.prototype);
+    c.__proto__ === Object.prototype    // <span style="color:limegreen;">true</span>
+</pre>
+
+<p>上面介绍的是创建对象的最基础方法，这里稍微扩展一些，介绍几种关于创建对象的设计模式：</p>
+<ul>
+<li>工厂模式，此模式抽象了创建具体对象的过程，用函数来封装以特定接口创建对象的细节，如下所示：<pre>
+  function create(name,age){
+      var o = new Object();
+      o.name = name;
+      o.age = age;
+      return o;
+  }
+  var p1 = create('li',20);
+  var p2 = create('wu',30);
+</pre></li>
+<li>构造函数模式，上面已经涉及，平常也经常用到，不举例子了；</li>
+<li>原型模式，此方式将属性写在构造函数的<code>prototype</code>上面，实用性不强，一般不用；</li>
+<li>原型模式与构造函数组合使用，此模式将共享的属性和方法写在<code>prototype</code>上，构造函数里面用于自定义属性，比较通用。</li>
+<li>…</li>
+</ul>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>js实现继承的方式很多，下面我介绍的只是用的比较多的一种，可以叫做：组合继承。其将原形链和借用构造函数技术组合到一块，发挥各自的长处实现的一种继承模式。<br>其背后的思路是使用原形链实现对原型属性和方法的继承，而通过借用构造函数来实现对实例属性的继承，如下面例子：</p>
+<pre>
+    function Man(name){
+        this.name = name;
+        this.sex = 'male';
+    }
+    Man.prototype.myName = function(){
+        console.log(this.name);
+    };
+
+    function Son(name,age){
+        // 继承属性
+        Man.call(this,name);
+        this.age = age;
+    }
+    Son.prototype = Object.create(Man.prototype);
+    Son.prototype.myAge = function(){
+        console.log(this.age);
+    }
+    Son.prototype.constructor = Son;    // <span style="color:coral;">由于上面更改了Son.prototype的值，将其中的constructor值也改变了，因此此处必须将其写回</span>
+    var li = new Son('li',20);
+    li.myName();    // li
+    li.myAge();        // 20
+    li.sex;        // male
+</pre>
+
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>继承、创建对象，还有其他的一些形式，目前我不大常用，所以没有在上文提及，有兴趣的可以自行了解。</p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p>《JavaScript语言精粹》<br>《JavaScript权威指南(第6版)》<br>《JavaScript高级程序设计(第2版)》等</p>
+<hr>
+<hr>
+<p><img src="../../../../images/money.png" alt="money">☜☜☜ <strong><em>wechat</em></strong> 『『『<strong><em> reward 点击扫码打赏 ~~~ ^_^ </em></strong>  』』』<strong><em>alipay</em></strong> ☞☞☞   <img src="../../../../images/money.jpg" alt="money"></p>
+<hr>
+<hr>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
@@ -1232,135 +1461,12 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/02/18/不通过媒介查询也能构建响应式邮件设计/" itemprop="url">
-                  不通过媒介查询也能构建响应式邮件设计(译文)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-02-18T11:39:31+08:00" content="2016-02-18">
-              2016-02-18
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count" style="display:none">
-                &nbsp; | &nbsp;
-                <a href="/2016/02/18/不通过媒介查询也能构建响应式邮件设计/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/18/不通过媒介查询也能构建响应式邮件设计/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>一般来说，我们用媒介查询(Media Queries)来构建响应式邮件设计。但是最近我发现另一种可以构建响应式设计的方案，通过使用CSS的calc()技术与其他三个宽度属性：width、min-width、max-width。</p>
-<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>创建响应式邮件应用很困难，特别是一些手机客户端应用不支持媒介查询。使用hybird、Gmail邮件应用或者不通过媒介查询来构建响应式邮件设计是三种可选方案。</p>
-<p>我最近正在研究第三种方案。一开始我给div元素设置fixed width并且设置display属性为inline-block。一旦屏幕可以容纳两个以上的块，它们将会自然的排列下去，但是我还是遇到了问题。</p>
-<p>一旦所有的块开始层叠了，它们就不能占满屏幕宽度。<br><code class="normal-img"><img src="../../../../images/20160218/01.png" alt="无法占满屏宽"></code><br>我花了很长一段时间去寻找解决这个问题的方案，Flexbox是一个不错的建议，但不幸的是，电子邮件对Flexbox的支持很差。</p>
-<h3 id="一种解决方案"><a href="#一种解决方案" class="headerlink" title="一种解决方案"></a>一种解决方案</h3><h5 id="记住width、min-width、max-width"><a href="#记住width、min-width、max-width" class="headerlink" title="记住width、min-width、max-width"></a><strong><em>记住width、min-width、max-width</em></strong></h5><p>紧接着calc()函数，我在这个方案中引入了三个CSS属性。为了更好的理解它是怎么工作的，我们先来回顾下width、min-width、max-width同时使用时在前台页面中是如何表现的。</p>
-<ul>
-<li>如果width属性值比max-width大，max-width属性生效</li>
-<li>如果min-width属性值比width或者max-width属性值大，则min-width属性生效</li>
-</ul>
-<p>你先猜猜下面这个盒子的样式，宽度会是多少？<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.box</span> &#123;</div><div class="line">       <span class="attribute">width</span>:<span class="number">320px</span>;</div><div class="line">       <span class="attribute">min-width</span>:<span class="number">480px</span>;</div><div class="line">       <span class="attribute">max-width</span>:<span class="number">160px</span>;</div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
-<p>答案：盒子宽度将会是480px</p>
-<h5 id="calc"><a href="#calc" class="headerlink" title="calc()"></a><strong><em>calc()</em></strong></h5><p>不再啰嗦，下面演示如何用这种方案创建在宽度屏幕宽度小于480px的情况下会自动堆积为两列。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.block</span> &#123;</div><div class="line">       <span class="attribute">display</span>:inline-block;</div><div class="line">       <span class="attribute">min-width</span>:<span class="number">50%</span>;</div><div class="line">       <span class="attribute">max-width</span>:<span class="number">100%</span>;</div><div class="line">       <span class="attribute">width</span>:<span class="built_in">calc</span>((480px — 100%) * <span class="number">480</span>);</div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
-<p>我们一个个分析这几个属性。<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">min</span>-<span class="built_in">width</span>:<span class="number">50</span>%;</div></pre></td></tr></table></figure></p>
-<p>min-width属性定义的列宽可以让我们在桌面端使用，我们可以改变这个值来添加更多的列，如：改变为25%来显示四列，或者用fixed pixed宽度来设置列宽属性。<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">max</span>-<span class="built_in">width</span>:<span class="number">100</span>%;</div></pre></td></tr></table></figure></p>
-<p>max-width属性定义的列宽可以让我们在手机端使用，由于设置为100%，每列宽都将自适应，撑满容器的宽度。我们也可以改变属性值来在手机端显示多列。<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">width</span>:calc((<span class="number">480px</span> — <span class="number">100%</span>) * <span class="number">480</span>);</div></pre></td></tr></table></figure></p>
-<p>多亏了calc()函数，可以给width属性变魔法。值480是我们希望的转换点，值100%表示父容器的宽度，计算的结果为一个比max-width更大或者比min-width更小的值，因此这两个属性中的一个一定会生效并取代width属性。下面是两个例子：<br><code class="normal-img"><img src="../../../../images/20160218/02.png" alt="parent width 500px"></code><br>父元素宽度500px的情况下，计算出来的宽度为-9600px，比min-width要小，因此min-width生效，宽度为50%，呈现两列布局。<br><code class="normal-img"><img src="../../../../images/20160218/03.png" alt="parent width 400px"></code><br>父元素宽度400px的情况下，计算出来的宽度为38400px，远比min-width大，但max-width比它小，因此max-width生效，呈现单列布局。</p>
-<h3 id="支持情况"><a href="#支持情况" class="headerlink" title="支持情况"></a>支持情况</h3><p>在浏览器端，IE9已经开始支持calc()函数。而且在电子邮件客户端，calc()函数也得到了良好的支持。同时，在Apple Mail(IOS/OS X)、Thunderbird、Outlook(IOS/Android apps)、Gmail(webmail/IOS/Android apps)、AOL(webmail)和老的Outlook.com也能生效。</p>
-<h5 id="老的Outlook-com"><a href="#老的Outlook-com" class="headerlink" title="老的Outlook.com"></a><strong><em>老的Outlook.com</em></strong></h5><p>Outlook.com有一点小瑕疵，就是在calc()函数中会过滤每一个包含括号的属性。这就意味着，支持“calc(480px-100%)”，但不支持calc((480px-100%)*480)。因此我们需要像下面这样改变写法来支持老的Outlook.com：<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">width</span>:calc(<span class="number">480px</span> * <span class="number">480</span> — <span class="number">100%</span> * <span class="number">480</span>);</div></pre></td></tr></table></figure></p>
-<h5 id="不支持的客户端"><a href="#不支持的客户端" class="headerlink" title="不支持的客户端"></a><strong><em>不支持的客户端</em></strong></h5><p>calc()函数在一些老的电子邮件客户端像Lotus Notes及最新Windows版本的Outlook是不被支持的。同时，在Outlook Web App和Yahoo也不被支持。这些应用中的calc()函数将会被忽略掉。</p>
-<h5 id="让步-兼容处理"><a href="#让步-兼容处理" class="headerlink" title="让步(兼容处理)"></a><strong><em>让步(兼容处理)</em></strong></h5><p>在这种情况下，我建议使用fixed width引入一些自定义属性来兼容那些不支持calc()函数的客户端。为了在这些客户端隐藏这几个属性，尽管可能不会生效，我还是建议用calc()函数，下面是第一个例子：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.block</span> &#123;</div><div class="line">       <span class="attribute">display</span>:inline-block;</div><div class="line">       <span class="attribute">min-width</span>:<span class="number">240px</span>;</div><div class="line">       <span class="attribute">width</span>:<span class="number">50%</span>;</div><div class="line">       <span class="attribute">max-width</span>:<span class="number">100%</span>;</div><div class="line">       <span class="attribute">min-width</span>:<span class="built_in">calc</span>(50%);</div><div class="line">       <span class="attribute">width</span>:<span class="built_in">calc</span>(480px * 480 — 100% * 480);</div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
-<h5 id="Outlook-Web-App"><a href="#Outlook-Web-App" class="headerlink" title="Outlook Web App"></a><strong><em>Outlook Web App</em></strong></h5><p>然而，Outlook Web App(包括Offiec 365及新的Outlook.com)还有一个自带的小瑕疵。当calc()函数包含乘法(*)，新的Outlook.com及Office 365将会删除整个对应的内联样式属性。这就意味着我们需要手动计算乘法，并使用计算后的结果。下面是在480px转折点计算乘法后的结果：<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">width</span>:calc(<span class="number">230400px</span> — <span class="number">48000%</span>);</div></pre></td></tr></table></figure></p>
-<h5 id="WebKit前缀-WebKit-Prefixes"><a href="#WebKit前缀-WebKit-Prefixes" class="headerlink" title="WebKit前缀(WebKit Prefixes)"></a><strong><em>WebKit前缀(WebKit Prefixes)</em></strong></h5><p>老版本的Android(&lt;Android 5.0)及IOS(&lt;IOS 7)需要加上WebKit前缀以生效。因此我们最终的结果如下：<br>.block {<br>    display:inline-block;<br>    min-width:240px;<br>    width:50%;<br>    max-width:100%;<br>    min-width:-webkit-calc(50%);<br>    min-width:calc(50%);<br>    width:-webkit-calc(230400px — 48000%);<br>    width:calc(230400px — 48000%);<br>}</p>
-<h3 id="缺点及最后的想法"><a href="#缺点及最后的想法" class="headerlink" title="缺点及最后的想法"></a>缺点及最后的想法</h3><p>就像在电子邮件开发世界中的任何一件事物一样，上述方案并不完美。下面是一些我能想到的一些局限性：</p>
-<ul>
-<li>在Yahoo上不管用。其桌面端支持媒介查询，因此我们可以稍加改进，让手机端应用优先，并且在桌面端应用中加入媒介查询来巩固它。</li>
-<li>只能设置一个转折点。</li>
-<li>你只能从桌面版减少列数到手机版，你不能从四列布局的手机版到单列布局的桌面版，虽然这种情况很少见。</li>
-<li>最终的写法很难阅读。使用预处理器和mixin生成所有必需的属性可能会有用的多。</li>
-</ul>
-<p>不过，我依然认为这个方案在很多情况下会很方便。特别是针对优化Gmail。当然我也确信有很多网站上正在使用的实例。(像小部件、广告等等…)<br>并且我也迫不及待的想看到这种方案会给你的设计激发怎样的灵感。</p>
-<p><strong><em>(本文译自：<a href="https://medium.freecodecamp.com/the-fab-four-technique-to-create-responsive-emails-without-media-queries-baf11fdfa848#.tgn1z33if" target="_blank" rel="external">The Fab Four technique to create Responsive Emails without Media Queries</a>)</em></strong></p>
-<hr>
-<hr>
-<p><img src="../../../../images/money.png" alt="money">☜☜☜ <strong><em>wechat</em></strong> 『『『<strong><em> reward 点击扫码打赏 ~~~ ^_^ </em></strong>  』』』<strong><em>alipay</em></strong> ☞☞☞   <img src="../../../../images/money.jpg" alt="money"></p>
-<hr>
-<hr>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1401,7 +1507,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-count">31</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
